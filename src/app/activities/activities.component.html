@@ -1,0 +1,13 @@
+<div class="container">
+  
+  <div class="row" *ngFor="let activity of activities">
+    <div class="card card-block">
+      <h4 class="card-title">{{ activity.name }}</h4>
+      <p class="card-text">{{activity.venue}}</p>
+      <p class="card-text">{{activity.price}}</p>
+      <p class="card-text">{{activity.date}}</p>
+      <p class="card-text">{{activity.time}}</p>
+      <p class="card-text">{{activity.category}}</p>
+    </div>
+  </div>
+</div>
