@@ -1,14 +1,26 @@
-
- <h1> Welcome to Bubblbook </h1>
-
+<md-toolbar color="primary">
+	<button class="app-icon-button" (click)="sidenav.toggle()">
+      <i class="material-icons app-toolbar-menu" color="accent">menu</i>
+    </button>
+ 	Welcome to Bubblbook 
+</md-toolbar>
+ 
+<md-card>
+	<img md-card-image src="../assets/happy-friends-bowling.jpg">
+	<md-card-actions>
+		<app-login></app-login>
+	</md-card-actions>
+</md-card>
+ <button md-button (click)="openHIW()">
+  HOW IT WORKS
+ <div class="md-button-ripple" md-riple></div>
+ </button>
  
 
-
- <button> How it works </button>
-
-<button a routerLink="/createbubblbooking" routerLinkActive="active"> Create Bubblbooking </button>
+<button md-button a routerLink="/createbubblbooking" routerLinkActive="active" color="warn"> CREATE BUBBLBOOKING </button>
 <br/>
 <br/>
 
-<app-login></app-login>
+
+
 <router-outlet></router-outlet>

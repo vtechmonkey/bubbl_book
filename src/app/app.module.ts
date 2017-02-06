@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule,JsonpModule  } from '@angular/http';
+import { MaterialModule } from '@angular/material';
+import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular/material';
 
 import { AUTH_PROVIDERS } from 'angular2-jwt';
 
@@ -15,6 +17,8 @@ import { CreateBubblbookingComponent } from './create-bubblbooking/create-bubblb
 import {AuthService } from './auth.service';
 
 import { routing, appRoutingProviders } from './app.routing';
+import 'hammerjs';
+import { HiwComponent } from './hiw/hiw.component';
 
 @NgModule({
   declarations: [
@@ -22,16 +26,21 @@ import { routing, appRoutingProviders } from './app.routing';
     ActivitiesComponent,
     HomeComponent,
     CreateBubblbookingComponent,
-    LoginComponent
+    LoginComponent,
+    HiwComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     JsonpModule,
-    routing
+    routing,
+    MaterialModule.forRoot()
   ],
   providers: [ActivitiesService,appRoutingProviders,AuthService,AUTH_PROVIDERS],
+  entryComponents: [
+  HiwComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
