@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular/material';
 import { HiwComponent } from '../hiw/hiw.component';
-
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,10 @@ import { HiwComponent } from '../hiw/hiw.component';
 })
 export class HomeComponent implements OnInit {
 	
-  constructor( public dialog: MdDialog ) { }
+  constructor( 
+              public dialog: MdDialog,
+              private authService: AuthService
+     ) { }
 
   openHIW() {
   	let dialogRef = this.dialog.open(HiwComponent);

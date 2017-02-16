@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
+var multer =  require('multer');
 
 const jwt = require('express-jwt');
 var cors = require('cors');
@@ -43,7 +44,12 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE');
     next();
 });
-
+///file uploads to amazon bucket
+var storage=multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, 'https://s3-eu-west-1.amazonaws.com/bubblbookimages')
+    }
+})
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));

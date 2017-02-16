@@ -4,3 +4,7 @@
 declare var System: any;
 
 declare var require: any;
+
+interface Window {
+	AWS?:any;
+}

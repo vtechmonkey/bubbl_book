@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var bodyparser = require('body-parser');
-
+var multer =  require('multer');
 var mongoose = require('mongoose');
 var Activity = require('../models/activity');
 
@@ -53,6 +53,7 @@ router.post('/activity', function(req, res, next){
   activity.isPrivate = req.body.isPrivate;
   activity.price = req.body.price;
   activity.category = req.body.category;
+  activity.imageURL = req.body.imageURL;
   // Save and check for errors
   activity.save(function(err) {
     if (err)
@@ -87,6 +88,7 @@ router.put('/Activity/:id', function(req, res, next){
       activity.time = req.body.time;
      if(req.body.category)
       activity.category = req.body.category;
+    if(req.body.imageURL) activity.imageURL = req.body.imageURL;
     if(req.body.isPrivate)
     activity.isPrivate = req.body.isPrivate;
     

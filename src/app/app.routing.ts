@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ActivitiesComponent } from './activities/activities.component';
 import { HomeComponent } from './home/home.component';
 import { CreateBubblbookingComponent } from './create-bubblbooking/create-bubblbooking.component';
+import { CategoryComponent } from './category/category.component';
 import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
@@ -20,7 +21,10 @@ const appRoutes: Routes = [
 	path: 'createbubblbooking',
 	component: CreateBubblbookingComponent
 },
-
+{
+	path: 'category',
+	component: CategoryComponent
+},
 {
 	path: 'activities',
 	component: ActivitiesComponent

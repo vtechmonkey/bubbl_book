@@ -6,15 +6,18 @@
 </md-toolbar>
  
 <md-card>
-	<img md-card-image src="../assets/happy-friends-bowling.jpg">
+	<img md-card-image src="../assets/Group-Events.jpg">
 	<md-card-actions>
 		<app-login></app-login>
 	</md-card-actions>
 </md-card>
- <button md-button (click)="openHIW()">
-  HOW IT WORKS
- <div class="md-button-ripple" md-riple></div>
- </button>
+
+<div *ngIf="!authService.authenticated()">
+	<button md-button (click)="openHIW()">
+	  HOW IT WORKS
+	<div class="md-button-ripple" md-riple></div>
+	</button>
+</div>
  
 
 <button md-button a routerLink="/createbubblbooking" routerLinkActive="active" color="warn"> CREATE BUBBLBOOKING </button>
