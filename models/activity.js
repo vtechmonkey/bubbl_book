@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var ActivitySchema = new mongoose.Schema({
+	
 	name: String,
 	venue: String,
 	price: String,

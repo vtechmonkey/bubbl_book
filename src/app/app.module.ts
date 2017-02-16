@@ -19,6 +19,7 @@ import {AuthService } from './auth.service';
 import { routing, appRoutingProviders } from './app.routing';
 import 'hammerjs';
 import { HiwComponent } from './hiw/hiw.component';
+import { ActivityDetailsComponent } from './activity-details/activity-details.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HiwComponent } from './hiw/hiw.component';
     HomeComponent,
     CreateBubblbookingComponent,
     LoginComponent,
-    HiwComponent
+    HiwComponent,
+    ActivityDetailsComponent
   ],
   imports: [
     BrowserModule,

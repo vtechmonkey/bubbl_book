@@ -1,0 +1,41 @@
+<!-- new syntax for ng-if -->
+<section *ngIf="activity">
+  <section>
+    <h2>You selected: {{activity.name}}</h2>
+  </section>
+  <section>
+
+    <form (ngSubmit) = "updateActivityDetails()"  #activityForm="ngForm">
+        <div>
+            <label for="name">Name: </label>
+            <input type="text" name="name" required [(ngModel)]="activity.name" #name="ngModel">
+            <div [hidden]="name.valid || name.pristine" class="error">
+                Name is required 
+            </div>
+      </div>
+      <div>
+        <label for="venue">venue: </label>
+        <input type="text" name="venue" [(ngModel)]="activity.venue">
+      </div>
+      <div>
+        <label for="price">Price: </label>
+        <input type="text" name="price" [(ngModel)]="activity.price">
+      </div>
+      <div>
+        <label for="price">Date: </label>
+        <input type="text" name="date" [(ngModel)]="activity.date">
+      </div>
+      <div>
+        <label for="time">Time: </label>
+        <input type="text" name="time" [(ngModel)]="activity.time">
+      </div>
+     
+      <button type="submit" [disabled]="!activityForm.form.valid">update</button>
+      
+    </form>
+  </section>
+
+  <button (click)="gotoActivitiesList()">Back to activities list</button>
+<section>
+
+  <router-outlet></router-outlet>

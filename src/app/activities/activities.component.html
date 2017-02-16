@@ -1,13 +1,33 @@
-<div class="container">
-  
-  <div class="row" *ngFor="let activity of activities">
-    <div class="card card-block">
-      <h4 class="card-title">{{ activity.name }}</h4>
-      <p class="card-text">{{activity.venue}}</p>
-      <p class="card-text">{{activity.price}}</p>
-      <p class="card-text">{{activity.date}}</p>
-      <p class="card-text">{{activity.time}}</p>
-      <p class="card-text">{{activity.category}}</p>
-    </div>
-  </div>
-</div>
+
+<section>
+    <section *ngIf="isLoading && !errorMessage">
+    Retrieving activities...
+    </section>
+   
+        <!-- this is the new syntax for ng-repeat -->
+        <ul>
+        <li  *ngFor="let activity of activities">
+        <a href="#" [routerLink]="['/activities',activity._id]">
+             
+                  {{activity.name }}
+                  {{activity.venue}}
+                  {{activity._id}}
+                  
+                  
+         </a>
+             
+        </li>
+        </ul>
+       
+   
+  <section *ngIf="errorMessage">
+      {{errorMessage}}
+      </section>
+  </section>
+
+
+
+
+
+
+
