@@ -32,7 +32,7 @@ router.get('/activities', function(req, res){
 });
 
 // Get Single activity
-router.get('/activity/:activity_id', function(req, res, next){
+router.get('/activities/:activity_id', function(req, res,next){
  Activity.findById(req.params.activity_id, function(err, activity) {
     if (err)
       res.send(err);
@@ -42,7 +42,7 @@ router.get('/activity/:activity_id', function(req, res, next){
 });
 
 //Save Activity
-router.post('/activity', function(req, res, next){
+router.post('/activities/:activity_id', function(req, res, next){
     var activity = new Activity();
 
   // Set the properties that came from the POST data
@@ -63,8 +63,8 @@ router.post('/activity', function(req, res, next){
 });
 
 // Delete Activity
-router.delete('/Activity/:id', function(req, res, next){
-ctivity.findByIdAndRemove(req.params.activity_id, function(err, activity){
+router.delete('/activities/:activity_id', function(req, res, next){
+Activity.findByIdAndRemove(req.params.activity_id, function(err, activity){
     if(err)
       res.send(err);
     //delete the activity 
@@ -73,7 +73,7 @@ ctivity.findByIdAndRemove(req.params.activity_id, function(err, activity){
 });
 
 // Update Activity
-router.put('/Activity/:id', function(req, res, next){
+router.put('/activities/:activity_id', function(req, res){
     Activity.findById(req.params.activity_id, function(err, activity){
     if (err)
       res.send(err);

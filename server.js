@@ -51,9 +51,9 @@ var storage=multer.diskStorage({
     }
 })
 // Catch all other routes and return the index file
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'dist/index.html'));
+// });
 
 if (app.get('env') === 'development') {
     app.use(function (err, req, res, next) {

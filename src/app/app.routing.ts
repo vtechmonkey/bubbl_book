@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { CreateBubblbookingComponent } from './create-bubblbooking/create-bubblbooking.component';
 import { CategoryComponent } from './category/category.component';
 import { LoginComponent } from './login/login.component';
+import { ActivityDetailsComponent } from './activity-details/activity-details.component';
 
 const appRoutes: Routes = [
 
@@ -28,6 +29,11 @@ const appRoutes: Routes = [
 {
 	path: 'activities',
 	component: ActivitiesComponent
+},
+{
+	path:'activities/:_id',
+	component: ActivityDetailsComponent
+
 },
 {
 	path:'login',

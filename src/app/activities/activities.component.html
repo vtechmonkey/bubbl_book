@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container">
   
   <div class="row" *ngFor="let activity of activities">
@@ -13,3 +14,38 @@
     </div>
   </div>
 </div>
+=======
+
+<section>
+    <section *ngIf="isLoading && !errorMessage">
+    Retrieving activities...
+    </section>
+   
+        <!-- this is the new syntax for ng-repeat -->
+        <ul>
+        <li  *ngFor="let activity of activities">
+        <a href="#" [routerLink]="['/activities',activity._id]">
+             
+                  {{activity.name }}
+                  {{activity.venue}}
+                  {{activity._id}}
+                  
+                  
+         </a>
+             
+        </li>
+        </ul>
+       
+   
+  <section *ngIf="errorMessage">
+      {{errorMessage}}
+      </section>
+  </section>
+
+
+
+
+
+
+
+>>>>>>> 87a2a08a560cda03a3bf9682017c982ead129b36
