@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 
 import { Activity } from '../activity';
 import{ActivitiesService} from '../activities.service';
@@ -12,21 +12,25 @@ import{ActivitiesService} from '../activities.service';
 export class ActivitiesComponent implements OnInit {
 
 	activities: Activity[];
-  errorMessage:string = '';
-
+  
 
   constructor(
     
-    private activitiesService:ActivitiesService) { }
+    private activitiesService:ActivitiesService,
+    private router: Router) { }
 
-
-  ngOnInit() {
-    this.activitiesService
+  ngOnInit(): void {
+   this.activitiesService
     .getAllActivities()
     .subscribe((res)=> {
       this.activities = res;
+});
+  };
 
-    });
 
-}
+
+gotoDetail(activity:Activity): void {
+    let link = ['/activities',activity._id];
+    this.router.navigate(link);
+  }
 }

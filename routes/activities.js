@@ -5,8 +5,9 @@ var multer =  require('multer');
 var mongoose = require('mongoose');
 var Activity = require('../models/activity');
 
-mongoose.connect('mongodb://newOrder:haloRemix@ds019986.mlab.com:19986/tuttifrutti');
-
+mongoose.connect('mongodb://newOrder:haloRemix@ds019986.mlab.com:19986/tuttifrutti')
+.then(() =>console.log('connected succesful'))
+.catch((err)=> console.error(err));
 
 router.get('/', function(req, res) {
   res.send('Yes I am ready'); 
@@ -22,7 +23,7 @@ router.use(function(req, res, next) {
 });
 
 // Get All activities
-router.get('/activities', function(req, res){
+router.get('/activities', function(req, res,next){
     Activity.find(function(err, activities){
         if(err){
             res.send(err);
@@ -32,8 +33,8 @@ router.get('/activities', function(req, res){
 });
 
 // Get Single activity
-router.get('/activities/:activity_id', function(req, res,next){
- Activity.findById(req.params.activity_id, function(err, activity) {
+router.get('/activities/:_id', function(req, res,next){
+ Activity.findById(req.params._id, function(err, activity) {
     if (err)
       res.send(err);
 
@@ -42,7 +43,7 @@ router.get('/activities/:activity_id', function(req, res,next){
 });
 
 //Save Activity
-router.post('/activities/:activity_id', function(req, res, next){
+router.post('/activities', function(req, res, next){
     var activity = new Activity();
 
   // Set the properties that came from the POST data
@@ -58,13 +59,13 @@ router.post('/activities/:activity_id', function(req, res, next){
   activity.save(function(err) {
     if (err)
       res.send(err);
-    res.json({ message: 'Stuff added to the locker!', data: activity });
+    res.json({ message: 'activity added', data: activity });
   });
 });
 
 // Delete Activity
-router.delete('/activities/:activity_id', function(req, res, next){
-Activity.findByIdAndRemove(req.params.activity_id, function(err, activity){
+router.delete('/activities/:_id', function(req, res){
+Activity.findByIdAndRemove(req.params._id, function(err, activity){
     if(err)
       res.send(err);
     //delete the activity 
@@ -73,8 +74,8 @@ Activity.findByIdAndRemove(req.params.activity_id, function(err, activity){
 });
 
 // Update Activity
-router.put('/activities/:activity_id', function(req, res){
-    Activity.findById(req.params.activity_id, function(err, activity){
+router.put('/activities/:_id', function(req, res,next){
+    Activity.findById(req.params._id, function(err, activity){
     if (err)
       res.send(err);
     //update activity time 

@@ -1,12 +1,12 @@
 export class Activity {
 
-	_id:String;
-	name: String;
-	venue: String;
-	price: String;
-	date: String;
-	time: String;
-	category: String;
+	_id:string;
+	name: string;
+	venue: string;
+	price: string;
+	date: string;
+	time: string;
+	category: string;
 	
 }
 

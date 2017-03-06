@@ -5,7 +5,7 @@
   </section>
   <section>
 
-    <form (ngSubmit) = "updateActivityDetails()"  #activityForm="ngForm">
+    <form (ngSubmit) = "save()"  #activityForm="ngForm">
         <div>
             <label for="name">Name: </label>
             <input type="text" name="name" required [(ngModel)]="activity.name" #name="ngModel">
@@ -30,7 +30,7 @@
         <input type="text" name="time" [(ngModel)]="activity.time">
       </div>
      
-      <button type="submit" [disabled]="!activityForm.form.valid">update</button>
+      <button type="submit" [disabled]="!activityForm.form.valid">save</button>
       
     </form>
   </section>
@@ -38,4 +38,4 @@
   <button (click)="gotoActivitiesList()">Back to activities list</button>
 <section>
 
-  <router-outlet></router-outlet>
+  

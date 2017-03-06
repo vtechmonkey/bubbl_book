@@ -16,59 +16,70 @@ export class ActivitiesService {
 
   // Get all activities 
     getAllActivities(): Observable<Activity[]> {
-    let activities$ = this.http
+    return this.http
     .get(this.activitiesUrl)
     .map(res => res.json())
     .catch(this.handleError); 
-    return activities$;                
+                    
 }
 // Get a single activity
 getActivityById(_id): Observable<Activity[]> {
+
+  let headers = new Headers({
+   'Content-Type': 'application/json'
+  });
+
   let activity$ = this.http
-  .get(`${this.activitiesUrl}/${_id}`,{headers: this.getHeaders()})
+  .get(`${this.activitiesUrl}/${_id}`,{headers: headers})
   .map(res => res.json());
   return activity$;
 }
 
-// create activity
-createActivity(data):Observable<Activity[]> {
-  let activity$= this.http
-  .post(this.activitiesUrl,JSON.stringify(data),
-  {headers: this.getHeaders()})
-  .map(res=>res.json());
-  return activity$;
+// save and update activity
+save(activity:Activity): Observable<Activity[]> {
+  if(activity._id){
+    return this.put(activity); 
+  }
+    return this.post(activity);
+}
+
+//post activity
+private post(activity:Activity): Observable<Activity[]>{
+  let headers = new Headers({
+    'Content-Type': 'application/json'
+  });
+
+  return this.http
+   .post(this.activitiesUrl,JSON.stringify(activity),{headers:headers})
+   .map(res => res.json())
+   .catch(this.handleError); 
+
+}
+
+
+//put activity
+private put(activity:Activity):  Observable<Activity[]> {
+  let headers = new Headers({
+    'Content-Type': 'application/json'
+  });
+
+  return this.http
+  .put(`${this.activitiesUrl}/${activity._id}`,JSON.stringify(activity),{headers:headers})
+  .map(res => res.json())
+  .catch(this.handleError);
 }
 
 //delete activity
-deleteActivity(_id):Observable<Activity[]> {
-  return this.http
-  .delete(`${this.activitiesUrl}/${_id}`)
-  .map(res => res.json());
-  
+// delete(activity: Activity): Observable<Response> {
+//   let headers = new Headers({
+//     'Content-Type': 'application/json'
+//   });
 
-}
+//  return this.http
+// .delete(`${this.activitiesUrl}/${_id}`, {headers:headers})
+// .map(res => res.json());
 
-// update activity
-updateActivity(activity):Observable<Activity[]>{
-  return this.http
-  .put(`${this.activitiesUrl}/${activity._id}`,JSON.stringify(activity),
-  {headers: this.getHeaders()})
-  .map(res => res.json());
-  
-}
-
-
-
-
-
-
-
-    private getHeaders(){
-    let headers = new Headers();
-    headers.append('Accept', 'application/json');
-    return headers;
-  }
-
+// }
 
 
  private handleError(error: any): Promise<any> {
