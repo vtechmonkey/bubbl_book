@@ -3,16 +3,15 @@
     <section *ngIf="isLoading && !errorMessage">
     Retrieving activities...
     </section>
-
-
-    <div class="grid grid-pad">
+  
   <div *ngFor="let activity of activities" (click)="gotoDetail(activity)">
     
       <h4>{{activity.name}}</h4>
-      
-    
+      <button class="delete-button" (click)="deleteActivity(activity,$event)">
+          Delete </button>
+          
   </div>
-</div>
+
   
   <section *ngIf="errorMessage">
       {{errorMessage}}

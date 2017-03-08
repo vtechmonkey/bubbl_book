@@ -70,16 +70,16 @@ private put(activity:Activity):  Observable<Activity[]> {
 }
 
 //delete activity
-// delete(activity: Activity): Observable<Response> {
-//   let headers = new Headers({
-//     'Content-Type': 'application/json'
-//   });
+delete(activity: Activity):Observable<Activity[]> {
+  let headers = new Headers({
+    'Content-Type': 'application/json'
+  });
 
-//  return this.http
-// .delete(`${this.activitiesUrl}/${_id}`, {headers:headers})
-// .map(res => res.json());
+ return this.http
+.delete(`${this.activitiesUrl}/${activity._id}`, {headers:headers})
+.map(res => res.json());
 
-// }
+}
 
 
  private handleError(error: any): Promise<any> {

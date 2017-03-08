@@ -19,15 +19,26 @@ export class ActivitiesComponent implements OnInit {
     private activitiesService:ActivitiesService,
     private router: Router) { }
 
-  ngOnInit(): void {
-   this.activitiesService
+getActivities(): void{
+this.activitiesService
     .getAllActivities()
     .subscribe((res)=> {
       this.activities = res;
 });
+}
+
+deleteActivity(activity: Activity, event: any): void{
+event.stopPropagation();
+ this.activitiesService
+  .delete(activity)
+  .subscribe((res)=>
+  this.activities = this.activities.filter(a => a != activity)
+  )
+}
+
+ngOnInit(): void {
+   this.getActivities();
   };
-
-
 
 gotoDetail(activity:Activity): void {
     let link = ['/activities',activity._id];
