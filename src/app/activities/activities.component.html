@@ -2,8 +2,8 @@
 <section>
     <section *ngIf="isLoading && !errorMessage">
     Retrieving activities...
-    </section>
-  
+</section>
+<section>
   <div *ngFor="let activity of activities" (click)="gotoDetail(activity)">
     
       <h4>{{activity.name}}</h4>
@@ -11,6 +11,11 @@
           Delete </button>
           
   </div>
+</section>
+<br/>
+<br/>
+  
+<button routerLink="/create" routerLinkActive="active">Add activity</button>
 
   
   <section *ngIf="errorMessage">

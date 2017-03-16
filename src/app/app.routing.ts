@@ -6,7 +6,7 @@ import { CreateBubblbookingComponent } from './create-bubblbooking/create-bubblb
 import { CategoryComponent } from './category/category.component';
 import { LoginComponent } from './login/login.component';
 import { ActivityDetailsComponent } from './activity-details/activity-details.component';
-
+import { ActivityCreateComponent } from './activity-create/activity-create.component';
 const appRoutes: Routes = [
 
  { 	path: '',
@@ -38,6 +38,10 @@ const appRoutes: Routes = [
 {
 	path:'login',
  	component: LoginComponent
+ },
+ {
+	path:'create',
+ 	component: ActivityCreateComponent
  }
 
 ];

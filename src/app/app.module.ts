@@ -24,6 +24,7 @@ import { SearchComponent } from './search/search.component';
 import { CategoryComponent } from './category/category.component';
 
 import { ActivityDetailsComponent } from './activity-details/activity-details.component';
+import { ActivityCreateComponent } from './activity-create/activity-create.component';
 
 
 @NgModule({
@@ -38,7 +39,9 @@ import { ActivityDetailsComponent } from './activity-details/activity-details.co
     SearchComponent,
     CategoryComponent,
 
-    ActivityDetailsComponent
+    ActivityDetailsComponent,
+
+    ActivityCreateComponent
 
   ],
   imports: [

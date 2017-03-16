@@ -1,0 +1,38 @@
+<form #activityForm="ngForm">
+  <h2> Add activity </h2>
+        <div>
+            <label for="name">Name: </label>
+            <input type="text" name="name"  [(ngModel)]="activityData.name" >
+            
+      </div>
+      <div>
+        <label for="venue">venue: </label>
+        <input type="text" name="venue" [(ngModel)]="activityData.venue">
+      </div>
+      <div>
+        <label for="price">Price: </label>
+        <input type="text" name="price" [(ngModel)]="activityData.price">
+      </div>
+      <div>
+        <label for="price">Date: </label>
+        <input type="text" name="date" [(ngModel)]="activityData.date">
+      </div>
+      <div>
+        <label for="time">Time: </label>
+        <input type="text" name="time" [(ngModel)]="activityData.time">
+      </div>
+     <br/>
+     
+      <button (click)="createActivity()" [disabled]="!activityForm.form.valid">Add activity</button>
+  </form>
+  <br/>
+  <br/>
+  <button (click)="gotoActivitiesList()">Back to activities list</button>
+ 
+
+
+
+
+
+
+
