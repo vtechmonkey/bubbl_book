@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule,JsonpModule  } from '@angular/http';
+import { HttpModule, Http, RequestOptions,JsonpModule  } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular/material';
 
-import { AUTH_PROVIDERS } from 'angular2-jwt';
+import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
 
 import { LoginComponent } from './login/login.component';
 
@@ -26,6 +26,9 @@ import { CategoryComponent } from './category/category.component';
 import { ActivityDetailsComponent } from './activity-details/activity-details.component';
 import { ActivityCreateComponent } from './activity-create/activity-create.component';
 
+export function authHttpServiceFactory(http:Http, options: RequestOptions) {
+  return new AuthHttp (new AuthConfig({}), http, options);
+}
 
 @NgModule({
   declarations: [
@@ -52,7 +55,12 @@ import { ActivityCreateComponent } from './activity-create/activity-create.compo
     routing,
     MaterialModule.forRoot()
   ],
-  providers: [ActivitiesService,appRoutingProviders,AuthService,AUTH_PROVIDERS],
+  providers: [ActivitiesService,appRoutingProviders,AuthService,{
+  provide:AuthHttp,
+  useFactory:authHttpServiceFactory,
+  deps:[Http, RequestOptions]
+}],
+
   entryComponents: [
   HiwComponent
   ],
