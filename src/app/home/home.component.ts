@@ -16,7 +16,10 @@ export class HomeComponent implements OnInit {
      ) { }
 
   openHIW() {
-  	let dialogRef = this.dialog.open(HiwComponent);
+  	let dialogRef = this.dialog.open(HiwComponent, {
+      height:'800px',
+      width:'500px',
+    });
 
   }
 
