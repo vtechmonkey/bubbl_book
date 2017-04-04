@@ -1,0 +1,10 @@
+
+<!-- 
+//<input type="file" (change)="fileEvent($event)"> -->
+
+   <md-input-container>     
+
+  Add a picture of your event..    
+            <input mdInput type="file" name="imageURL" required [(ngModel)]="activity.imageURL" #name="ngModel" (change)="fileEvent($event)">
+         
+   </md-input-container>

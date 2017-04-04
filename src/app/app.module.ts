@@ -11,10 +11,13 @@ import { LoginComponent } from './login/login.component';
 
 import { AppComponent } from './app.component';
 import { ActivitiesComponent } from './activities/activities.component';
-import {ActivitiesService} from './activities.service';
+
 import { HomeComponent } from './home/home.component';
 import { CreateBubblbookingComponent } from './create-bubblbooking/create-bubblbooking.component';
+
+import {ActivitiesService} from './activities.service';
 import {AuthService } from './auth.service';
+import { PicsService } from './pics.service';
 
 import { routing, appRoutingProviders } from './app.routing';
 import 'hammerjs';
@@ -38,12 +41,9 @@ export function authHttpServiceFactory(http:Http, options: RequestOptions) {
     CreateBubblbookingComponent,
     LoginComponent,
     HiwComponent,
-
     SearchComponent,
     CategoryComponent,
-
     ActivityDetailsComponent,
-
     ActivityCreateComponent
 
   ],
@@ -55,7 +55,7 @@ export function authHttpServiceFactory(http:Http, options: RequestOptions) {
     routing,
     MaterialModule.forRoot()
   ],
-  providers: [ActivitiesService,appRoutingProviders,AuthService,{
+  providers: [ActivitiesService,appRoutingProviders,AuthService, PicsService, {
   provide:AuthHttp,
   useFactory:authHttpServiceFactory,
   deps:[Http, RequestOptions]

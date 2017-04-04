@@ -21,17 +21,19 @@
         <label for="time">Time: </label>
         <input type="text" name="time" [(ngModel)]="activityData.time">
       </div>
+       <div> 
+          Add a picture of your event..    
+            <input   type="file" (change)="pics.fileEvent($event)">          
+      </div>
+      
      <br/>
-     
+   
       <button (click)="createActivity()" [disabled]="!activityForm.form.valid">Add activity</button>
   </form>
   <br/>
   <br/>
   <button (click)="gotoActivitiesList()">Back to activities list</button>
  
-
-
-
 
 
 

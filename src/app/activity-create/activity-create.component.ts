@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { Activity } from '../activity';
 import{ActivitiesService} from '../activities.service';
+import { PicsService } from '../pics.service';
 
 @Component({
   selector: 'app-activity-create',
@@ -22,15 +23,19 @@ export class ActivityCreateComponent implements OnInit {
    price: '',
    date: '',
    time: '',
-   category: ''
+   category: '',
+   imageURL:''
  };
  
 
  
  private activity: Array<Activity> =[];
 
-  constructor(private activitiesService:ActivitiesService,
-    private router: Router) { }
+  constructor(
+    private activitiesService:ActivitiesService,
+    private router: Router,
+    private pics:PicsService
+    ) { }
 
 
 
