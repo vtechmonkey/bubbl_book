@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { Activity } from '../activity';
 import{ActivitiesService} from '../activities.service';
+import { Category } from './category.interface';
 
 @Component({
   selector: 'app-activities',
@@ -12,7 +13,8 @@ import{ActivitiesService} from '../activities.service';
 export class ActivitiesComponent implements OnInit {
 
 	activities: Activity[];
-  
+  public categories = Categories;
+
 
   constructor(
     
@@ -45,3 +47,10 @@ gotoDetail(activity:Activity): void {
     this.router.navigate(link);
   }
 }
+
+var Categories : Category[] = [
+  {"name":"cycling","url": "https://s3-eu-west-1.amazonaws.com/bubblbookimages/cycling.jpg"},
+  {"name": "golf", "url": "https://s3-eu-west-1.amazonaws.com/bubblbookimages/golf.jpg" },
+  {"name": "tennis", "url": "https://s3-eu-west-1.amazonaws.com/bubblbookimages/tennis3.jpg" }
+ 
+];

@@ -26,8 +26,8 @@ export class UploadsComponent  {
 		let image = imageBank + key;
 		let AWS = new AWSService.S3({
 			region: 'eu-west-1',
-			accessKeyId:'AKIAIB5CR7EEG47LIZ7A',
-			secretAccessKey:'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'
+			accessKeyId:'',
+			secretAccessKey:''
 		});
 		let params = {
 		Key: key,

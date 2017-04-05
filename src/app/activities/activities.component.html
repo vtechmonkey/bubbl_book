@@ -1,17 +1,44 @@
+<!-- activity categories -->
 
+
+
+
+
+
+
+<md-grid-list cols="5" md-row-height="4:3">
+<h3 md-line>Sport</h3>
+  <md-grid-tile *ngFor="let category of categories" >    
+      <md-grid-tile-footer>{{category.name}}</md-grid-tile-footer>
+      <img md-grid-tile-image src="{{category.url}}" alt="category image">   
+          
+  </md-grid-tile>
+</md-grid-list>
+
+
+
+
+
+
+
+
+
+<!-- actual activities 
+ -->
 <section>
     <section *ngIf="isLoading && !errorMessage">
     Retrieving activities...
 </section>
-<section>
-  <div *ngFor="let activity of activities" (click)="gotoDetail(activity)">
+<md-grid-list cols="5" md-row-height="4:3">
+  <md-grid-tile *ngFor="let activity of activities" (click)="gotoDetail(activity)">
     
       <h4>{{activity.name}}</h4>
+      <img src="{{activity.imageURL}}" alt="activity image">
       <button class="delete-button" (click)="deleteActivity(activity,$event)">
           Delete </button>
           
-  </div>
-</section>
+  </md-grid-tile>
+</md-grid-list>
 <br/>
 <br/>
   

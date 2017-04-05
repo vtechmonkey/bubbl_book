@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Activity } from '../activity';
 import{ActivitiesService} from '../activities.service';
+import { PicsService } from '../pics.service';
 
 
 @Component({
@@ -23,8 +24,10 @@ export class ActivityDetailsComponent implements OnInit {
 
   constructor(private activitiesService:ActivitiesService,
                 private route: ActivatedRoute,
-                private router: Router ) { }
-
+                private router: Router,
+                private pics: PicsService              
+               
+                ) { }
   ngOnInit() {
      this.sub = this.route.params.subscribe(params => {
        if(params['_id'] !== undefined){
@@ -59,6 +62,8 @@ export class ActivityDetailsComponent implements OnInit {
         if(this.navigated){window.history.back();}
         
     }
+
+      
 
 }
 

@@ -4,6 +4,9 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 @Injectable()
 export class PicsService {
 
+
+imageURL:any;
+
   constructor() { }
 
   message: string = 'hi Sarah';
@@ -24,8 +27,8 @@ export class PicsService {
     let imageURL = imageBank + key;
     let AWS = new AWSService.S3({
       region: 'eu-west-1',
-      accessKeyId:'AKIAI7CTFEX77DK6EDEA',
-      secretAccessKey:'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'
+      accessKeyId:'',
+      secretAccessKey:''
     });
     let params = {
     Key: key,
@@ -44,7 +47,7 @@ export class PicsService {
       console.log('data');
       console.log(imageURL);
       }
-      this.imageURL.emit(this.key);
+      return this.imageURL;
       
     });
 

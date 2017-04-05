@@ -29,7 +29,12 @@
         <label for="time">Time: </label>
         <input type="text" name="time" [(ngModel)]="activity.time">
       </div>
-     
+     <div> 
+          Add a picture of your event..    
+            <input   type="file" (change)="pics.fileEvent($event)">          
+      </div>
+
+ 
       <button type="submit" [disabled]="!activityForm.form.valid">save</button>
       
     </form>
