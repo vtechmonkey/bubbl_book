@@ -19,3 +19,23 @@
   text-align: left;
   text-decoration: none;
 }
+
+.opacity_87 {
+  color: rgba(0,0,0, 0.87);
+}
+
+.opacity_68 {
+  color: rgba(0,0,0, 0.67);
+}
+
+.opacity_54 {
+  color: rgba(0,0,0, 0.54);
+}
+
+@media all and (min-width:960px) {
+.main {
+  max-width: 900px;
+  margin:auto;
+
+}
+}

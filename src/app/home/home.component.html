@@ -5,25 +5,29 @@
  	Welcome to Bubblbook 
 </md-toolbar>
  
-<md-card>
-	<img md-card-image src="../assets/Group-Events.jpg">
-	<md-card-actions>
-		<app-login></app-login>
-	</md-card-actions>
-</md-card>
+<div class="main">
+	<md-card>
+		<img md-card-image src="../assets/group-events.jpg" height="80%">
+		<md-card-actions>
+			<app-login></app-login>
+		</md-card-actions>
+	</md-card>
 
-<div *ngIf="!authService.authenticated()">
-	<button md-button (click)="openHIW()">
-	  HOW IT WORKS
-	<div class="md-button-ripple" md-riple></div>
-	</button>
+	<md-grid-list cols="2" rowHeight="100px">
+		<md-grid-tile>
+			<div *ngIf="!authService.authenticated()">
+				<button md-riple md-button (click)="openHIW()">
+				  HOW IT WORKS
+				<div ></div>
+				</button>
+			</div>
+		</md-grid-tile>
+		 
+		<md-grid-tile>
+			<button md-button a routerLink="/createbubblbooking" routerLinkActive="active" color="warn"> 
+			GET STARTED
+			</button>
+		</md-grid-tile>
+	</md-grid-list>
 </div>
- 
-
-<button md-button a routerLink="/createbubblbooking" routerLinkActive="active" color="warn"> CREATE BUBBLBOOKING </button>
-<br/>
-<br/>
-
-
-
 <router-outlet></router-outlet>

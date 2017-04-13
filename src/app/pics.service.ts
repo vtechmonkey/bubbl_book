@@ -13,9 +13,9 @@ imageURL:any;
  
  // @Output() imageURL = new EventEmitter();
 
-  fileEvent(fileInput:any){
+  fileEvent(fileInput?:any){
     let AWSService = (<any>window).AWS;
-    console.log(AWSService);
+    console.log(AWSService); //make sure service is loaded, script added to index.html
     let file = fileInput.target.files[0];
     //let albumPhotosKey = encodeURIComponent('bubblbookimages')+'/';
     //let photoKey = albumPhotosKey + file.name;
@@ -47,7 +47,7 @@ imageURL:any;
       console.log('data');
       console.log(imageURL);
       }
-      return this.imageURL;
+      return imageURL;
       
     });
 

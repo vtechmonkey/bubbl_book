@@ -24,7 +24,6 @@ import 'hammerjs';
 import { HiwComponent } from './hiw/hiw.component';
 
 import { SearchComponent } from './search/search.component';
-import { CategoryComponent } from './category/category.component';
 
 import { ActivityDetailsComponent } from './activity-details/activity-details.component';
 import { ActivityCreateComponent } from './activity-create/activity-create.component';
@@ -42,7 +41,6 @@ export function authHttpServiceFactory(http:Http, options: RequestOptions) {
     LoginComponent,
     HiwComponent,
     SearchComponent,
-    CategoryComponent,
     ActivityDetailsComponent,
     ActivityCreateComponent
 

@@ -16,8 +16,6 @@ public images = IMAGES;
 }
 
 
-
-
 var IMAGES: Image[] = [
 	{"url": "/assets/hiw_1.gif"},
 	{"url": "/assets/hiw_2.gif"},

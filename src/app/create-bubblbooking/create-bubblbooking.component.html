@@ -4,21 +4,25 @@
     </button>
  	Create Bubblbooking 
 </md-toolbar>
-<md-card>
-	<img md-card-image src="../assets/activitiesCollage.jpg"/>
-	<md-card-actions>
-		<button md-button a routerLink="/activities" routerLinkActive="activities"> Create a Bubblbooking from activity suggestions </button>	
-	</md-card-actions>
-</md-card>
 
+<div class="main">
+	<button md-button a routerLink="/activities" routerLinkActive="activities"> 
+	<md-card>
+		<img md-card-image src="../assets/suggest_card_crop.jpg"/>
+		<md-card-footer class="opacity_68">
+			Suggested Activities 
+		</md-card-footer>
+	</md-card>
+	</button>	
 
-
-<md-card>
-	<img md-card-image src="../assets/thinking-lady.jpg"/>
-	<md-card-actions>
-		<button md-button a routerLink="/create" routerLinkActive="create"> Create your own Bubblbooking </button>
-	</md-card-actions>
-</md-card>
-
+	<button md-button a routerLink="/create" routerLinkActive="create">
+	<md-card>
+		<img md-card-image src="../assets/thinking_woman.jpg"/>
+		<md-card-footer class="opacity_68">
+			 Create your own Bubblbooking 
+		</md-card-footer>
+	</md-card>
+	</button>
+</div>
 
 <router-outlet></router-outlet>

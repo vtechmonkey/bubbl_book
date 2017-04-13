@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 
 
 import { Activity } from '../activity';
@@ -9,9 +10,13 @@ import { PicsService } from '../pics.service';
 
 @Component({
   selector: 'app-activity-details',
+  providers: [Location, {provide: LocationStrategy, useClass:  PathLocationStrategy}],
   templateUrl: './activity-details.component.html',
   styleUrls: ['./activity-details.component.css']
 })
+
+
+
 export class ActivityDetailsComponent implements OnInit {
 
 
@@ -20,15 +25,24 @@ export class ActivityDetailsComponent implements OnInit {
   error:any;
   navigated = false;
   sub: any;
-
+  imageURL: string;
+  location:Location;
+  url: any;
 
   constructor(private activitiesService:ActivitiesService,
                 private route: ActivatedRoute,
                 private router: Router,
-                private pics: PicsService              
+                private pics: PicsService,
+                location:Location             
                
-                ) { }
-  ngOnInit() {
+                ) { 
+
+                this.location = location;
+                this.url = this.location.path();
+
+                 }
+
+   ngOnInit() {
      this.sub = this.route.params.subscribe(params => {
        if(params['_id'] !== undefined){
           let _id = params['_id'];
@@ -41,7 +55,8 @@ export class ActivityDetailsComponent implements OnInit {
           this.navigated = false;
           this.activity = new Activity();
         }
-     });
+     });       
+
   }
 
           save(): void{
@@ -52,9 +67,7 @@ export class ActivityDetailsComponent implements OnInit {
               this.gotoActivitiesList(this.activity);
             });
 
-          }
-
-  
+          }  
 
       gotoActivitiesList(activity: Activity = null):void{
 
@@ -63,7 +76,10 @@ export class ActivityDetailsComponent implements OnInit {
         
     }
 
-      
-
+    getURL() {
+      if (this.pics.fileEvent()) {
+        this.imageURL = this.pics.imageURL;  
+      }
+    }
 }
 

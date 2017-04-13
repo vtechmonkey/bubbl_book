@@ -10,17 +10,10 @@
 <h3 md-line>Sport</h3>
   <md-grid-tile *ngFor="let category of categories" >    
       <md-grid-tile-footer>{{category.name}}</md-grid-tile-footer>
-      <img md-grid-tile-image src="{{category.url}}" alt="category image">   
+      <img md-grid-tile-image src="{{category.url}}" alt="{{category.url}}">   
           
   </md-grid-tile>
 </md-grid-list>
-
-
-
-
-
-
-
 
 
 <!-- actual activities 
@@ -29,20 +22,75 @@
     <section *ngIf="isLoading && !errorMessage">
     Retrieving activities...
 </section>
-<md-grid-list cols="5" md-row-height="4:3">
-  <md-grid-tile *ngFor="let activity of activities" (click)="gotoDetail(activity)">
-    
-      <h4>{{activity.name}}</h4>
-      <img src="{{activity.imageURL}}" alt="activity image">
-      <button class="delete-button" (click)="deleteActivity(activity,$event)">
-          Delete </button>
-          
-  </md-grid-tile>
-</md-grid-list>
-<br/>
-<br/>
-  
+
+
+  <md-grid-list cols="5" md-row-height="4:3" >
+  <h3 md-line>Sport</h3>  
+    <div *ngFor="let activity of activities">
+      <md-grid-tile  *ngIf="activity.category == 'Sport'"  (click)="gotoDetail(activity)">
+        <img md-grid-tile-image src="{{activity.imageURL}}" alt="{{activity.name}}"> 
+        <md-grid-tile-footer>{{activity.name}}</md-grid-tile-footer>
+      </md-grid-tile>
+    </div>
+  </md-grid-list> 
+
+   <md-grid-list cols="5" md-row-height="4:3" >
+  <h3 md-line>Food</h3>  
+    <div *ngFor="let activity of activities">
+      <md-grid-tile  *ngIf="activity.category == 'Food'" (click)="gotoDetail(activity)" >
+        <img md-grid-tile-image src="{{activity.imageURL}}" alt="{{activity.name}}"> 
+        <md-grid-tile-footer>{{activity.name}}</md-grid-tile-footer>
+      </md-grid-tile>
+    </div>
+  </md-grid-list> 
+
+   <md-grid-list cols="5" md-row-height="4:3" >
+  <h3 md-line>Entertainment</h3>  
+    <div *ngFor="let activity of activities">
+      <md-grid-tile  *ngIf="activity.category == 'Entertainment'" (click)="gotoDetail(activity)">
+        <img md-grid-tile-image src="{{activity.imageURL}}" alt="{{activity.name}}"> 
+        <md-grid-tile-footer>{{activity.name}}</md-grid-tile-footer>
+      </md-grid-tile>
+    </div>
+  </md-grid-list> 
+
+<!-- list all activities  -->
+    <md-grid-list cols="5" md-row-height="4:3" >
+  <h3 md-line>All Activities</h3>  
+    <div *ngFor="let activity of activities">
+      <md-grid-tile  (click)="gotoDetail(activity)">
+        <img md-grid-tile-image src="{{activity.imageURL}}" alt="{{activity.name}}"> 
+        <md-grid-tile-footer>{{activity.name}}</md-grid-tile-footer>
+      </md-grid-tile>
+    </div>
+  </md-grid-list> 
+
+  <!--  <md-grid-list cols="5" md-row-height="4:3" >
+  <h3 md-line>Artsy</h3>  
+    <div *ngFor="let activity of activities">
+      <md-grid-tile  *ngIf="activity.category == 'Artsy'" >
+        <img md-grid-tile-image src="{{activity.imageURL}}" alt="{{activity.name}}"> 
+        <md-grid-tile-footer>{{activity.name}}</md-grid-tile-footer>
+      </md-grid-tile>
+    </div>
+  </md-grid-list> 
+
+   <md-grid-list cols="5" md-row-height="4:3" >
+  <h3 md-line>Gig</h3>  
+    <div *ngFor="let activity of activities">
+      <md-grid-tile  *ngIf="activity.category == 'GIG'" >
+        <img md-grid-tile-image src="{{activity.imageURL}}" alt="{{activity.name}}"> 
+        <md-grid-tile-footer>{{activity.name}}</md-grid-tile-footer>
+      </md-grid-tile>
+    </div>
+  </md-grid-list>  -->
+
+
+
+
 <button routerLink="/create" routerLinkActive="active">Add activity</button>
+
+<button routerLink="/home" routerLinkActive="active">Home</button>
 
   
   <section *ngIf="errorMessage">

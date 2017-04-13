@@ -1,10 +1,10 @@
 body {
     color:blue;
 }
-
  .carousel{
     overflow:hidden;
-    width:100%;
+   /*width:100%;*/
+
 }
 .slides{
     list-style:none;
@@ -23,13 +23,13 @@ body {
 }
 .carousel img{
     display:block;
-    width:100%;
+   /*width:100%;*/
     max-width:100%;
 }
 .carousel h2{
     margin-bottom: 0;
     font-size:1em;
-    padding:1.5em 0.5em 1.5em 0.5em;
+    padding:0.5em;
     position:absolute;
     right:0px;
     bottom:0px;
@@ -41,8 +41,8 @@ body {
 }
 
 @keyframes carousel{
-    0%    { left:0%; }
-    20%   { left:0%; }
+    0%    { left:-0%; }
+    20%   { left:-0%; }
     40% { left:-100%; }
     60% { left:-100%; }  
     80% { left:-200%; }
