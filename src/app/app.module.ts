@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions,JsonpModule  } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular/material';
+ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
 
@@ -51,7 +52,8 @@ export function authHttpServiceFactory(http:Http, options: RequestOptions) {
     HttpModule,
     JsonpModule,
     routing,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [ActivitiesService,appRoutingProviders,AuthService, PicsService, {
   provide:AuthHttp,
