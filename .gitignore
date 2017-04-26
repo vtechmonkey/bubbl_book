@@ -32,5 +32,3 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
-
-src/aws-key.js

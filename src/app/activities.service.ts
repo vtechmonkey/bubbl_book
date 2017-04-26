@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Response,Headers } from '@angular/http';
 import { Observable }  from 'rxjs/Observable';
 import { Activity } from './activity';
-
+import { environment } from '../environments/environment';
+ 
 
 import 'rxjs/add/operator/map';
 
@@ -10,9 +11,12 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ActivitiesService {
 
-    private activitiesUrl: string = 'http://ec2-52-209-95-130.eu-west-1.compute.amazonaws.com:3000/api/activities';
+   private activitiesUrl = environment.apiUrl;
     
-    constructor(private http: Http) { }
+    constructor(
+      private http: Http
+   
+      ) { }
 
   // Get all activities 
     getAllActivities(): Observable<Activity[]> {
