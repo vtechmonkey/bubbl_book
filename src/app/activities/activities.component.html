@@ -1,13 +1,18 @@
-<!-- activity categories -->
+
+<md-toolbar color="primary">
+  <button class="app-icon-button" (click)="sidenav.toggle()">
+      <i class="material-icons app-toolbar-menu" color="accent">menu</i>
+    </button>
+  Suggested for you
+</md-toolbar>
 
 
 
-
-
+<!-- activity categories not linked yet to sub-category page -->
 
 
 <md-grid-list cols="5" md-row-height="4:3">
-<h3 md-line>Sport</h3>
+<h3 md-line class="opacity_54 sixteenPx">Sport</h3>
   <md-grid-tile *ngFor="let category of categories" >    
       <md-grid-tile-footer>{{category.name}}</md-grid-tile-footer>
       <img md-grid-tile-image src="{{category.url}}" alt="{{category.url}}">   
@@ -25,17 +30,17 @@
 
 
   <md-grid-list cols="5" md-row-height="4:3" >
-  <h3 md-line>Sport</h3>  
+  <h3 md-line class="opacity_54 sixteenPx">Sport</h3>  
     <div *ngFor="let activity of activities">
       <md-grid-tile  *ngIf="activity.category == 'Sport'"  (click)="gotoDetail(activity)">
         <img md-grid-tile-image src="{{activity.imageURL}}" alt="{{activity.name}}"> 
-        <md-grid-tile-footer>{{activity.name}}</md-grid-tile-footer>
+        <md-grid-tile-footer mat-grid-list-text>{{activity.name}}</md-grid-tile-footer>
       </md-grid-tile>
     </div>
   </md-grid-list> 
 
    <md-grid-list cols="5" md-row-height="4:3" >
-  <h3 md-line>Food</h3>  
+  <h3 md-line class="opacity_54 sixteenPx">Food</h3>  
     <div *ngFor="let activity of activities">
       <md-grid-tile  *ngIf="activity.category == 'Food'" (click)="gotoDetail(activity)" >
         <img md-grid-tile-image src="{{activity.imageURL}}" alt="{{activity.name}}"> 
@@ -45,7 +50,7 @@
   </md-grid-list> 
 
    <md-grid-list cols="5" md-row-height="4:3" >
-  <h3 md-line>Entertainment</h3>  
+  <h3 md-line class="opacity_54 sixteenPx" >Entertainment</h3>  
     <div *ngFor="let activity of activities">
       <md-grid-tile  *ngIf="activity.category == 'Entertainment'" (click)="gotoDetail(activity)">
         <img md-grid-tile-image src="{{activity.imageURL}}" alt="{{activity.name}}"> 
@@ -56,7 +61,7 @@
 
 <!-- list all activities  -->
     <md-grid-list cols="5" md-row-height="4:3" >
-  <h3 md-line>All Activities</h3>  
+  <h3 md-line class="opacity_54 sixteenPx">All Activities</h3>  
     <div *ngFor="let activity of activities">
       <md-grid-tile  (click)="gotoDetail(activity)">
         <img md-grid-tile-image src="{{activity.imageURL}}" alt="{{activity.name}}"> 

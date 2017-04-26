@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+html { font-family: 'Roboto', sans-serif; }
+
 .app-toolbar-menu {
   padding: 0 14px 0 14px;
   }
@@ -30,6 +32,14 @@
 
 .opacity_54 {
   color: rgba(0,0,0, 0.54);
+}
+
+.sixteenPx {
+  font-size:16px;
+}
+
+.mat-grid-tile-footer {
+  font-size: 12px !important;
 }
 
 @media all and (min-width:960px) {
