@@ -1,9 +1,33 @@
 
-<div class="carousel">
-  <ul class="slides">
-  	<li *ngFor="let image of images">
-  		<img src="{{image.url}}" alt="how it works">  		
-  	</li> 
-  </ul>  
-</div>
 
+      
+ <div class="ctn smallScreen">
+    <div class="ui card swipe-box" 
+      *ngFor="let image of images; let idx=index"
+      (swipeleft)="swipe(idx, $event.type)" (swiperight)="swipe(idx, $event.type)" 
+      [class.visible]="image.visible" [class.hidden]="!image.visible">
+      <div class="image">
+        <img src="{{image.url}}" alt="how it works" id="hiw_img">
+      </div>     
+    </div>
+ </div>
+
+
+<div class="largeScreen text-center"><!-- display for larger screens-->
+	<div>
+		<img src="{{group.value}}">
+	</div>
+
+<md-button-toggle-group #group="mdButtonToggleGroup">
+  <md-button-toggle value="{{img1}}" [checked]="isChecked" >
+   <i class="material-icons">lens</i>
+  </md-button-toggle>
+  <md-button-toggle value="{{img2}}">
+   <i class="material-icons">lens</i>
+  </md-button-toggle>
+  <md-button-toggle  value="{{img3}}">
+    <i class="material-icons">lens</i>
+  </md-button-toggle>  
+</md-button-toggle-group>
+
+</div>

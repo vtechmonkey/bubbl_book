@@ -42,10 +42,23 @@ html { font-family: 'Roboto', sans-serif; }
   font-size: 12px !important;
 }
 
-@media all and (min-width:960px) {
-.main {
-  max-width: 900px;
-  margin:auto;
-
+.mat-dialog-container {
+  text-align:center;
 }
+
+@media all and (min-width:1024px) {
+  .main {
+    max-width: 900px;
+    margin:auto;
+  }
+
+  .smallScreen {
+  display:none;
+  }
+}
+
+@media all and (max-width:1024px) {
+  .largeScreen {
+    display:none;
+  }
 }

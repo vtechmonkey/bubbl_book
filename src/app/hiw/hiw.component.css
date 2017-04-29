@@ -1,52 +1,26 @@
-body {
-    color:blue;
+.swipe-box {
+    display: block;
+    width: 100%;
+    float: left;
+    margin: 0;
+    transform: .5s ease .1s;
 }
- .carousel{
-    overflow:hidden;
-   /*width:100%;*/
 
+.ctn {
+    max-width: 400px;
+    margin: 0 auto;
 }
-.slides{
-    list-style:none;
-    position:relative;
-    width:300%; /* Number of panes * 100% */
-    overflow:hidden; /* Clear floats */
-        /* Slide effect Animations*/
-    -moz-animation:carousel 12s infinite;
-    -webkit-animation:carousel 12s infinite;
-    animation:carousel 12s infinite;
+
+.visible {
+    display: block;
 }
-.slides > li{
-    position:relative;
-    float:left;
-    width: 30%; /* 100 / number of panes */
+
+.hidden {
+    display: none;
 }
-.carousel img{
-    display:block;
-   /*width:100%;*/
+
+#hiw_img {
     max-width:100%;
 }
-.carousel h2{
-    margin-bottom: 0;
-    font-size:1em;
-    padding:0.5em;
-    position:absolute;
-    right:0px;
-    bottom:0px;
-    left:0px;
-    text-align:center;
-    color:#fff;
-    background-color:rgba(0,0,0,0.75);
-    text-transform: uppercase;
-}
 
-@keyframes carousel{
-    0%    { left:-0%; }
-    20%   { left:-0%; }
-    40% { left:-100%; }
-    60% { left:-100%; }  
-    80% { left:-200%; }
-    100% { left:-200%; }
-   
- 
-}
+

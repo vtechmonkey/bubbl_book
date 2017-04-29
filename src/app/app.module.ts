@@ -1,10 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule,HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions,JsonpModule  } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular/material';
- import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
 
@@ -33,6 +34,12 @@ export function authHttpServiceFactory(http:Http, options: RequestOptions) {
   return new AuthHttp (new AuthConfig({}), http, options);
 }
 
+export class MyHammerConfig extends HammerGestureConfig  {
+  overrides = <any>{
+      'swipe': {velocity: 0.4, threshold: 20} // override default settings
+  }
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,15 +62,26 @@ export function authHttpServiceFactory(http:Http, options: RequestOptions) {
     MaterialModule.forRoot(),
     BrowserAnimationsModule
   ],
-  providers: [ActivitiesService,appRoutingProviders,AuthService, PicsService, {
-  provide:AuthHttp,
-  useFactory:authHttpServiceFactory,
-  deps:[Http, RequestOptions]
-}],
+  providers: [
+  ActivitiesService,appRoutingProviders,AuthService, PicsService,
+    {
+    provide:AuthHttp,
+    useFactory:authHttpServiceFactory,
+    deps:[Http, RequestOptions],
+    },
+    { 
+    provide: HAMMER_GESTURE_CONFIG, 
+    useClass: MyHammerConfig 
+    }
+  ],
 
   entryComponents: [
   HiwComponent
   ],
   bootstrap: [AppComponent]
 })
+
+
+
 export class AppModule { }
+
