@@ -18,10 +18,11 @@ export class AuthService {
   //Store profile object in auth class 
  userProfile: Object;
 
+
   constructor() {
     //set userProfile attribute of already saved profile
     this.userProfile = JSON.parse(localStorage.getItem('profile'));
-   
+
     // Add callback for lock `authenticated` event
     this.lock.on("authenticated", (authResult) => {
       localStorage.setItem('id_token', authResult.idToken);
@@ -35,10 +36,11 @@ export class AuthService {
         }
 
         localStorage.setItem('profile', JSON.stringify(profile));
-        this.userProfile = profile;
+        this.userProfile = profile;       
       });
     });
   console.log(this.userProfile);
+ 
   }
 
   public login() {

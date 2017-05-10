@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Activity } from '../activity';
 import{ActivitiesService} from '../activities.service';
 import { PicsService } from '../pics.service';
+import {AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-activity-create',
@@ -28,13 +29,15 @@ export class ActivityCreateComponent implements OnInit {
  };
  
 
- 
+ userProfile = this.userProfile;
+
  private activity: Array<Activity> =[];
 
   constructor(
     private activitiesService:ActivitiesService,
     private router: Router,
-    private pics:PicsService
+    private pics:PicsService,
+    private auth:AuthService
     ) { }
 
 

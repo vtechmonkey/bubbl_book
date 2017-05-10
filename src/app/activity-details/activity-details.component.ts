@@ -7,7 +7,7 @@ import { MdButtonToggleModule } from '@angular/material';
 import { Activity } from '../activity';
 import{ActivitiesService} from '../activities.service';
 import { PicsService } from '../pics.service';
-
+import {AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-activity-details',
@@ -30,13 +30,15 @@ export class ActivityDetailsComponent implements OnInit {
   imageURL: string;
   location:Location;
   url: any;
-  visible:boolean;
-  showActivityForm: string;
+  visible:boolean;//show/hide form 
+  showActivityForm: string;//show/hide form 
+  userProfile = this.userProfile;//user icon
 
   constructor(private activitiesService:ActivitiesService,
                 private route: ActivatedRoute,
                 private router: Router,
                 private pics: PicsService,
+                private auth: AuthService,
                 location:Location             
                
                 ) { 
