@@ -5,7 +5,7 @@
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host 0.0.0.0",
     "build": "ng build",
     "run": "npm run build && forever start --minUptime 1000 --spinSleepTime 1000 server.js",
     "lint": "tslint \"src/**/*.ts\"",
