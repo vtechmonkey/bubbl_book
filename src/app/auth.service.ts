@@ -9,17 +9,36 @@ declare var Auth0Lock: any;
 export class AuthService {
   // Configure Auth0
  lock = new Auth0Lock('pwDyOusCeQTYNKMtHMgjVy8y89TQtASm', 'vtechmonkey.eu.auth0.com', {
- 
   theme: {
     logo: "",
     primaryColor: "#b81b1c"
   }
 });
+
+  //Store profile object in auth class 
+ userProfile: Object;
+
   constructor() {
+    //set userProfile attribute of already saved profile
+    this.userProfile = JSON.parse(localStorage.getItem('profile'));
+   
     // Add callback for lock `authenticated` event
     this.lock.on("authenticated", (authResult) => {
       localStorage.setItem('id_token', authResult.idToken);
+   
+      //fetch profile information
+      this.lock.getProfile(authResult.idToken, (error, profile)=>{
+        if(error){
+          //handle error
+          alert(error);
+          return;
+        }
+
+        localStorage.setItem('profile', JSON.stringify(profile));
+        this.userProfile = profile;
+      });
     });
+  console.log(this.userProfile);
   }
 
   public login() {
@@ -34,7 +53,9 @@ export class AuthService {
   }
 
   public logout() {
-    // Remove token from localStorage
+    // Remove token and profile from localStorage
     localStorage.removeItem('id_token');
+    localStorage.removeItem('profile');
+    this.userProfile = undefined;
   }
 }

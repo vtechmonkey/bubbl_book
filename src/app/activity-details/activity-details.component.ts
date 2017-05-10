@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import { Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import { MdButtonToggleModule } from '@angular/material';
 
 
 import { Activity } from '../activity';
@@ -12,7 +13,8 @@ import { PicsService } from '../pics.service';
   selector: 'app-activity-details',
   providers: [Location, {provide: LocationStrategy, useClass:  PathLocationStrategy}],
   templateUrl: './activity-details.component.html',
-  styleUrls: ['./activity-details.component.css']
+  styleUrls: ['./activity-details.component.css'],
+
 })
 
 
@@ -28,6 +30,8 @@ export class ActivityDetailsComponent implements OnInit {
   imageURL: string;
   location:Location;
   url: any;
+  visible:boolean;
+  showActivityForm: string;
 
   constructor(private activitiesService:ActivitiesService,
                 private route: ActivatedRoute,
@@ -39,8 +43,15 @@ export class ActivityDetailsComponent implements OnInit {
 
                 this.location = location;
                 this.url = this.location.path();
+                this.showActivityForm = 'hideForm';//show/hide form 
+                this.visible = true;    //show/hide form 
 
                  }
+//show/hide form 
+   toggle(){
+     this.visible = !this.visible;
+     this.showActivityForm = this.visible ? 'hideForm' : 'showForm';
+   }
 
    ngOnInit() {
      this.sub = this.route.params.subscribe(params => {
@@ -55,7 +66,7 @@ export class ActivityDetailsComponent implements OnInit {
           this.navigated = false;
           this.activity = new Activity();
         }
-     });       
+     });  
 
   }
 

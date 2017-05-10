@@ -1,0 +1,6 @@
+.hideForm {
+	visibility:hidden;
+}
+.showForm {
+	visibility: visible;
+}

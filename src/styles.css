@@ -45,15 +45,23 @@ html { font-family: 'Roboto', sans-serif; }
 .mat-dialog-container {
   text-align:center;
 }
+.centre {
+  text-align:center;
+ }
+.smBtn {
+  font-size:12px !important;
+}
 
 @media all and (min-width:1024px) {
   .main {
-    max-width: 900px;
+    padding:3em 0;
     margin:auto;
-  }
+   }
+
+  
 
   .smallScreen {
-  display:none;
+    display:none;
   }
 }
 

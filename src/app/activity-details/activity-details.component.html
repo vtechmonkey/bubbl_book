@@ -1,38 +1,70 @@
 <!-- new syntax for ng-if -->
 <md-toolbar color="primary">
-  <button class="app-icon-button" (click)="sidenav.toggle()">
-      <i class="material-icons app-toolbar-menu" color="accent">menu</i>
-    </button>
+  <button md-button (click)="gotoActivitiesList()">
+      <i class="material-icons" color="accent">arrow_back</i>
+  </button>
   Chosen Event
+  <button md-button>
+     <i class="material-icons">search</i>    
+  </button>
 </md-toolbar>
+<!--get selected activity -->
 <section *ngIf="activity">  <section>
-<div class="main">
+<div class="">
   <md-card>
   <md-card-header>
-  <div md-card-avatar>
-    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
-      <path d="M0 0h24v24H0z" fill="none"/>
-    </svg>
-  </div>
-    <md-card-title>{{activity.name}}</md-card-title>
-    <md-card-subtitle>{{activity.venue}}</md-card-subtitle>
+    <div md-card-avatar class="opacity_54"><!--avatar svg-->
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" 
+          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          viewBox="-287 289 24 24"  xml:space="preserve">
+          <style type="text/css">
+            .st0{fill:none;}
+          </style>
+          <path d="M-278,300.8c-0.7,0-1.3,0.6-1.3,1.3s0.6,1.3,1.3,1.3s1.3-0.6,1.3-1.3S-277.3,300.8-278,300.8z M-272,300.8
+            c-0.7,0-1.3,0.6-1.3,1.3s0.6,1.3,1.3,1.3s1.3-0.6,1.3-1.3S-271.3,300.8-272,300.8z M-275,291c-5.5,0-10,4.5-10,10s4.5,10,10,10
+            s10-4.5,10-10S-269.5,291-275,291z M-275,309c-4.4,0-8-3.6-8-8c0-0.3,0-0.6,0-0.9c2.4-1.1,4.2-3,5.2-5.4c1.8,2.6,4.8,4.2,8.2,4.2
+            c0.8,0,1.5-0.1,2.3-0.3c0.2,0.7,0.3,1.5,0.3,2.3C-267,305.4-270.6,309-275,309z"/>
+          <path class="st0" d="M-287,289h24v24h-24V289z"/>
+      </svg>
+    </div> 
+
+    <md-card-title class="opacity_87">{{activity.name}}</md-card-title>
+    <md-card-subtitle class="opacity_54">{{activity.venue}}</md-card-subtitle>
   </md-card-header>
   <img md-card-image src={{activity.imageURL}} alt={{activity.imageURL}}>
   <md-card-content>
+  <md-list class="opacity_87">
+      <md-list-item>brief description of event goes here, not currently to form 
+      </md-list-item> 
+      <md-list-item>
+        <span mdTooltip="add  to my favourites" mdTooltipPosition="after">
+          <i class="material-icons opacity_54">favorite</i>
+        </span><!-- add to favourites (not implemented) -->     
+        <button md-button class="smBtn" (click)="toggle()">CREATE BUBBLBOOKING</button><!--  show form  -->
+        <button md-button class="smBtn" (click)="gotoActivitiesList()">DISMISS</button> <!-- go back -->
+      </md-list-item>
+      <md-list-item>
+        <i md-list-text class="material-icons opacity_54">description</i>
+        <button md-button> More Details</button>
+      </md-list-item>
+  </md-list>
+<!-- more details -->
 
-    <form (ngSubmit) = "save()"  #activityForm="ngForm">
-        <md-input-container>
-            <label for="name">Name: </label>
-            <input mdInput type="text" name="name" required [(ngModel)]="activity.name" #name="ngModel">
-            <div [hidden]="name.valid || name.pristine" class="error">
-                Name is required 
-            </div>
+
+<!-- create booking form -->
+    <form [ngClass]="showActivityForm" (ngSubmit) = "save()"   #activityForm="ngForm">
+    
+      <md-input-container>
+        <label for="name">Name: </label>
+        <input mdInput type="text" name="name" required [(ngModel)]="activity.name" #name="ngModel">
+        <div [hidden]="name.valid || name.pristine" class="error">
+            Name is required 
+        </div>
       </md-input-container>
       <md-input-container>
         <label for="venue">category: </label>
         <input mdInput type="text" name="venue" [(ngModel)]="activity.category">
-    </md-input-container>
+      </md-input-container>
       <md-input-container>
         <label for="venue">venue: </label>
         <input mdInput type="text" name="venue" [(ngModel)]="activity.venue">
@@ -40,46 +72,45 @@
        <md-input-container>
         <label for="price">Price: </label>
         <input mdInput type="text" name="price" [(ngModel)]="activity.price">
-     </md-input-container>
-       <md-input-container>
+      </md-input-container>
+      <md-input-container>
         <label for="price">Date: </label>
         <input mdInput type="text" name="date" [(ngModel)]="activity.date">
-       </md-input-container>
-        <md-input-container>
+      </md-input-container>
+      <md-input-container>
         <label for="time">Time: </label>
         <input mdInput type="text" name="time" [(ngModel)]="activity.time">
       </md-input-container>
-           <md-input-container>
+      <md-input-container>
         <label for="imageURL">Image </label>
-        <input mdInput type="text" name="imaegURL" [(ngModel)]="activity.imageURL">
+        <input mdInput type="text" name="imageURL" [(ngModel)]="activity.imageURL">
       </md-input-container>
        
           Add a picture of your event..    
-            <input  type="file" (change)="pics.fileEvent($event)">          
-     
+            <input md-input type="file" (change)="pics.fileEvent($event)">  {{imageURL}}        
+<!--      
       {{url}} <br/>
-{{location.path()}}<br/>
+{{location.path()}}<br/> -->
 
 
-      <!-- send link to this page via whatsapp,svg is the wahtsapp logo -->
+
+    <!--   send link to this page via whatsapp,svg is the wahtsapp logo -->
 
 
-      Cut and paste the link below and click here to send this activity to your
+ Cut and paste the link below and click here 
  <a href="whatsapp://send?text=paste your link here">
  <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M16.75,13.96C17,14.09 17.16,14.16 17.21,14.26C17.27,14.37 17.25,14.87 17,15.44C16.8,16 15.76,16.54 15.3,16.56C14.84,16.58 14.83,16.92 12.34,15.83C9.85,14.74 8.35,12.08 8.23,11.91C8.11,11.74 7.27,10.53 7.31,9.3C7.36,8.08 8,7.5 8.26,7.26C8.5,7 8.77,6.97 8.94,7H9.41C9.56,7 9.77,6.94 9.96,7.45L10.65,9.32C10.71,9.45 10.75,9.6 10.66,9.76L10.39,10.17L10,10.59C9.88,10.71 9.74,10.84 9.88,11.09C10,11.35 10.5,12.18 11.2,12.87C12.11,13.75 12.91,14.04 13.15,14.17C13.39,14.31 13.54,14.29 13.69,14.13L14.5,13.19C14.69,12.94 14.85,13 15.08,13.08L16.75,13.96M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C10.03,22 8.2,21.43 6.65,20.45L2,22L3.55,17.35C2.57,15.8 2,13.97 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12C4,13.72 4.54,15.31 5.46,16.61L4.5,19.5L7.39,18.54C8.69,19.46 10.28,20 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" /></svg>
  </a>
- contacts  
+ to send this activity to your contacts  
 
 http://ec2-52-209-95-130.eu-west-1.compute.amazonaws.com:4200{{url}}
 
-      <button type="submit" [disabled]="!activityForm.form.valid">save</button>
+      <button md-button type="submit" [disabled]="!activityForm.form.valid">save</button>
 
-    </form>
+    </form> 
  </md-card-content>
 </md-card>
 
-  <button md-button (click)="gotoActivitiesList()">Back to activities list</button>
-</div> <!--class main--> 
 
 
   

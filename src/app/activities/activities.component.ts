@@ -49,8 +49,18 @@ gotoDetail(activity:Activity): void {
 }
 
 var Categories : Category[] = [
-  {"name":"cycling","url": "https://s3-eu-west-1.amazonaws.com/bubblbookimages/cycling.jpg"},
-  {"name": "golf", "url": "https://s3-eu-west-1.amazonaws.com/bubblbookimages/golf.jpg" },
-  {"name": "tennis", "url": "https://s3-eu-west-1.amazonaws.com/bubblbookimages/tennis3.jpg" }
- 
+  {"categoryName":"sport", "name":"5-aside","url": "https://s3-eu-west-1.amazonaws.com/bubblbookimages/5-aside.jpg"},
+  {"categoryName":"sport","name": "golf", "url": "https://s3-eu-west-1.amazonaws.com/bubblbookimages/golf.jpg" },
+  {"categoryName":"sport","name": "tennis", "url": "https://s3-eu-west-1.amazonaws.com/bubblbookimages/tennis3.jpg" },
+  { "categoryName": "food", "name": "italian", "url": "https://s3-eu-west-1.amazonaws.com/bubblbookimages/pasta.jpg" },
+  { "categoryName": "food", "name": "fusion", "url": "https://s3-eu-west-1.amazonaws.com/bubblbookimages/food.jpg" },
+  { "categoryName": "food", "name": "sushi", "url": "https://s3-eu-west-1.amazonaws.com/bubblbookimages/sushi.jpg" },
+  { "categoryName": "entertainment", "name": "theatre", "url": "https://s3-eu-west-1.amazonaws.com/bubblbookimages/theatre.jpg" },
+  { "categoryName": "entertainment", "name": "movies", "url": "https://s3-eu-west-1.amazonaws.com/bubblbookimages/projector.jpg" },
+  { "categoryName": "entertainment", "name": "music", "url": "https://s3-eu-west-1.amazonaws.com/bubblbookimages/music.jpg" },
+  
+
+
+
+
 ];

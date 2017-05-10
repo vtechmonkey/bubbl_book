@@ -39,9 +39,7 @@ isChecked: boolean =true; // set img1 as checked on opening dialog
 			const isLast = currentIndex === this.images.length -1 ;
 			nextIndex = isLast ? 0 : currentIndex + 1;
 		}
-		// 	const isFirst = currentIndex === 0;
-		// 	nextIndex = isFirst ? 1: currentIndex +1;
-		// }
+			
 		// toggle image visibility
 		this.images.forEach((x, i) => x.visible = (i === nextIndex));
 	}

@@ -8,17 +8,40 @@
 
 
 
-<!-- activity categories not linked yet to sub-category page -->
+<!-- activity categories (not linked yet to sub-category page) -->
 
-
+<!-- sport category -->
 <md-grid-list cols="5" md-row-height="4:3">
 <h3 md-line class="opacity_54 sixteenPx">Sport</h3>
-  <md-grid-tile *ngFor="let category of categories" >    
-      <md-grid-tile-footer>{{category.name}}</md-grid-tile-footer>
-      <img md-grid-tile-image src="{{category.url}}" alt="{{category.url}}">   
-          
-  </md-grid-tile>
+  <div *ngFor="let category of categories">
+    <md-grid-tile *ngIf="category.categoryName == 'sport'">    
+        <md-grid-tile-footer>{{category.name}}</md-grid-tile-footer>
+        <img md-grid-tile-image src="{{category.url}}" alt="{{category.url}}">             
+    </md-grid-tile>
+  </div>
 </md-grid-list>
+
+<md-grid-list cols="5" md-row-height="4:3">
+<h3 md-line class="opacity_54 sixteenPx">Food</h3>
+  <div *ngFor="let category of categories" > 
+    <md-grid-tile  *ngIf="category.categoryName == 'food'" >   
+        <md-grid-tile-footer>{{category.name}}</md-grid-tile-footer>
+        <img md-grid-tile-image src="{{category.url}}" alt="{{category.url}}">             
+    </md-grid-tile>
+  </div>
+</md-grid-list>
+
+<md-grid-list cols="5" md-row-height="4:3">
+<h3 md-line class="opacity_54 sixteenPx">Entertainment</h3>
+  <div *ngFor="let category of categories" > 
+    <md-grid-tile  *ngIf="category.categoryName == 'entertainment'" >   
+        <md-grid-tile-footer>{{category.name}}</md-grid-tile-footer>
+        <img md-grid-tile-image src="{{category.url}}" alt="{{category.url}}">             
+    </md-grid-tile>
+  </div>
+</md-grid-list>
+
+
 
 
 <!-- actual activities 

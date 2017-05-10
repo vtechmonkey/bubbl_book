@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ActivitiesService {
 
-   private activitiesUrl = environment.apiUrl;
+   private activitiesUrl = 'http://localhost:3000/api/activities';
     
     constructor(
       private http: Http
