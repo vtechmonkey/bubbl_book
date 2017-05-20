@@ -1,16 +1,15 @@
-<!-- new syntax for ng-if -->
 <md-toolbar color="primary">
   <button md-button (click)="gotoActivitiesList()">
       <i class="material-icons" color="accent">arrow_back</i>
   </button>
-  Chosen Event
+  <span class="fillSpace">Chosen Event</span>
   <button md-button>
      <i class="material-icons">search</i>    
   </button>
 </md-toolbar>
 <!--get selected activity -->
 <section *ngIf="activity">  <section>
-<div class="">
+<div>
   <md-card>
   <md-card-header>
     <div md-card-avatar *ngIf="auth.authenticated() && auth.userProfile; else generic">
@@ -37,63 +36,85 @@
     <md-card-title class="opacity_87">{{activity.name}}</md-card-title>
     <md-card-subtitle class="opacity_54">{{activity.venue}}</md-card-subtitle>
   </md-card-header>
-  <img md-card-image src={{activity.imageURL}} alt={{activity.imageURL}}>
-  <md-card-content>
-  <md-list class="opacity_87">
-      <md-list-item>brief description of event goes here, not currently to form 
-      </md-list-item> 
-      <md-list-item>
-        <span mdTooltip="add  to my favourites" mdTooltipPosition="after">
-          <i class="material-icons opacity_54">favorite</i>
-        </span><!-- add to favourites (not implemented) -->     
-        <button md-button class="smBtn" (click)="toggle()">CREATE BUBBLBOOKING</button><!--  show form  -->
-        <button md-button class="smBtn" (click)="gotoActivitiesList()">DISMISS</button> <!-- go back -->
-      </md-list-item>
-      <md-list-item>
-        <i md-list-text class="material-icons opacity_54">description</i>
-        <button md-button> More Details</button>
-      </md-list-item>
-  </md-list>
-<!-- more details -->
+  <img md-card-image class="smImg" src={{activity.imageURL}} alt={{activity.imageURL}}>
+  <md-card-content class="rightText">
+    <md-list class="opacity_87">
+        <md-list-item>brief description of event goes here, not currently in form 
+        </md-list-item> 
+        <md-list-item>
+          <span mdTooltip="add  to my favourites" mdTooltipPosition="after">
+            <i class="material-icons opacity_54">favorite</i>
+          </span><!-- add to favourites (not implemented) -->     
+          <button md-button class="smBtn" (click)="toggle()">CREATE BUBBLBOOKING</button><!--  show form  -->
+          <button md-button class="smBtn" (click)="gotoActivitiesList()">DISMISS</button> <!-- go back -->
+        </md-list-item>
+        <md-list-item>
+          <i md-list-text class="material-icons opacity_54">description</i>
+          <button md-button (click)="moreDetails()"> More Details</button>
+        </md-list-item>
+    </md-list>
+  <!-- more details -->
 
 
 <!-- create booking form -->
     <form [ngClass]="showActivityForm" (ngSubmit) = "save()"   #activityForm="ngForm">
-    
-      <md-input-container>
-        <label for="name">Name: </label>
-        <input mdInput type="text" name="name" required [(ngModel)]="activity.name" #name="ngModel">
+      <p>
+          {{auth.userProfile.email}}
+         <!--  <span class="mat-input-underline"></span> -->
+      </p>
+
+      <md-input-container>       
+        <input mdInput type="text" name="name" placeholder="name your event" required [(ngModel)]="activity.name" #name="ngModel">
         <div [hidden]="name.valid || name.pristine" class="error">
             Name is required 
         </div>
-      </md-input-container>
+      </md-input-container><br/>
       <md-input-container>
-        <label for="venue">category: </label>
-        <input mdInput type="text" name="venue" [(ngModel)]="activity.category">
+        <input mdInput type="text" name="venue" placeholder="venue" [(ngModel)]="activity.venue">
       </md-input-container>
-      <md-input-container>
-        <label for="venue">venue: </label>
-        <input mdInput type="text" name="venue" [(ngModel)]="activity.venue">
-       </md-input-container>
-       <md-input-container>
-        <label for="price">Price: </label>
-        <input mdInput type="text" name="price" [(ngModel)]="activity.price">
+       
+      <md-input-container>     
+        <input mdInput type="text" name="date" placeholder="date" [(ngModel)]="activity.date">
+      </md-input-container>    
+       <md-input-container>      
+        <input mdInput type="text" name="time" placeholder="time" [(ngModel)]="activity.time">
+      </md-input-container> 
+       <md-input-container>       
+        <input mdInput type="text" name="price" placeholder="price" [(ngModel)]="activity.price">
+      </md-input-container>       
+      <md-input-container>       
+        <input mdInput type="number" name="min" placeholder="Min Participants">
       </md-input-container>
-      <md-input-container>
-        <label for="price">Date: </label>
-        <input mdInput type="text" name="date" [(ngModel)]="activity.date">
+      <md-input-container>       
+        <input mdInput type="number" name="max" placeholder="Max Participants">
+      </md-input-container><br/>
+       <md-input-container class="width100">
+        <input mdInput type="text" name="img" placeholder="image url" [(ngModel)]="activity.imageURL">
       </md-input-container>
-      <md-input-container>
-        <label for="time">Time: </label>
-        <input mdInput type="text" name="time" [(ngModel)]="activity.time">
-      </md-input-container>
-      <md-input-container>
+   <!--    <md-select >
+      <md-option *ngFor="let cat of activity.category" [value]="activity.category.value">      
+      </md-option>{{activity.category.viewValue}}
+      </md-select>
+ -->
+      <br/>
+    <button md-button type="submit" [disabled]="!activityForm.form.valid">save</button>
+
+    </form> 
+
+</md-card-content>
+
+
+
+
+
+
+   <!--    <md-input-container>
         <label for="imageURL">Image </label>
         <input mdInput type="text" name="imageURL" [(ngModel)]="activity.imageURL">
       </md-input-container>
        
           Add a picture of your event..    
-            <input md-input type="file" (change)="pics.fileEvent($event)">  {{imageURL}}        
+            <input md-input type="file" (change)="pics.fileEvent($event)">  {{imageURL}}     -->    
 <!--      
       {{url}} <br/>
 {{location.path()}}<br/> -->
@@ -101,7 +122,7 @@
 
 
     <!--   send link to this page via whatsapp,svg is the wahtsapp logo -->
-
+<md-card-actions>
 
  Cut and paste the link below and click here 
  <a href="whatsapp://send?text=paste your link here">
@@ -109,12 +130,9 @@
  </a>
  to send this activity to your contacts  
 
-http://ec2-52-209-95-130.eu-west-1.compute.amazonaws.com:4200{{url}}
-
-      <button md-button type="submit" [disabled]="!activityForm.form.valid">save</button>
-
-    </form> 
- </md-card-content>
+  <a>http://ec2-52-209-95-130.eu-west-1.compute.amazonaws.com:4200{{url}}</a>
+</md-card-actions>
+ 
 </md-card>
 
 

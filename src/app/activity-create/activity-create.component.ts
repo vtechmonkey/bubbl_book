@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 
 
 import { Activity } from '../activity';
-import{ActivitiesService} from '../activities.service';
+import { ActivitiesService } from '../activities.service';
 import { PicsService } from '../pics.service';
-import {AuthService } from '../auth.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-activity-create',

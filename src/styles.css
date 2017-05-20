@@ -51,6 +51,13 @@ html { font-family: 'Roboto', sans-serif; }
 .smBtn {
   font-size:12px !important;
 }
+.fillSpace {
+  flex: 1 1 auto;
+}
+
+.width100 { 
+  width:100%;
+}
 
 @media all and (min-width:1024px) {
   .main {
@@ -58,10 +65,15 @@ html { font-family: 'Roboto', sans-serif; }
     margin:auto;
    }
 
-  
-
   .smallScreen {
     display:none;
+  }
+  .smImg {
+    width: calc(50% + 48px) !important;
+  }
+  .rightText {
+     width: calc(40% + 48px)!important;
+    float: right;
   }
 }
 

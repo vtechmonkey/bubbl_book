@@ -6,6 +6,7 @@ import { CreateBubblbookingComponent } from './create-bubblbooking/create-bubblb
 import { LoginComponent } from './login/login.component';
 import { ActivityDetailsComponent } from './activity-details/activity-details.component';
 import { ActivityCreateComponent } from './activity-create/activity-create.component';
+
 const appRoutes: Routes = [
 
  { 	path: '',

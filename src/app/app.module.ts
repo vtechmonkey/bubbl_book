@@ -24,11 +24,12 @@ import { PicsService } from './pics.service';
 import { routing, appRoutingProviders } from './app.routing';
 import 'hammerjs';
 import { HiwComponent } from './hiw/hiw.component';
-
+import { MoreDetailsComponent } from './more-details/more-details.component';
 import { SearchComponent } from './search/search.component';
 
 import { ActivityDetailsComponent } from './activity-details/activity-details.component';
 import { ActivityCreateComponent } from './activity-create/activity-create.component';
+
 
 export function authHttpServiceFactory(http:Http, options: RequestOptions) {
   return new AuthHttp (new AuthConfig({}), http, options);
@@ -50,7 +51,8 @@ export class MyHammerConfig extends HammerGestureConfig  {
     HiwComponent,
     SearchComponent,
     ActivityDetailsComponent,
-    ActivityCreateComponent
+    ActivityCreateComponent,
+    MoreDetailsComponent
 
   ],
   imports: [
@@ -76,7 +78,8 @@ export class MyHammerConfig extends HammerGestureConfig  {
   ],
 
   entryComponents: [
-  HiwComponent
+  HiwComponent,
+  MoreDetailsComponent
   ],
   bootstrap: [AppComponent]
 })

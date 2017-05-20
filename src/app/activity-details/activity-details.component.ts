@@ -1,19 +1,22 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, Inject, ViewEncapsulation, ViewChild, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DOCUMENT } from '@angular/platform-browser';
 import { Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
-import { MdButtonToggleModule } from '@angular/material';
+import { MdButtonToggleModule,MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
 
 import { Activity } from '../activity';
-import{ActivitiesService} from '../activities.service';
+import { ActivitiesService } from '../activities.service';
 import { PicsService } from '../pics.service';
-import {AuthService } from '../auth.service';
+import { AuthService } from '../auth.service';
+import { MoreDetailsComponent } from '../more-details/more-details.component';
 
 @Component({
   selector: 'app-activity-details',
   providers: [Location, {provide: LocationStrategy, useClass:  PathLocationStrategy}],
   templateUrl: './activity-details.component.html',
   styleUrls: ['./activity-details.component.css'],
+  encapsulation: ViewEncapsulation.None,
 
 })
 
@@ -22,7 +25,7 @@ import {AuthService } from '../auth.service';
 export class ActivityDetailsComponent implements OnInit {
 
 
-  @Input() activity: any;
+  activity: any;
   @Output() close = new EventEmitter();
   error:any;
   navigated = false;
@@ -33,13 +36,27 @@ export class ActivityDetailsComponent implements OnInit {
   visible:boolean;//show/hide form 
   showActivityForm: string;//show/hide form 
   userProfile = this.userProfile;//user icon
+  max = 100;
+  min = 0;
+  //details dialog
+  dialogRef: MdDialogRef<MoreDetailsComponent>
+  config: MdDialogConfig={
+
+   data :
+      this.activity
+    
+  };
+
+  @ViewChild(TemplateRef) template: TemplateRef<any>;
 
   constructor(private activitiesService:ActivitiesService,
                 private route: ActivatedRoute,
                 private router: Router,
                 private pics: PicsService,
                 private auth: AuthService,
-                location:Location             
+                location:Location,  
+                public dialog: MdDialog, //more details dialog
+                @Inject (DOCUMENT) doc:any
                
                 ) { 
 
@@ -48,9 +65,16 @@ export class ActivityDetailsComponent implements OnInit {
                 this.showActivityForm = 'hideForm';//show/hide form 
                 this.visible = true;    //show/hide form 
 
-                 }
-//show/hide form 
-   toggle(){
+                 } //close constructor 
+
+   moreDetails() {
+     this.dialogRef = this.dialog.open(MoreDetailsComponent, {
+       data: this.activity
+     });
+
+   }
+
+   toggle(){//show/hide form 
      this.visible = !this.visible;
      this.showActivityForm = this.visible ? 'hideForm' : 'showForm';
    }

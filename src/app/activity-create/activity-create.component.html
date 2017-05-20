@@ -1,96 +1,28 @@
-<!-- new syntax for ng-if -->
-<!-- <md-toolbar color="primary">
-  <button class="app-icon-button" (click)="sidenav.toggle()">
-      <i class="material-icons app-toolbar-menu" color="accent">menu</i>
-    </button>
-  Create your event
-</md-toolbar>
-
-<form #activityForm="ngForm">
-  <h2> Add activity </h2>
-        <div>
-            <label for="name">Name: </label>
-            <input type="text" name="name"  [(ngModel)]="activityData.name" >
-            
-      </div>
-      <div>
-        <label for="venue">venue: </label>
-        <input type="text" name="venue" [(ngModel)]="activityData.venue">
-      </div>
-      <div>
-        <label for="price">Price: </label>
-        <input type="text" name="price" [(ngModel)]="activityData.price">
-      </div>
-      <div>
-        <label for="price">Date: </label>
-        <input type="text" name="date" [(ngModel)]="activityData.date">
-      </div>
-      <div>
-        <label for="time">Time: </label>
-        <input type="text" name="time" [(ngModel)]="activityData.time">
-      </div>
-       <div> 
-          Add a picture of your event..    
-            <input   type="file" (change)="pics.fileEvent($event)">          
-      </div>
-      
-     <br/>
-   
-      <button (click)="createActivity()" [disabled]="!activityForm.form.valid">Add activity</button>
-  </form>
-  <br/>
-  <br/>
-  <button (click)="gotoActivitiesList()">Back to activities list</button>
- 
- -->
 <md-toolbar color="primary">
   <button md-button (click)="gotoActivitiesList()">
       <i class="material-icons" color="accent">arrow_back</i>
   </button>
-  {{auth.userProfile.email}}
+    <span class="fillSpace"></span>
   <button md-button> 
      <i class="material-icons">done</i>    
   </button>
 </md-toolbar>
 
 
-<div class="main">
+
+<div class="">
   <md-card>
   <md-card-header>
-    <div  *ngIf="auth.authenticated() && auth.userProfile; else generic">
-   <img md-card-avatar src="{{auth.userProfile.picture}}" alt="user profile picture" >
-   </div>
-   <ng-template #generic>
-     <div md-card-avatar class="opacity_54"><!--avatar svg-->
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" 
-            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            viewBox="-287 289 24 24"  xml:space="preserve">
-            <style type="text/css">
-              .st0{fill:none;}
-            </style>
-            <path d="M-278,300.8c-0.7,0-1.3,0.6-1.3,1.3s0.6,1.3,1.3,1.3s1.3-0.6,1.3-1.3S-277.3,300.8-278,300.8z M-272,300.8
-              c-0.7,0-1.3,0.6-1.3,1.3s0.6,1.3,1.3,1.3s1.3-0.6,1.3-1.3S-271.3,300.8-272,300.8z M-275,291c-5.5,0-10,4.5-10,10s4.5,10,10,10
-              s10-4.5,10-10S-269.5,291-275,291z M-275,309c-4.4,0-8-3.6-8-8c0-0.3,0-0.6,0-0.9c2.4-1.1,4.2-3,5.2-5.4c1.8,2.6,4.8,4.2,8.2,4.2
-              c0.8,0,1.5-0.1,2.3-0.3c0.2,0.7,0.3,1.5,0.3,2.3C-267,305.4-270.6,309-275,309z"/>
-            <path class="st0" d="M-287,289h24v24h-24V289z"/>
-        </svg>
-      </div> 
-    </ng-template>
-
-  
-    <md-card-title>{{activity.name}}</md-card-title>
-    <md-card-subtitle>{{activity.venue}}</md-card-subtitle>
+    <md-card-subtitle  >{{auth.userProfile.email}}</md-card-subtitle>  
   </md-card-header>
-  <img md-card-image src={{activity.imageURL}} alt={{activity.imageURL}}>
-  <md-card-content>
 
+  <md-card-content>
     <form (ngSubmit) = "save()"  #activityForm="ngForm">
-        <md-input-container>
-            <label for="name">Name: </label>
-            <input mdInput mdPlaceholder="name your activity" type="text" name="name" required [(ngModel)]="activity.name" #name="ngModel">
-            <div [hidden]="name.valid || name.pristine" class="error">
-                Name is required 
-            </div>
+    <md-input-container>
+  <input mdInput placeholder="Favorite food" type="text">
+</md-input-container>
+      <md-input-container>           
+        <input mdInput placeholder="name your event" value="{{activity.name}}" type="text" name="name" required [(ngModel)]="activity.name" #name="ngModel">         
       </md-input-container>
       <md-input-container>
         <label for="venue">category: </label>
