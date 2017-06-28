@@ -1,34 +1,41 @@
 
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
+
+import { Activity } from './activity';
+import { ActivitiesService } from './activities.service';
 
 @Injectable()
 export class PicsService {
 
+messages = [
+ `you've got mail!`,
+ `I've got mail`,
+ `hell we all got mail`
+ ];
+activity: any;
+imageURL:any = "nothing uploaded yet";
+fileReader: object;
+value = '';
 
-imageURL:any;
+  constructor(
+     activitiesService : ActivitiesService
 
-  constructor() { }
+    ) {
+    console.log (this.imageURL)
+   }
 
-  message: string = 'hi Sarah';
- 
- // @Output() imageURL = new EventEmitter();
-
-  fileEvent(fileInput?:any){
+  fileEvent(fileInput?:any):any{
     let AWSService = (<any>window).AWS;
     console.log(AWSService); //make sure service is loaded, script added to index.html
     let file = fileInput.target.files[0];
-    //let albumPhotosKey = encodeURIComponent('bubblbookimages')+'/';
-    //let photoKey = albumPhotosKey + file.name;
-
-    let key = file.name;
-
+    AWSService.config.accessKeyId = 'AKIAJPKU3ZIFFWGIA7HQ'; //S3 user
+    AWSService.config.secretAccessKey = 'WsTVjAprY4dZ7EIdDbR1pKT/S4fxYD3e3YWf+dld'; // s3 user   
+    let key = file.name; //e.g. dog.jpg
     let imageBank = 'https://s3-eu-west-1.amazonaws.com/bubblbookimages/' ;
     let imageId = key;
-    let imageURL = imageBank + key;
+    this.imageURL = imageBank + key;
     let AWS = new AWSService.S3({
-      region: 'eu-west-1',
-      accessKeyId:'',
-      secretAccessKey:''
+      region: 'eu-west-1'   
     });
     let params = {
     Key: key,
@@ -44,12 +51,10 @@ imageURL:any;
       console.log(err.message);
       }
       else {
-      console.log('data');
-      console.log(imageURL);
-      }
-      return imageURL;
-      
-    });
+      console.log('ok!')
+      } 
+
+   });
 
   }
 }

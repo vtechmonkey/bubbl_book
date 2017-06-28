@@ -1,11 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output, Inject, ViewEncapsulation, ViewChild, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, Inject, ViewEncapsulation, ViewChild, TemplateRef} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { MdButtonToggleModule,MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import {Observable} from 'rxjs/Observable';
 
 
 import { Activity } from '../activity';
+import { Category } from '../category';
+import { Subcategory } from '../subcategory';
 import { ActivitiesService } from '../activities.service';
 import { PicsService } from '../pics.service';
 import { AuthService } from '../auth.service';
@@ -24,13 +27,15 @@ import { MoreDetailsComponent } from '../more-details/more-details.component';
 
 export class ActivityDetailsComponent implements OnInit {
 
-
+  //selectedCategory: Category = {id:1,name:'Sport'};
   activity: any;
+ categories : Category[];
+  subcategories : Subcategory[];
   @Output() close = new EventEmitter();
   error:any;
   navigated = false;
   sub: any;
-  imageURL: string;
+ // imageURL: string;
   location:Location;
   url: any;
   visible:boolean;//show/hide form 
@@ -38,7 +43,7 @@ export class ActivityDetailsComponent implements OnInit {
   userProfile = this.userProfile;//user icon
   max = 100;
   min = 0;
-  //details dialog
+  //more details dialog
   dialogRef: MdDialogRef<MoreDetailsComponent>
   config: MdDialogConfig={
 
@@ -49,34 +54,25 @@ export class ActivityDetailsComponent implements OnInit {
 
   @ViewChild(TemplateRef) template: TemplateRef<any>;
 
-  constructor(private activitiesService:ActivitiesService,
+  constructor(  private activitiesService:ActivitiesService,
                 private route: ActivatedRoute,
                 private router: Router,
                 private pics: PicsService,
                 private auth: AuthService,
+
                 location:Location,  
                 public dialog: MdDialog, //more details dialog
                 @Inject (DOCUMENT) doc:any
                
-                ) { 
-
+                )
+              { 
+                
                 this.location = location;
                 this.url = this.location.path();
                 this.showActivityForm = 'hideForm';//show/hide form 
                 this.visible = true;    //show/hide form 
-
-                 } //close constructor 
-
-   moreDetails() {
-     this.dialogRef = this.dialog.open(MoreDetailsComponent, {
-       data: this.activity
-     });
-
-   }
-
-   toggle(){//show/hide form 
-     this.visible = !this.visible;
-     this.showActivityForm = this.visible ? 'hideForm' : 'showForm';
+                this.pics.imageURL = pics.imageURL; // default string or image url of image uploaded with pics service
+                this.categories = this.activitiesService.getCategories();
    }
 
    ngOnInit() {
@@ -87,7 +83,7 @@ export class ActivityDetailsComponent implements OnInit {
           console.log('getting activity with id: ', _id);
           this.activitiesService
             .getActivityById(_id)
-            .subscribe(p =>this.activity =p);
+            .subscribe(p =>this.activity =p);      
         } else {
           this.navigated = false;
           this.activity = new Activity();
@@ -95,28 +91,72 @@ export class ActivityDetailsComponent implements OnInit {
      });  
 
   }
+      
+  moreDetails() {
+   this.dialogRef = this.dialog.open(MoreDetailsComponent, {
+     data: this.activity
+   });
 
-          save(): void{
-            this.activitiesService
+  }
+
+  toggle(){//show/hide form 
+    this.visible = !this.visible;
+    this.showActivityForm = this.visible ? 'hideForm' : 'showForm';
+  }
+
+  saveImgURL():any{
+     
+    console.log('this fuction is fuked', this.pics.imageURL);
+    this.activity.imageURL = this.pics.imageURL; 
+    console.log(this.activity.imageURL);
+      this.activitiesService
             .save(this.activity)
             .subscribe( (res)=>{
               this.activity = res;
               this.gotoActivitiesList(this.activity);
             });
+         
+  }
 
-          }  
+  onSelect(category){  
+  console.log(category);  
+    this.subcategories = this.activitiesService.getSubcategories().filter((item)=>item.category == category);
+  }
+    
+  save(): void {
+   
+    this.activitiesService
+    .save(this.activity)
+    .subscribe( (res)=>{
+      this.activity = res;
+      this.gotoActivitiesList(this.activity);
+    });
+  }    
 
-      gotoActivitiesList(activity: Activity = null):void{
+  gotoActivitiesList(activity: Activity = null):void{
 
-        this.close.emit(activity);
-        if(this.navigated){window.history.back();}
-        
-    }
-
-    getURL() {
-      if (this.pics.fileEvent()) {
-        this.imageURL = this.pics.imageURL;  
-      }
-    }
+    this.close.emit(activity);
+    if(this.navigated){window.history.back();}    
+  }   
 }
 
+
+// bit of experimenting with input 
+@Component({
+  selector: 'app-simple-form',
+  template: `<div>
+  {{message}}
+  <input #myInput type="text">
+  <button (click)="onClick($event,myInput.value)">click me</button>
+  </div>`
+})
+export class SimpleFormComponent {
+  @Input() message;
+
+onClick(event, value){
+  console.log(event);
+  console.log(value);
+}
+constructor() {}
+
+}

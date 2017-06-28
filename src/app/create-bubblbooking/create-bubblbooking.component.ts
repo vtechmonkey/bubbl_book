@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-bubblbooking.component.css']
 })
 export class CreateBubblbookingComponent implements OnInit {
-
+title : string = "Create Bubblbooking"; 
   constructor() { }
 
   ngOnInit() {

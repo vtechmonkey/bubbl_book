@@ -1,22 +1,43 @@
+
 <md-toolbar color="primary">
+  <button class="app-icon-button" [mdMenuTriggerFor]="menu">
+      <i class="material-icons app-toolbar-menu" color="accent">menu</i>
+    </button>
+  <md-menu #menu="mdMenu">
+    <button md-menu-item a routerLink="/home" routerLinkActive="active">   
+      <span>Home</span>
+    </button>
+    <button md-menu-item disabled>   
+      <span>My Bubblbookings</span>
+    </button>
+    <button md-menu-item disabled>   
+      <span>My Acccount</span>
+    </button>
+    <button id="menu-login">
+      <app-login></app-login>  
+    </button>  
+  </md-menu>
   <button md-button (click)="gotoActivitiesList()">
       <i class="material-icons" color="accent">arrow_back</i>
   </button>
-  <span class="fillSpace">Chosen Event</span>
-  <button md-button>
+
+   {{title}}
+    <span class="fillSpace"></span>
+    <button md-button disabled>
      <i class="material-icons">search</i>    
   </button>
+
 </md-toolbar>
 <!--get selected activity -->
 <section *ngIf="activity">  <section>
 <div>
   <md-card>
   <md-card-header>
-    <div md-card-avatar *ngIf="auth.authenticated() && auth.userProfile; else generic">
+     <div md-card-avatar *ngIf="auth.authenticated() && auth.userProfile; else generic">
        <img md-card-avatar src="{{auth.userProfile.picture}}" alt="user profile picture" >
     </div>
      <ng-template #generic>
-       <div md-card-avatar class="opacity_54"><!--avatar svg-->
+        <div md-card-avatar class="opacity_54"> <!--avatar svg-->
           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" 
               xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
               viewBox="-287 289 24 24"  xml:space="preserve">
@@ -33,8 +54,9 @@
       </ng-template>
  
 
-    <md-card-title class="opacity_87">{{activity.name}}</md-card-title>
+    <md-card-title class="opacity_87">{{activity.name.charAt(0) | uppercase}}{{ activity.name | slice :1}}</md-card-title>
     <md-card-subtitle class="opacity_54">{{activity.venue}}</md-card-subtitle>
+    
   </md-card-header>
   <img md-card-image class="smImg" src={{activity.imageURL}} alt={{activity.imageURL}}>
   <md-card-content class="rightText">
@@ -74,8 +96,8 @@
       </md-input-container>
        
       <md-input-container>     
-        <input mdInput type="text" name="date" placeholder="date" [(ngModel)]="activity.date">
-      </md-input-container>    
+        <input mdInput type="text" name="date" placeholder="date" [ngModel]="activity.date ">
+              </md-input-container>    
        <md-input-container>      
         <input mdInput type="text" name="time" placeholder="time" [(ngModel)]="activity.time">
       </md-input-container> 
@@ -88,15 +110,37 @@
       <md-input-container>       
         <input mdInput type="number" name="max" placeholder="Max Participants">
       </md-input-container><br/>
-       <md-input-container class="width100">
-        <input mdInput type="text" name="img" placeholder="image url" [(ngModel)]="activity.imageURL">
+   
+       Add a picture of your event..    
+            <input md-input #picUpload type="file" (change)="pics.fileEvent($event)" accept="image/*">     
+   
+   
+      <button md-raised-button (click)="saveImgURL(pics.imageURL)">save this image?</button>
+      <br>
+
+      <md-input-container>
+        <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" name="date" [(ngModel)]="activity.date">
+        <button mdSuffix [mdDatepickerToggle]="picker"></button>
       </md-input-container>
-   <!--    <md-select >
-      <md-option *ngFor="let cat of activity.category" [value]="activity.category.value">      
-      </md-option>{{activity.category.viewValue}}
+      <md-datepicker #picker></md-datepicker>
+     
+      <br>
+      <md-select 
+        placeholder="Choose a category" 
+        [(ngModel)]="activity.category" 
+        name="category"       
+       (change)="onSelect($event.value)"
+      >
+      <md-option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</md-option> 
       </md-select>
- -->
-      <br/>
+
+
+      <md-select placeholder="Choose a subcategory" >
+      <md-option *ngFor="let subcategory of subcategories">{{subcategory.name}}</md-option> 
+      </md-select>
+                   
+
+
     <button md-button type="submit" [disabled]="!activityForm.form.valid">save</button>
 
     </form> 
@@ -104,17 +148,7 @@
 </md-card-content>
 
 
-
-
-
-
-   <!--    <md-input-container>
-        <label for="imageURL">Image </label>
-        <input mdInput type="text" name="imageURL" [(ngModel)]="activity.imageURL">
-      </md-input-container>
        
-          Add a picture of your event..    
-            <input md-input type="file" (change)="pics.fileEvent($event)">  {{imageURL}}     -->    
 <!--      
       {{url}} <br/>
 {{location.path()}}<br/> -->
@@ -128,13 +162,19 @@
  <a href="whatsapp://send?text=paste your link here">
  <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M16.75,13.96C17,14.09 17.16,14.16 17.21,14.26C17.27,14.37 17.25,14.87 17,15.44C16.8,16 15.76,16.54 15.3,16.56C14.84,16.58 14.83,16.92 12.34,15.83C9.85,14.74 8.35,12.08 8.23,11.91C8.11,11.74 7.27,10.53 7.31,9.3C7.36,8.08 8,7.5 8.26,7.26C8.5,7 8.77,6.97 8.94,7H9.41C9.56,7 9.77,6.94 9.96,7.45L10.65,9.32C10.71,9.45 10.75,9.6 10.66,9.76L10.39,10.17L10,10.59C9.88,10.71 9.74,10.84 9.88,11.09C10,11.35 10.5,12.18 11.2,12.87C12.11,13.75 12.91,14.04 13.15,14.17C13.39,14.31 13.54,14.29 13.69,14.13L14.5,13.19C14.69,12.94 14.85,13 15.08,13.08L16.75,13.96M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C10.03,22 8.2,21.43 6.65,20.45L2,22L3.55,17.35C2.57,15.8 2,13.97 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12C4,13.72 4.54,15.31 5.46,16.61L4.5,19.5L7.39,18.54C8.69,19.46 10.28,20 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" /></svg>
  </a>
- to send this activity to your contacts  
+ to send this activity to your contacts  <br/>
 
   <a>http://ec2-52-209-95-130.eu-west-1.compute.amazonaws.com:4200{{url}}</a>
 </md-card-actions>
  
-</md-card>
+<!-- </md-card>
+ Add a picture of your event..    
+            <input md-input #picUpload type="file" (change)="pics.fileEvent($event)" accept="image/*">  
+
+      <br/>
+      pics.imageURL = {{pics.imageURL}}
+      <button (click)="saveImgURL(pics.imageURL)">change image</button>
+
+<app-simple-form *ngFor="let message of pics.messages"[message]="message"></app-simple-form> -->
 
 
-
-  

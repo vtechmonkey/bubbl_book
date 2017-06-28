@@ -10,7 +10,7 @@ var cors = require('cors');
 var activities = require('./routes/activities');
 
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3300;
 
 var app = express();
 app.use(cors());

@@ -15,6 +15,7 @@ import { AuthService } from '../auth.service';
 
 
 export class ActivityCreateComponent implements OnInit {
+  title:string = "Create your own Event"
 
 @Output() close = new EventEmitter();
 @Input() activityData = {

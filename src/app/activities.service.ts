@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Response,Headers } from '@angular/http';
 import { Observable }  from 'rxjs/Observable';
 import { Activity } from './activity';
-import { environment } from '../environments/environment';
- 
+import { Category } from './category';
+import { Subcategory } from './subcategory';
 
 import 'rxjs/add/operator/map';
 
@@ -11,13 +11,20 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ActivitiesService {
 
-   private activitiesUrl = 'http://localhost:3000/api/activities';
+   private activitiesUrl = 'http://localhost:3300/api/activities';
     
     constructor(
       private http: Http
    
       ) { }
-
+category: Category[]=[
+{id:1, name:'Sport'}, {id:2, name:'Food'}, {id:3, name:'Entertainment'}
+];
+subcategory: Subcategory[]=[
+{category: 'Sport', name:'5-aside'},{category: 'Sport', name:'Tennis'},{category: 'Sport', name:'Rugby'},
+{category: 'Food', name:'Sushi'}, {category: 'Food', name:'Italian'},{category: 'Food', name:'Mexican'},
+{category: 'Entertainment', name:'Movie'},{category: 'Entertainment', name:'Music'},{category: 'Entertainment', name:'Theatre'}
+]
   // Get all activities 
     getAllActivities(): Observable<Activity[]> {
     return this.http
@@ -25,6 +32,13 @@ export class ActivitiesService {
     .map(res => res.json())
     .catch(this.handleError); 
                     
+}
+//Get categories 
+getCategories() {
+  return this.category;
+}
+getSubcategories(){
+  return this.subcategory;
 }
 // Get a single activity
 getActivityById(_id): Observable<Activity[]> {

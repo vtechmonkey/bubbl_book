@@ -2,7 +2,7 @@ import { BrowserModule,HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angul
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions,JsonpModule  } from '@angular/http';
-import { MaterialModule } from '@angular/material';
+import { MaterialModule, MdNativeDateModule } from '@angular/material';
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -61,7 +61,8 @@ export class MyHammerConfig extends HammerGestureConfig  {
     HttpModule,
     JsonpModule,
     routing,
-    MaterialModule.forRoot(),
+    MaterialModule,
+    MdNativeDateModule,
     BrowserAnimationsModule
   ],
   providers: [
