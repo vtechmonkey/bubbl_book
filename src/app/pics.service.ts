@@ -13,9 +13,10 @@ messages = [
  `hell we all got mail`
  ];
 activity: any;
-imageURL:any = "nothing uploaded yet";
+imageURL: any = "https://s3-eu-west-1.amazonaws.com/bubblbookimages/placeholder.png";
 fileReader: object;
 value = '';
+element: any;
 
   constructor(
      activitiesService : ActivitiesService
@@ -44,8 +45,7 @@ value = '';
     Bucket: 'bubblbookimages',
     ServerSideEncryption: 'AES256'
     };
-
-    console.log(params);
+    console.log(params);    
     AWS.putObject(params, function(err, data){    
       if (err){
       console.log(err.message);

@@ -21,8 +21,8 @@
       <i class="material-icons" color="accent">arrow_back</i>
   </button>
 
-   {{title}}
-    <span class="fillSpace"></span>
+   {{title}} <!--  page title  -->
+    <span class="fillSpace"></span> <!-- fill space between buttons so they are either side of the toolbar -->
     <button md-button disabled>
      <i class="material-icons">search</i>    
   </button>
@@ -33,6 +33,7 @@
 <div>
   <md-card>
   <md-card-header>
+  <!--   show user avatar if available if not use generic avatar  -->   
      <div md-card-avatar *ngIf="auth.authenticated() && auth.userProfile; else generic">
        <img md-card-avatar src="{{auth.userProfile.picture}}" alt="user profile picture" >
     </div>
@@ -64,7 +65,7 @@
         <md-list-item>brief description of event goes here, not currently in form 
         </md-list-item> 
         <md-list-item>
-          <span mdTooltip="add  to my favourites" mdTooltipPosition="after">
+          <span mdTooltip="add  to my favourites" mdTooltipPosition="before">
             <i class="material-icons opacity_54">favorite</i>
           </span><!-- add to favourites (not implemented) -->     
           <button md-button class="smBtn" (click)="toggle()">CREATE BUBBLBOOKING</button><!--  show form  -->
@@ -93,11 +94,12 @@
       </md-input-container><br/>
       <md-input-container>
         <input mdInput type="text" name="venue" placeholder="venue" [(ngModel)]="activity.venue">
+      </md-input-container>       
+       <md-input-container>
+        <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" name="date" [(ngModel)]="activity.date">
+        <button mdSuffix [mdDatepickerToggle]="picker"></button>
       </md-input-container>
-       
-      <md-input-container>     
-        <input mdInput type="text" name="date" placeholder="date" [ngModel]="activity.date ">
-              </md-input-container>    
+      <md-datepicker #picker></md-datepicker> 
        <md-input-container>      
         <input mdInput type="text" name="time" placeholder="time" [(ngModel)]="activity.time">
       </md-input-container> 
@@ -113,16 +115,7 @@
    
        Add a picture of your event..    
             <input md-input #picUpload type="file" (change)="pics.fileEvent($event)" accept="image/*">     
-   
-   
-      <button md-raised-button (click)="saveImgURL(pics.imageURL)">save this image?</button>
-      <br>
-
-      <md-input-container>
-        <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" name="date" [(ngModel)]="activity.date">
-        <button mdSuffix [mdDatepickerToggle]="picker"></button>
-      </md-input-container>
-      <md-datepicker #picker></md-datepicker>
+        
      
       <br>
       <md-select 
@@ -139,7 +132,7 @@
       <md-option *ngFor="let subcategory of subcategories">{{subcategory.name}}</md-option> 
       </md-select>
                    
-
+  <button md-button (click)="delete()">delete</button>
 
     <button md-button type="submit" [disabled]="!activityForm.form.valid">save</button>
 

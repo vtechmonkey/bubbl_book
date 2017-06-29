@@ -26,10 +26,10 @@ import { MoreDetailsComponent } from '../more-details/more-details.component';
 
 
 export class ActivityDetailsComponent implements OnInit {
-
-  //selectedCategory: Category = {id:1,name:'Sport'};
+  title = "Event Details";
   activity: any;
- categories : Category[];
+  activities: Activity[];
+  categories : Category[];
   subcategories : Subcategory[];
   @Output() close = new EventEmitter();
   error:any;
@@ -104,19 +104,6 @@ export class ActivityDetailsComponent implements OnInit {
     this.showActivityForm = this.visible ? 'hideForm' : 'showForm';
   }
 
-  saveImgURL():any{
-     
-    console.log('this fuction is fuked', this.pics.imageURL);
-    this.activity.imageURL = this.pics.imageURL; 
-    console.log(this.activity.imageURL);
-      this.activitiesService
-            .save(this.activity)
-            .subscribe( (res)=>{
-              this.activity = res;
-              this.gotoActivitiesList(this.activity);
-            });
-         
-  }
 
   onSelect(category){  
   console.log(category);  
@@ -124,7 +111,9 @@ export class ActivityDetailsComponent implements OnInit {
   }
     
   save(): void {
-   
+  if (this.pics.fileEvent) {
+      this.activity.imageURL = this.pics.imageURL; 
+      } 
     this.activitiesService
     .save(this.activity)
     .subscribe( (res)=>{
@@ -138,7 +127,10 @@ export class ActivityDetailsComponent implements OnInit {
     this.close.emit(activity);
     if(this.navigated){window.history.back();}    
   }   
-}
+
+
+} // close component 
+ 
 
 
 // bit of experimenting with input 

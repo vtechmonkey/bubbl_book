@@ -9,37 +9,36 @@ import { ActivityCreateComponent } from './activity-create/activity-create.compo
 
 const appRoutes: Routes = [
 
- { 	path: '',
-	redirectTo: '/home',
-	pathMatch: 'full'
+	{ 	path: '',
+		redirectTo: '/home',
+		pathMatch: 'full'
 
-},
-{
-	path: 'home',
-	component: HomeComponent
-},
-{
-	path: 'createbubblbooking',
-	component: CreateBubblbookingComponent
-},
+	},
+	{
+		path: 'home',
+		component: HomeComponent
+	},
+	{
+		path: 'createbubblbooking',
+		component: CreateBubblbookingComponent
+	},
+	{
+		path: 'activities',
+		component: ActivitiesComponent
+	},
+	{
+		path:'activities/:_id',
+		component: ActivityDetailsComponent
 
-{
-	path: 'activities',
-	component: ActivitiesComponent
-},
-{
-	path:'activities/:_id',
-	component: ActivityDetailsComponent
-
-},
-{
-	path:'login',
- 	component: LoginComponent
- },
- {
+	},
+	{
+		path:'login',
+	 	component: LoginComponent
+	},
+	{
 	path:'create',
- 	component: ActivityCreateComponent
- }
+		component: ActivityCreateComponent
+	}
 
 ];
 
