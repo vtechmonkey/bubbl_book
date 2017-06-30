@@ -1,8 +1,8 @@
 import { BrowserModule,HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions,JsonpModule  } from '@angular/http';
-import { MaterialModule } from '@angular/material';
+import { MaterialModule,MdInputModule } from '@angular/material';
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -18,6 +18,8 @@ import { HomeComponent } from './home/home.component';
 import { CreateBubblbookingComponent } from './create-bubblbooking/create-bubblbooking.component';
 
 import {ActivitiesService} from './activities.service';
+import {CategoryService} from './category/category.service';
+import {SubCategoryService} from './subCategory/subCategory.service';
 import {AuthService } from './auth.service';
 import { PicsService } from './pics.service';
 
@@ -56,14 +58,16 @@ export class MyHammerConfig extends HammerGestureConfig  {
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     JsonpModule,
     routing,
-    MaterialModule.forRoot(),
-    BrowserAnimationsModule
+    MaterialModule,
+    MdInputModule,
+    BrowserAnimationsModule  
   ],
   providers: [
-  ActivitiesService,appRoutingProviders,AuthService, PicsService,
+  ActivitiesService,CategoryService,SubCategoryService,appRoutingProviders,AuthService,PicsService,
     {
     provide:AuthHttp,
     useFactory:authHttpServiceFactory,

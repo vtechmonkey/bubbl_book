@@ -41,17 +41,17 @@ getActivityById(_id): Observable<Activity[]> {
 
 // save and update activity
 save(activity:Activity): Observable<Activity[]> {
-  if(activity._id){
-    return this.put(activity); 
-  }
+   if(activity._id){
+     return this.put(activity); 
+     }
     return this.post(activity);
 }
 
 //post activity
 private post(activity:Activity): Observable<Activity[]>{
-  let headers = new Headers({
+   let headers = new Headers({
     'Content-Type': 'application/json'
-  });
+   });
 
   return this.http
    .post(this.activitiesUrl,JSON.stringify(activity),{headers:headers})

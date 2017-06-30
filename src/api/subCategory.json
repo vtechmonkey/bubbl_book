@@ -1,0 +1,12 @@
+[
+{"id":1,"category":"Sport","subCategory":"GAA"},
+{"id":2,"category":"Sport","subCategory":"Football"},
+{"id":3,"category":"Sport","subCategory":"Golf"},
+{"id":4,"category":"Sport","subCategory":"Rugby"},
+{"id":5,"category":"Food","subCategory":"Thai"},
+{"id":6,"category":"Food","subCategory":"Italian"},
+{"id":7,"category":"Food","subCategory":"Greek"},
+{"id":8,"category":"Food","subCategory":"Chinese"},
+{"id":9,"category":"Culture","subCategory":"Music"},
+{"id":10,"category":"Culture","subCategory":"Theatre"}
+]

@@ -1,48 +1,3 @@
-<!-- new syntax for ng-if -->
-<!-- <md-toolbar color="primary">
-  <button class="app-icon-button" (click)="sidenav.toggle()">
-      <i class="material-icons app-toolbar-menu" color="accent">menu</i>
-    </button>
-  Create your event
-</md-toolbar>
-
-<form #activityForm="ngForm">
-  <h2> Add activity </h2>
-        <div>
-            <label for="name">Name: </label>
-            <input type="text" name="name"  [(ngModel)]="activityData.name" >
-            
-      </div>
-      <div>
-        <label for="venue">venue: </label>
-        <input type="text" name="venue" [(ngModel)]="activityData.venue">
-      </div>
-      <div>
-        <label for="price">Price: </label>
-        <input type="text" name="price" [(ngModel)]="activityData.price">
-      </div>
-      <div>
-        <label for="price">Date: </label>
-        <input type="text" name="date" [(ngModel)]="activityData.date">
-      </div>
-      <div>
-        <label for="time">Time: </label>
-        <input type="text" name="time" [(ngModel)]="activityData.time">
-      </div>
-       <div> 
-          Add a picture of your event..    
-            <input   type="file" (change)="pics.fileEvent($event)">          
-      </div>
-      
-     <br/>
-   
-      <button (click)="createActivity()" [disabled]="!activityForm.form.valid">Add activity</button>
-  </form>
-  <br/>
-  <br/>
-  <button (click)="gotoActivitiesList()">Back to activities list</button>
- 
- -->
 <md-toolbar color="primary">
   <button md-button (click)="gotoActivitiesList()">
       <i class="material-icons" color="accent">arrow_back</i>
@@ -61,7 +16,7 @@
    <img md-card-avatar src="{{auth.userProfile.picture}}" alt="user profile picture" >
    </div>
    <ng-template #generic>
-     <div md-card-avatar class="opacity_54"><!--avatar svg-->
+     <div md-card-avatar class="opacity_54">
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" 
             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
             viewBox="-287 289 24 24"  xml:space="preserve">
@@ -78,70 +33,190 @@
     </ng-template>
 
   
-    <md-card-title>{{activity.name}}</md-card-title>
-    <md-card-subtitle>{{activity.venue}}</md-card-subtitle>
+    <!--<md-card-title>{{activity.name}}</md-card-title>
+    <md-card-subtitle>{{activity.venue}}</md-card-subtitle>-->
   </md-card-header>
-  <img md-card-image src={{activity.imageURL}} alt={{activity.imageURL}}>
+  <!--<img md-card-image src={{activity.imageURL}} alt={{activity.imageURL}}>-->
   <md-card-content>
 
-    <form (ngSubmit) = "save()"  #activityForm="ngForm">
+   
+    <form [formGroup]="activityForm" (ngSubmit)="onSubmit()" novalidate>
+        
+      <!--name-->
+      <div class="form-group">
         <md-input-container>
-            <label for="name">Name: </label>
-            <input mdInput mdPlaceholder="name your activity" type="text" name="name" required [(ngModel)]="activity.name" #name="ngModel">
-            <div [hidden]="name.valid || name.pristine" class="error">
-                Name is required 
-            </div>
+            <label>Name:</label>
+            <input mdInput type="text" class="form-control" formControlName="name">
       </md-input-container>
-      <md-input-container>
-        <label for="venue">category: </label>
-        <input mdInput type="text" name="venue" [(ngModel)]="activity.category">
-    </md-input-container>
-      <md-input-container>
-        <label for="venue">venue: </label>
-        <input mdInput type="text" name="venue" [(ngModel)]="activity.venue">
-       </md-input-container>
-       <md-input-container>
-        <label for="price">Price: </label>
-        <input mdInput type="text" name="price" [(ngModel)]="activity.price">
-     </md-input-container>
-       <md-input-container>
-        <label for="price">Date: </label>
-        <input mdInput type="text" name="date" [(ngModel)]="activity.date">
-       </md-input-container>
-        <md-input-container>
-        <label for="time">Time: </label>
-        <input mdInput type="text" name="time" [(ngModel)]="activity.time">
-      </md-input-container>
-           <md-input-container>
-        <label for="imageURL">Image </label>
-        <input mdInput type="text" name="imaegURL" [(ngModel)]="activity.imageURL">
-      </md-input-container>
-       
-          Add a picture of your event..    
-            <input  type="file" (change)="pics.fileEvent($event)">          
+      </div>
      
-      {{url}} <br/>
-{{location.path()}}<br/>
+
+      <!--description-->
+    <div class="form-group">
+      <md-input-container>
+        <label>Description:</label>
+        <input mdInput type="text" class="form-control" formControlName="description">
+      </md-input-container>
+    </div>
+      
+
+      <!--venue-->
+      <div class="form-group">
+      <md-input-container>
+        <label>venue: </label>
+        <input mdInput type="text" class="form-control" formControlName="venue">
+       </md-input-container>
+      </div>
 
 
-      <!-- send link to this page via whatsapp,svg is the wahtsapp logo -->
+       <!--image-->
+      <div class="form-group">
+      <md-input-container>
+        <label>image </label>
+         <input mdInput type="text" class="form-control" formControlName="image">
+      </md-input-container>
+      </div>
+    
+
+      <!--min-->
+    <div class="form-group">
+      <md-input-container>
+        <label >min </label>
+        <input mdInput type="number" class="form-control" formControlName="min">
+      </md-input-container>
+    </div>
+      
+
+      <!--max-->
+      <div class="form-group">
+      <md-input-container>
+        <label>max </label>
+        <input mdInput type="number" class="form-control" formControlName="max">
+      </md-input-container>
+      </div>
+     
+
+        <!--price-->
+        <md-card>
+        <div formArrayName="prices">
+          <div *ngFor="let price of activityForm.controls.prices.controls; let i=index">
+            
+              <span>Price {{i + 1}}</span>
+              
+            <div [formGroupName]="i">
+              <div class="form-group">
+                <label>qty</label>
+                <input mdInputtype="number" class="form-control" formControlName="qty">
+              </div>
+              <div class="form-group">
+                <label>Price per person</label>
+                <input mdInput type="text" class="form-control" formControlName="perPerson">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      
+          <a (click)="addPrice()">
+            Add another price +
+          </a>
+        </md-card>
+          <br/>
+<!--datestimes-->
+<md-card>
+      Dates
+ 
+    <div class="">
+     
+  <a (click)="addDate()" style="cursor: default">
+    Add Date +
+  </a>
+</div>
 
 
-      Cut and paste the link below and click here to send this activity to your
- <a href="whatsapp://send?text=paste your link here">
- <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M16.75,13.96C17,14.09 17.16,14.16 17.21,14.26C17.27,14.37 17.25,14.87 17,15.44C16.8,16 15.76,16.54 15.3,16.56C14.84,16.58 14.83,16.92 12.34,15.83C9.85,14.74 8.35,12.08 8.23,11.91C8.11,11.74 7.27,10.53 7.31,9.3C7.36,8.08 8,7.5 8.26,7.26C8.5,7 8.77,6.97 8.94,7H9.41C9.56,7 9.77,6.94 9.96,7.45L10.65,9.32C10.71,9.45 10.75,9.6 10.66,9.76L10.39,10.17L10,10.59C9.88,10.71 9.74,10.84 9.88,11.09C10,11.35 10.5,12.18 11.2,12.87C12.11,13.75 12.91,14.04 13.15,14.17C13.39,14.31 13.54,14.29 13.69,14.13L14.5,13.19C14.69,12.94 14.85,13 15.08,13.08L16.75,13.96M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C10.03,22 8.2,21.43 6.65,20.45L2,22L3.55,17.35C2.57,15.8 2,13.97 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12C4,13.72 4.54,15.31 5.46,16.61L4.5,19.5L7.39,18.54C8.69,19.46 10.28,20 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" /></svg>
- </a>
- contacts  
+<div formArrayName="dates">
+  <div *ngFor="let date of activityForm.controls.dates.controls; let i=index"> 
+      <div>
+          <span>Dates {{i + 1}}</span>
+      </div>
 
-http://ec2-52-209-95-130.eu-west-1.compute.amazonaws.com:4200{{url}}
+      <div [formGroupName]="i">
+          <div>
+              <label>Date</label>
+              <input type="text" formControlName="date">
+          </div>
 
-      <button type="submit" [disabled]="!activityForm.form.valid">save</button>
+          <div formArrayName="times">
+            <div *ngFor="let time of activityForm.controls.dates.controls[i].controls.times.controls; let t=index">
+                <div class="">
+                  <a (click)="addTime(i,t)">
+                    Add Time +
+                  </a>
+                </div>
 
+                <div>
+                    <span>Times{{t + 1}}</span>
+                </div>
+
+                <div [formGroupName]="t">
+                    
+                    <div>
+                        <label>Times</label>
+                        <input type="text" formControlName="time">
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+   
+</md-card>         
+       
+       <!--category-->
+      <div class="form-group">
+      
+        <label>category: </label>
+        <md-select  formControlName="category" (change)="onSelect($event.value)">
+                  <md-option *ngFor="let oneCategory of allCategories" [value]="oneCategory.category">
+                    {{oneCategory.category}}
+                  </md-option>
+        </md-select>                  
+            
+      
+      </div>
+
+      <!--subCategory-->
+      <div class="form-group">
+      
+        <label >subCategory: </label>
+        <md-select formControlName="subCategory">
+                  <md-option *ngFor="let oneSubCategory of subCategoryByCategory" [value]="oneSubCategory.subCategory">
+                    {{oneSubCategory.subCategory}}
+                  </md-option>
+        </md-select>         
+       
+    </div>
+      
+
+     <!--public-->
+     <div class="form-group">
+       <!--<md-input-container>-->
+        <label>public:</label>
+        <md-checkbox formControlName="publicActivity" [checked]="true"></md-checkbox>
+              <!--<input mdInput type="text" class="form-control" formControlName="publicActivity">-->
+       <!--</md-input-container>-->
+     </div>
+    
+        
+       <button type="submit" [disabled]="activityForm.pristine">Save</button> &nbsp;
+       
     </form>
  </md-card-content>
 </md-card>
 
+<p>Form value: {{ activityForm.value | json }}</p>
+<p>Form status: {{ activityForm.status | json }}</p>
+
   <button md-button (click)="gotoActivitiesList()">Back to activities list</button>
-</div> <!--class main--> 
-
-
+</div> 

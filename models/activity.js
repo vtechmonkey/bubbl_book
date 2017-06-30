@@ -3,13 +3,25 @@ var mongoose = require('mongoose');
 var ActivitySchema = new mongoose.Schema({
 	
 	name: String,
+	description:String,
 	venue: String,
-	price: String,
-	date: String,
-	time: String,
+	image:String,
+	min: Number,
+	max: Number,
 	category: String,
-	imageURL: String,
-	isPrivate: false
+	subCategory:String,
+	publicActivity:String,
+    prices:[],
+	dates:[]
+
+	// dates:[{*/}
+	// 	dates:String,
+	// 	times:
+	// 		[{
+	// 		times:String
+	// 		}]
+	// }]
+	
 	
 });
 

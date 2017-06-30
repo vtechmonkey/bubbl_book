@@ -1,13 +1,34 @@
 export class Activity {
 
-	_id:string;
+     _id:string;
 	name: string;
+	description:string;
 	venue: string;
-	price: string;
-	date: string;
-	time: string;
+	image: string;
+	min: number;
+	max: number;
 	category: string;
-	
+	subCategory: string;
+	publicActivity:string;
+	prices:Price[];
+	dates:Date[];
 }
 
 
+
+export class Price{
+	qty: number;
+	perPerson: string;
+}
+
+export class Date{
+	date: string;
+	times: Time[];
+}
+
+export class Time{
+	time:string
+}
+
+	
+	
