@@ -37,6 +37,7 @@ export class ActivityCreateComponent implements OnInit {
      date: '',
      time: '',
      category: '',
+     subcategory:'',
      imageURL:''
    };
    dialogRef: MdDialogRef<MoreDetailsComponent>
@@ -65,6 +66,7 @@ export class ActivityCreateComponent implements OnInit {
           this.url = this.location.path();         
           this.pics.imageURL = pics.imageURL; // default string or image url of image uploaded with pics service
           this.categories = this.activitiesService.getCategories();
+          //this.subcategories = this.activitiesService.getSubcategories().filter((item)=>item.category == this.activityData.category);
 
      }
 

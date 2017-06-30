@@ -22,10 +22,7 @@ export class MoreDetailsComponent implements OnInit {
     private data: any,
     public dialogRef: MdDialogRef<MoreDetailsComponent>,
 
-  	// private activitiesService:ActivitiesService,
-   //  private route: ActivatedRoute,
-   //  private router: Router,
-   //  public dialog: MdDialog
+  
   	) { }
 
   ngOnInit() {

@@ -7,6 +7,7 @@ export class Activity {
 	date: string;
 	time: string;
 	category: string;
+	subcategory: string;
 	
 }
 

@@ -7,16 +7,16 @@ import { ActivitiesService } from './activities.service';
 @Injectable()
 export class PicsService {
 
-messages = [
- `you've got mail!`,
- `I've got mail`,
- `hell we all got mail`
- ];
+// messages = [
+//  `you've got mail!`,
+//  `I've got mail`,
+//  `hell we all got mail`
+//  ];
 activity: any;
-imageURL: any = "https://s3-eu-west-1.amazonaws.com/bubblbookimages/placeholder.png";
+imageURL: any;
 fileReader: object;
 value = '';
-element: any;
+
 
   constructor(
      activitiesService : ActivitiesService

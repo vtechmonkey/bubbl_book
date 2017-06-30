@@ -40,9 +40,8 @@ export class ActivityDetailsComponent implements OnInit {
   url: any;
   visible:boolean;//show/hide form 
   showActivityForm: string;//show/hide form 
-  userProfile = this.userProfile;//user icon
-  max = 100;
-  min = 0;
+  userProfile = this.userProfile;//user icon from auth0
+
   //more details dialog
   dialogRef: MdDialogRef<MoreDetailsComponent>
   config: MdDialogConfig={
@@ -71,8 +70,10 @@ export class ActivityDetailsComponent implements OnInit {
                 this.url = this.location.path();
                 this.showActivityForm = 'hideForm';//show/hide form 
                 this.visible = true;    //show/hide form 
-                this.pics.imageURL = pics.imageURL; // default string or image url of image uploaded with pics service
+                this.pics.imageURL = pics.imageURL; 
                 this.categories = this.activitiesService.getCategories();
+                console.log([this.activity]);
+               
    }
 
    ngOnInit() {
@@ -83,10 +84,12 @@ export class ActivityDetailsComponent implements OnInit {
           console.log('getting activity with id: ', _id);
           this.activitiesService
             .getActivityById(_id)
-            .subscribe(p =>this.activity =p);      
+            .subscribe(p =>this.activity =p);  
         } else {
           this.navigated = false;
-          this.activity = new Activity();
+          this.activity = new Activity();        
+
+          
         }
      });  
 

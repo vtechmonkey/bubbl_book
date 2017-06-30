@@ -111,8 +111,10 @@
       </md-select>
 
 
-      <md-select placeholder="Choose a subcategory" >
-      <md-option *ngFor="let subcategory of subcategories">{{subcategory.name}}</md-option> 
+      <md-select placeholder="Choose a subcategory"
+      [(ngModel)]="activityData.subcategory" 
+        name="subcategory"    >
+      <md-option *ngFor="let subcategory of subcategories" value="{{subcategory.name}}">{{subcategory.name}}</md-option> 
       </md-select>                
 
       <!-- send link to this page via whatsapp,svg is the wahtsapp logo -->

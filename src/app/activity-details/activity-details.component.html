@@ -118,6 +118,7 @@
         
      
       <br>
+      <br>
       <md-select 
         placeholder="Choose a category" 
         [(ngModel)]="activity.category" 
@@ -128,8 +129,12 @@
       </md-select>
 
 
-      <md-select placeholder="Choose a subcategory" >
-      <md-option *ngFor="let subcategory of subcategories">{{subcategory.name}}</md-option> 
+      <md-select 
+      placeholder="Choose a subcategory"
+        [(ngModel)]="activity.subcategory" 
+        name="subcategory"   
+      >
+      <md-option *ngFor="let subcategory of subcategories" value="{{subcategory.name}}">{{subcategory.name}} </md-option> 
       </md-select>
                    
   <button md-button (click)="delete()">delete</button>

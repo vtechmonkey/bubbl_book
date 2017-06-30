@@ -17,14 +17,17 @@ export class ActivitiesService {
       private http: Http
    
       ) { }
+
+// hard coded categories and subcategories pending new database
 category: Category[]=[
 {id:1, name:'Sport'}, {id:2, name:'Food'}, {id:3, name:'Entertainment'}
 ];
 subcategory: Subcategory[]=[
-{category: 'Sport', name:'5-aside'},{category: 'Sport', name:'Tennis'},{category: 'Sport', name:'Rugby'},
-{category: 'Food', name:'Sushi'}, {category: 'Food', name:'Italian'},{category: 'Food', name:'Mexican'},
+{category: 'Sport', name:'5-aside'},{category: 'Sport', name:'Tennis'},{category: 'Sport', name:'Rugby'},{category: 'Sport', name:'Golf'},
+{category: 'Food', name:'Sushi'}, {category: 'Food', name:'Italian'},{category: 'Food', name:'Mexican'},{category: 'Food', name:'Thai'},
 {category: 'Entertainment', name:'Movie'},{category: 'Entertainment', name:'Music'},{category: 'Entertainment', name:'Theatre'}
 ]
+
   // Get all activities 
     getAllActivities(): Observable<Activity[]> {
     return this.http

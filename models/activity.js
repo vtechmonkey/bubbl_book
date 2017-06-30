@@ -8,6 +8,7 @@ var ActivitySchema = new mongoose.Schema({
 	date: String,
 	time: String,
 	category: String,
+	subcategory: String,
 	imageURL: String,
 	isPrivate: false
 	
