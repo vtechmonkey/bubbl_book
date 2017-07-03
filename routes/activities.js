@@ -5,7 +5,7 @@ var multer =  require('multer');
 var mongoose = require('mongoose');
 var Activity = require('../models/activity');
 
-mongoose.connect('mongodb://newOrder:haloRemix@ds019986.mlab.com:19986/tuttifrutti')
+mongoose.connect('mongodb://bubbles:bubbles!12@ds123331.mlab.com:23331/bubblbook')
 .then(() =>console.log('connected succesful'))
 .catch((err)=> console.error(err));
 
@@ -48,14 +48,21 @@ router.post('/activities', function(req, res, next){
 
   // Set the properties that came from the POST data
   activity.name = req.body.name;
+  activity.description = req.body.description;
   activity.venue = req.body.venue;
-  activity.date = req.body.date;
-  activity.time = req.body.time;
-  activity.isPrivate = req.body.isPrivate;
-  activity.price = req.body.price;
+  activity.image = req.body.image;
+  activity.min = req.body.min;
+  activity.max = req.body.max;
   activity.category = req.body.category;
-  activity.subcategory = req.body.subcategory;
-  activity.imageURL = req.body.imageURL;
+  activity.subCategory = req.body.subCategory;
+  activity. publicActivity = req.body.publicActivity;
+  activity.prices = req.body.prices;
+  activity.dates = req.body.dates;
+
+  // activity.times = req.body.times;
+  //  activity.qty = req.body.qty;
+  //  activity.perPerson = req.body.perPerson;
+
   // Save and check for errors
   activity.save(function(err) {
     if (err)

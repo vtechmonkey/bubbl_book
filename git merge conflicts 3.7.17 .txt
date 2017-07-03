@@ -1,0 +1,24 @@
+
+C:\Users\Toshiba\bbGit>git merge origin/createBubblbooking
+warning: LF will be replaced by CRLF in src/app/more-details/more-details.component.html.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in src/app/more-details/more-details.component.spec.ts.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in src/app/more-details/more-details.component.ts.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in src/app/more-details/more-details.interface.ts.
+The file will have its original line endings in your working directory.
+Auto-merging src/app/app.module.ts
+CONFLICT (content): Merge conflict in src/app/app.module.ts
+Auto-merging src/app/activity.ts
+CONFLICT (content): Merge conflict in src/app/activity.ts
+Auto-merging src/app/activity-create/activity-create.component.ts
+CONFLICT (content): Merge conflict in src/app/activity-create/activity-create.component.ts
+Auto-merging src/app/activity-create/activity-create.component.html
+CONFLICT (content): Merge conflict in src/app/activity-create/activity-create.component.html
+Auto-merging src/app/activities.service.ts
+Auto-merging routes/activities.js
+CONFLICT (content): Merge conflict in routes/activities.js
+Auto-merging models/activity.js
+CONFLICT (content): Merge conflict in models/activity.js
+Automatic merge failed; fix conflicts and then commit the result.
