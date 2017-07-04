@@ -134,7 +134,7 @@
       </md-select>   -->              
 
         <!--price-->
-      <md-card>
+
         <div formArrayName="prices">
           <div *ngFor="let price of activityForm.controls.prices.controls; let i=index">
             
@@ -156,10 +156,10 @@
           <a (click)="addPrice()">
             Add another price +
           </a>
-        </md-card>
+       
           <br/>
 <!--datestimes-->
-<md-card>
+
       Dates
  
   <div class="">
@@ -213,7 +213,7 @@ http://ec2-52-209-95-130.eu-west-1.compute.amazonaws.com:4200{{url}}
   </div>
 </div>
    
-</md-card>         
+      
        
        <!--category-->
       <div class="form-group">
@@ -253,9 +253,9 @@ http://ec2-52-209-95-130.eu-west-1.compute.amazonaws.com:4200{{url}}
         
        <button type="submit" [disabled]="activityForm.pristine">Save</button> &nbsp;
        
-    </form>
- </md-card-content>
-</md-card>
+    
+<!--  </md-card-content>
+</md-card> -->
 
 <p>Form value: {{ activityForm.value | json }}</p>
 <p>Form status: {{ activityForm.status | json }}</p>

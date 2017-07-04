@@ -38,7 +38,7 @@ export class ActivityCreateComponent implements OnInit {
   subcategories : Subcategory[];
   location:Location;
   url: any;
-  @Output() close = new EventEmitter();
+ // @Output() close = new EventEmitter();
   @Input()
    activityData = {
      _id: '',
@@ -84,7 +84,7 @@ dates:FormArray;
 
 userProfile = this.userProfile;
 
- activity: Array<Activity> =[];
+ //activity: Array<Activity> =[];
 
 
   constructor(
@@ -156,7 +156,7 @@ userProfile = this.userProfile;
         });
     }
 
-     }
+     
 
     initTime(){
       return this.fb.group({
@@ -182,28 +182,28 @@ userProfile = this.userProfile;
 
   }
 
-  previewEvent() {
-   this.dialogRef = this.dialog.open(MoreDetailsComponent, {
-     data: this.activityData
-   });
-  }
+  // previewEvent() {
+  //  this.dialogRef = this.dialog.open(MoreDetailsComponent, {
+  //    data: this.activityData
+  //  });
+  // }
 
-  onSelect(category){  
-  console.log(category);  
-  this.subcategories = this.activitiesService.getSubcategories().filter((item)=>item.category == category);
-  }    
+  // onSelect(category){  
+  // console.log(category);  
+  // this.subcategories = this.activitiesService.getSubcategories().filter((item)=>item.category == category);
+  // }    
 
-  createActivity() {
-   //   if(this.pics.fileEvent){
-   //     this.activityData.imageURL = this.pics.imageURL;
-   // }
-  this.activitiesService
-   .save(this.activityData)
-   .subscribe((res) => {
-     this.activity = res;
-     this.gotoActivitiesList(this.activityData);
-   });
-  }
+  // createActivity() {
+  //    if(this.pics.fileEvent){
+  //      this.activityData.imageURL = this.pics.imageURL;
+  //  }
+  // this.activitiesService
+  //  .save(this.activityData)
+  //  .subscribe((res) => {
+  //    this.activity = res;
+  //    this.gotoActivitiesList(this.activityData);
+  //  });
+  // }
   
    onSubmit() {
     this.activity = this.prepareSaveActivity();
@@ -261,7 +261,6 @@ userProfile = this.userProfile;
 
         this.close.emit(activity);
         let link = ['/activities'];
-
         this.router.navigate(link);    
                     
   }
