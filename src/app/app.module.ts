@@ -30,6 +30,7 @@ import { SearchComponent } from './search/search.component';
 
 import { ActivityDetailsComponent } from './activity-details/activity-details.component';
 import { ActivityCreateComponent } from './activity-create/activity-create.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 export function authHttpServiceFactory(http:Http, options: RequestOptions) {
@@ -53,7 +54,8 @@ export class MyHammerConfig extends HammerGestureConfig  {
     SearchComponent,
     ActivityDetailsComponent,
     ActivityCreateComponent,
-    MoreDetailsComponent
+    MoreDetailsComponent,
+    NavbarComponent
 
   ],
   imports: [

@@ -1,24 +1,4 @@
-<md-toolbar color="primary">
-	<button class="app-icon-button" [mdMenuTriggerFor]="menu">
-      <i class="material-icons app-toolbar-menu" color="accent">menu</i>
-    </button>
-	<md-menu #menu="mdMenu">
-	  <button md-menu-item a routerLink="/home" routerLinkActive="active">   
-	    <span>Home</span>
-	  </button>
-	  <button md-menu-item disabled>   
-	    <span>My Bubblbookings</span>
-	  </button>
-	  <button md-menu-item disabled>   
-	    <span>My Acccount</span>
-	  </button>
-	  <button id="menu-login">
-	  	<app-login></app-login>	 
-	  </button>	 
-	</md-menu>
-
- 	 {{title}}
-</md-toolbar>
+<app-navbar [title]="title"></app-navbar>
  
 <div class="main centre">
 	<md-card>
