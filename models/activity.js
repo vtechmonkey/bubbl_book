@@ -5,7 +5,7 @@ var ActivitySchema = new mongoose.Schema({
 	name: String,
 	description:String,
 	venue: String,
-	image:String,
+	imageURL:String,
 	min: Number,
 	max: Number,
 	category: String,

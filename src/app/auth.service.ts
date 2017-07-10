@@ -9,9 +9,11 @@ declare var Auth0Lock: any;
 export class AuthService {
   // Configure Auth0
  lock = new Auth0Lock('pwDyOusCeQTYNKMtHMgjVy8y89TQtASm', 'vtechmonkey.eu.auth0.com', {
+ //https://auth0.com/docs/libraries/lock/v10/ui-customization
   theme: {
-    logo: "",
-    primaryColor: "#b81b1c"
+     },
+   languageDictionary: {
+    title: "Bubblbook"   
   }
 });
 
@@ -26,14 +28,23 @@ export class AuthService {
     // Add callback for lock `authenticated` event
     this.lock.on("authenticated", (authResult) => {
       localStorage.setItem('id_token', authResult.idToken);
-   
-      //fetch profile information
-      this.lock.getProfile(authResult.idToken, (error, profile)=>{
+       
+
+       //fetch profile information
+      this.lock._getUserInfo(authResult.idToken, (error, profile)=>{
         if(error){
           //handle error
           alert(error);
           return;
         }
+
+      //fetch profile information  //getProfile to be depreciated
+      // this.lock.getProfile(authResult.idToken, (error, profile)=>{
+      //   if(error){
+      //     //handle error
+      //     alert(error);
+      //     return;
+      //   }
 
         localStorage.setItem('profile', JSON.stringify(profile));
         this.userProfile = profile;       

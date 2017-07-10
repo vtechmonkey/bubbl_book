@@ -5,7 +5,8 @@ var multer =  require('multer');
 var mongoose = require('mongoose');
 var Activity = require('../models/activity');
 
-mongoose.connect('mongodb://bubbles:bubbles!12@ds123331.mlab.com:23331/bubblbook')
+mongoose.connect('mongodb://newOrder:haloRemix@ds019986.mlab.com:19986/tuttifrutti')
+//mongoose.connect('mongodb://bubbles:bubbles!12@ds123331.mlab.com:23331/bubblbook')
 .then(() =>console.log('connected succesful'))
 .catch((err)=> console.error(err));
 
@@ -50,7 +51,7 @@ router.post('/activities', function(req, res, next){
   activity.name = req.body.name;
   activity.description = req.body.description;
   activity.venue = req.body.venue;
-  activity.image = req.body.image;
+  activity.imageURL = req.body.imageURL;
   activity.min = req.body.min;
   activity.max = req.body.max;
   activity.category = req.body.category;

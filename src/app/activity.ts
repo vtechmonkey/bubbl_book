@@ -4,7 +4,7 @@ export class Activity {
 	name: string;
 	description:string;
 	venue: string;
-	image: string;
+	imageURL: string;
 	min: number;
 	max: number;
 	category: string;

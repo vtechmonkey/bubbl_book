@@ -25,7 +25,7 @@ import { ICategory } from '../category/category';
 import { ISubCategory } from '../subCategory/subCategory';
 
 @Component({
-  selector: 'app-activity-create',
+  selector: 'app-activity-create',  
   templateUrl: './activity-create.component.html',
   styleUrls: ['./activity-create.component.css']
 })
@@ -33,12 +33,19 @@ import { ISubCategory } from '../subCategory/subCategory';
 
 export class ActivityCreateComponent implements OnInit {
 
+  // testInput = "damn n blast";
+  // onSubmit(formValue){
+  //   console.log(formValue);
+  // }
+
+
+
   title:string = "Create your own Event";
-  categories : Category[];
-  subcategories : Subcategory[];
+  // categories : Category[];
+  // subcategories : Subcategory[];
   location:Location;
   url: any;
- // @Output() close = new EventEmitter();
+
   @Input()
    activityData = {
      _id: '',
@@ -58,16 +65,14 @@ export class ActivityCreateComponent implements OnInit {
       this.activityData    
   };
 
-
 allCategories: ICategory[];
 subCategoryByCategory: ISubCategory[];
-
 
 activityForm: FormGroup;
 name: FormControl;
 description: FormControl;
 venue:FormControl;
-image:FormControl;
+imageURL:any;
 min:FormControl;
 max:FormControl;
 category:FormControl;
@@ -76,16 +81,10 @@ publicActivity:FormControl;
 prices:FormArray;
 dates:FormArray;
 
-
 @Input() activity: Activity;
-
-
 @Output() close = new EventEmitter();
 
 userProfile = this.userProfile;
-
- //activity: Array<Activity> =[];
-
 
   constructor(
     private activitiesService:ActivitiesService,
@@ -105,9 +104,10 @@ userProfile = this.userProfile;
       this.location = location;
       this.url = this.location.path();         
       this.pics.imageURL = pics.imageURL; // default string or image url of image uploaded with pics service
-      this.categories = this.activitiesService.getCategories();
+     // this.categories = this.activitiesService.getCategories();
+      
       //this.subcategories = this.activitiesService.getSubcategories().filter((item)=>item.category == this.activityData.category);
-
+console.log(this.activityData);
 } //constructor function 
 
       createForm(){
@@ -115,7 +115,7 @@ userProfile = this.userProfile;
          this.name = new FormControl('', [Validators.required]);
          this.description = new FormControl('', [Validators.required]);
          this.venue = new FormControl('', [Validators.required]);
-         this.image = new FormControl('', [Validators.required]);
+         //this.imageURL = new FormControl('', [Validators.required]);
          this.min = new FormControl('', [Validators.required]);
          this.max = new FormControl('', [Validators.required]);
          this.category = new FormControl('', [Validators.required]);
@@ -128,14 +128,15 @@ userProfile = this.userProfile;
             name: this.name,
             description: this.description,
             venue:this.venue,
-            image:this.image,
+           // imageURL:this.imageURL,
             min:this.min,
             max:this.max,
             category:this.category,
             subCategory:this.subCategory,
             publicActivity:this.publicActivity,
             prices:this.prices,
-            dates:this.dates
+            dates:this.dates,
+            imageURL: this.pics.imageURL
           });
       }
 
@@ -182,18 +183,18 @@ userProfile = this.userProfile;
 
   }
 
-  // previewEvent() {
-  //  this.dialogRef = this.dialog.open(MoreDetailsComponent, {
-  //    data: this.activityData
-  //  });
-  // }
+  previewEvent() {
+   this.dialogRef = this.dialog.open(MoreDetailsComponent, {
+     data: this.activityData
+   });
+  }
 
   // onSelect(category){  
   // console.log(category);  
   // this.subcategories = this.activitiesService.getSubcategories().filter((item)=>item.category == category);
   // }    
 
-  // createActivity() {
+  // saveImg() {
   //    if(this.pics.fileEvent){
   //      this.activityData.imageURL = this.pics.imageURL;
   //  }
@@ -205,7 +206,8 @@ userProfile = this.userProfile;
   //  });
   // }
   
-   onSubmit() {
+   onSubmit() {      
+ 
     this.activity = this.prepareSaveActivity();
     this.activitiesService.save(this.activity).subscribe(/* error handling */);   
   }
@@ -227,11 +229,11 @@ userProfile = this.userProfile;
       name: activityModel.name as string,
       description: activityModel.description as string,
       venue: activityModel.venue as string,
-      image: activityModel.image as string,
+      imageURL: this.pics.imageURL as string,
       min: activityModel.min as number,
       max: activityModel.max as number,
-      category: activityModel.categories as string,
-      subCategory: activityModel.subCategories as string,
+      category: activityModel.category as string,
+      subCategory: activityModel.subCategory as string,
       publicActivity: activityModel.publicActivity as string,
       prices:priceModelCopy,
       dates:datesModelCopy
