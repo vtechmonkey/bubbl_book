@@ -244,7 +244,9 @@
      </div>
     
         
-       <button type="submit" [disabled]="activityForm.pristine">Save</button> &nbsp;
+       <button md-button (click)="previewEvent()">Preview Event</button>
+       <br>
+       <button md-button type="submit" [disabled]="activityForm.pristine">Save</button> &nbsp;
        
     </form>
  </md-card-content>
@@ -255,4 +257,3 @@
 
   <button md-button (click)="gotoActivitiesList()">Back to activities list</button>
 </div>  
-  <button md-button (click)="previewEvent()"> More Details</button>

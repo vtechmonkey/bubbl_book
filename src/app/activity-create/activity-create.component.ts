@@ -46,25 +46,9 @@ export class ActivityCreateComponent implements OnInit {
   location:Location;
   url: any;
 
-  @Input()
-   activityData = {
-     _id: '',
-     name: '',
-     venue: '',
-     price: '',
-     date: '',
-     time: '',
-     category: '',
-     subcategory:'',
-     imageURL:''
-   };
-   dialogRef: MdDialogRef<MoreDetailsComponent>
-   config: MdDialogConfig={
 
-   data :
-      this.activityData    
-  };
 
+ 
 allCategories: ICategory[];
 subCategoryByCategory: ISubCategory[];
 
@@ -85,6 +69,14 @@ dates:FormArray;
 @Output() close = new EventEmitter();
 
 userProfile = this.userProfile;
+
+  dialogRef: MdDialogRef<MoreDetailsComponent>
+   config: MdDialogConfig={
+
+   data :
+      this.activityForm 
+  };
+
 
   constructor(
     private activitiesService:ActivitiesService,
@@ -107,7 +99,7 @@ userProfile = this.userProfile;
      // this.categories = this.activitiesService.getCategories();
       
       //this.subcategories = this.activitiesService.getSubcategories().filter((item)=>item.category == this.activityData.category);
-console.log(this.activityData);
+
 } //constructor function 
 
       createForm(){
@@ -115,7 +107,7 @@ console.log(this.activityData);
          this.name = new FormControl('', [Validators.required]);
          this.description = new FormControl('', [Validators.required]);
          this.venue = new FormControl('', [Validators.required]);
-         //this.imageURL = new FormControl('', [Validators.required]);
+         //this.imageURL = new FormControl('', [Validators.required]); 
          this.min = new FormControl('', [Validators.required]);
          this.max = new FormControl('', [Validators.required]);
          this.category = new FormControl('', [Validators.required]);
@@ -127,8 +119,7 @@ console.log(this.activityData);
           this.activityForm = this.fb.group({
             name: this.name,
             description: this.description,
-            venue:this.venue,
-           // imageURL:this.imageURL,
+            venue:this.venue,        
             min:this.min,
             max:this.max,
             category:this.category,
@@ -185,7 +176,7 @@ console.log(this.activityData);
 
   previewEvent() {
    this.dialogRef = this.dialog.open(MoreDetailsComponent, {
-     data: this.activityData
+     data: this.activityForm.value
    });
   }
 
