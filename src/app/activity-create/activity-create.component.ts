@@ -180,22 +180,6 @@ userProfile = this.userProfile;
    });
   }
 
-  // onSelect(category){  
-  // console.log(category);  
-  // this.subcategories = this.activitiesService.getSubcategories().filter((item)=>item.category == category);
-  // }    
-
-  // saveImg() {
-  //    if(this.pics.fileEvent){
-  //      this.activityData.imageURL = this.pics.imageURL;
-  //  }
-  // this.activitiesService
-  //  .save(this.activityData)
-  //  .subscribe((res) => {
-  //    this.activity = res;
-  //    this.gotoActivitiesList(this.activityData);
-  //  });
-  // }
   
    onSubmit() {      
  

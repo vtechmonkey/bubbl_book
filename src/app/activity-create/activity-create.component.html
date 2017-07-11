@@ -72,16 +72,16 @@
     </ng-template>
   <md-card-content>
 
-   
-  Add a picture of your event..    
-            <input md-input #picUpload type="file" (change)="pics.fileEvent($event)" accept="image/*">    
+<label for="picUpload" class="md-button opacity_54">Choose a picture <i class="material-icons verticalAlignMiddle">attachment</i></label>
+
+            <input  id="picUpload" class="displayNone" type="file" (change)="pics.fileEvent($event)" accept="image/*">    
+
     <form [formGroup]="activityForm" (ngSubmit)="onSubmit()" novalidate>
         
       <!--name-->
       <div class="form-group">
-        <md-input-container>
-            <label>Name:</label>
-            <input mdInput type="text" class="form-control" formControlName="name">
+        <md-input-container>      
+            <input mdInput type="text" class="form-control" formControlName="name" placeholder="Name your event">
       </md-input-container>
       </div>
      
@@ -89,8 +89,8 @@
       <!--description-->
     <div class="form-group">
       <md-input-container>
-        <label>Description:</label>
-        <input mdInput type="text" class="form-control" formControlName="description">
+      
+        <input mdInput type="text" class="form-control" formControlName="description" placeholder="Describe your event">
       </md-input-container>
     </div>
       
@@ -98,26 +98,17 @@
       <!--venue-->
       <div class="form-group">
       <md-input-container>
-        <label>venue: </label>
-        <input mdInput type="text" class="form-control" formControlName="venue">
+       
+        <input mdInput type="text" class="form-control" formControlName="venue" placeholder="venue">
        </md-input-container>
       </div>
-
-
-       <!--image-->
-    <!--   <div class="form-group">
-      <md-input-container>
-        <label>image </label>
-         <input mdInput type="text" class="form-control" formControlName="imageURL">
-      </md-input-container>
-      </div> -->
-    
+     
 
       <!--min-->
     <div class="form-group">
       <md-input-container>
-        <label >min </label>
-        <input mdInput type="number" class="form-control" formControlName="min">
+  
+        <input mdInput type="number" class="form-control" formControlName="min" placeholder="Minimum number of participants">
       </md-input-container>
     </div>
       
@@ -125,8 +116,8 @@
       <!--max-->
       <div class="form-group">
       <md-input-container>
-        <label>max </label>
-        <input mdInput type="number" class="form-control" formControlName="max">
+       
+        <input mdInput type="number" class="form-control" formControlName="max" placeholder="Maximum number of participants">
       </md-input-container>
       </div>
      
@@ -178,7 +169,7 @@
       <div [formGroupName]="i">
           <div>
               <label>Date</label>
-              <input type="text" formControlName="date">
+              <input mdInput type="text" formControlName="date">
           </div>
 
           <div formArrayName="times">
@@ -197,7 +188,7 @@
                     
                     <div>
                         <label>Times</label>
-                        <input type="text" formControlName="time">
+                        <input mdInput type="text" formControlName="time">
                     </div>
                   </div>
               </div>

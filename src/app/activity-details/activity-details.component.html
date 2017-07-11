@@ -62,7 +62,7 @@
   <img md-card-image class="smImg" src={{activity.imageURL}} alt={{activity.imageURL}}>
   <md-card-content class="rightText">
     <md-list class="opacity_87">
-        <md-list-item>brief description of event goes here, not currently in form 
+        <md-list-item>{{activity.descriptionm}} 
         </md-list-item> 
         <md-list-item>
           <span mdTooltip="add  to my favourites" mdTooltipPosition="before">
@@ -77,8 +77,14 @@
         </md-list-item>
     </md-list>
   <!-- more details -->
-
-
+price of prices 
+<div *ngFor="let price of activity.prices">
+ If {{price.qty}} go the cost is {{price.perPerson}} per person
+</div>
+ which date and time do you prefer?
+<div *ngFor="let date of activity.dates">
+{{date.date}} {{date.times}}
+</div>
 <!-- create booking form -->
     <form [ngClass]="showActivityForm" (ngSubmit) = "save()"   #activityForm="ngForm">
       <p>
@@ -136,12 +142,13 @@
       >
       <md-option *ngFor="let subcategory of subcategories" value="{{subcategory.name}}">{{subcategory.name}} </md-option> 
       </md-select>
-                   
-  <button md-button (click)="delete()">delete</button>
+
 
     <button md-button type="submit" [disabled]="!activityForm.form.valid">save</button>
 
     </form> 
+                       
+  <button md-button (click)="deleteActivity(activity)">delete</button>
 
 </md-card-content>
 

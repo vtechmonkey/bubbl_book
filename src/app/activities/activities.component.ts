@@ -31,7 +31,7 @@ export class ActivitiesComponent implements OnInit {
   }
 
   deleteActivity(activity: Activity, event: any): void{
-  event.stopPropagation();
+ // event.stopPropagation();
    this.activitiesService
     .delete(activity)
     .subscribe((res)=>

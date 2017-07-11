@@ -107,6 +107,16 @@ export class ActivityDetailsComponent implements OnInit {
     this.showActivityForm = this.visible ? 'hideForm' : 'showForm';
   }
 
+   deleteActivity(activity: Activity, event: any): void{
+ // event.stopPropagation();
+   this.activitiesService
+    .delete(activity)
+    .subscribe((res)=>
+    this.gotoActivitiesList()
+    
+    )
+  }
+
 
   onSelect(category){  
   console.log(category);  

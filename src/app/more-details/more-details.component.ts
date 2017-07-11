@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Input, Output, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, OnInit, EventEmitter,  Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {DOCUMENT} from '@angular/platform-browser';
 import { MdDialog, MdDialogRef, MdDialogConfig, MdButtonToggleModule, MD_DIALOG_DATA } from '@angular/material';

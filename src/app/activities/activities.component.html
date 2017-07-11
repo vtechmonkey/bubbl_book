@@ -81,10 +81,13 @@
     <md-grid-list cols="5" md-row-height="4:3" >
   <h3 md-line class="opacity_54 sixteenPx">All Activities</h3>  
     <div *ngFor="let activity of activities">
-      <md-grid-tile  (click)="gotoDetail(activity)">
+      <md-grid-tile> 
         <img md-grid-tile-image src="{{activity.imageURL}}" alt="{{activity.name}}"> 
-        <md-grid-tile-footer>{{activity.name}}</md-grid-tile-footer>
+        <md-grid-tile-footer>{{activity.name}}   <button md-button (click)="deleteActivity(activity)">delete</button>
+        <button md-button (click)="gotoDetail(activity)">More</button>
+       </md-grid-tile-footer>
       </md-grid-tile>
+
     </div>
   </md-grid-list> 
 
