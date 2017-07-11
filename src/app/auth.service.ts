@@ -10,12 +10,12 @@ export class AuthService {
   // Configure Auth0
  lock = new Auth0Lock('pwDyOusCeQTYNKMtHMgjVy8y89TQtASm', 'vtechmonkey.eu.auth0.com', {
  //https://auth0.com/docs/libraries/lock/v10/ui-customization
-  theme: {
-     },
-   languageDictionary: {
-    title: "Bubblbook"   
-  }
-});
+//   theme: {
+//      },
+//    languageDictionary: {
+//     title: "Bubblbook"   
+//   }
+ });
 
   //Store profile object in auth class 
  userProfile: Object;
@@ -31,20 +31,20 @@ export class AuthService {
        
 
        //fetch profile information
-      this.lock._getUserInfo(authResult.idToken, (error, profile)=>{
-        if(error){
-          //handle error
-          alert(error);
-          return;
-        }
-
-      //fetch profile information  //getProfile to be depreciated
-      // this.lock.getProfile(authResult.idToken, (error, profile)=>{
+      // this.lock._getUserInfo(authResult.idToken, (error, profile)=>{
       //   if(error){
       //     //handle error
       //     alert(error);
       //     return;
       //   }
+
+      //fetch profile information  //getProfile to be depreciated
+      this.lock.getProfile(authResult.idToken, (error, profile)=>{
+        if(error){
+          //handle error
+          alert(error);
+          return;
+        }
 
         localStorage.setItem('profile', JSON.stringify(profile));
         this.userProfile = profile;       

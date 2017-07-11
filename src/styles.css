@@ -6,6 +6,12 @@ html { font-family: 'Roboto', sans-serif; }
 .verticalAlignMiddle {
   vertical-align:middle !important;
 }
+.mat-card-avatar {
+  margin-bottom: 8px;
+}
+.titleMargin {
+  margin-top:8px;
+}
 .app-toolbar-menu {
   padding: 0 14px 0 14px;
   }
