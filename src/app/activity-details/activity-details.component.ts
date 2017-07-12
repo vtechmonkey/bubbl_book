@@ -92,8 +92,7 @@ userProfile = this.userProfile;//user icon from auth0
                 this.showActivityForm = 'hideForm';//show/hide form 
                 this.visible = true;    //show/hide form 
                 this.pics.imageURL = pics.imageURL;
-                 console.log(this.activity);  
-            
+                 
    }
 
     ngOnInit() {
@@ -129,8 +128,9 @@ userProfile = this.userProfile;//user icon from auth0
                .patchValue({prices:this.activity.prices})      
               this.activityForm  
                .patchValue({dates:this.activity.dates})
-              });
-            
+               this.activityForm  
+               .patchValue({imageURL:this.activity.imageURL})
+              });           
 
         } else {
           this.navigated = false;
@@ -147,15 +147,14 @@ userProfile = this.userProfile;//user icon from auth0
 
       createForm() {
         
-
          this.name = new FormControl('')//, [Validators.required]);
          this.description = new FormControl('')//, [Validators.required]);
          this.venue = new FormControl('')//, [Validators.required]);
          //this.imageURL = new FormControl('', [Validators.required]); 
          this.min = new FormControl('')//, [Validators.required]);
          this.max = new FormControl('')//, [Validators.required]);
-        // this.category = new FormControl/('', [Validators.required]);
-         //this.subCategory = new FormControl('', [Validators.required]);
+         this.category = new FormControl('')//, [Validators.required]);
+         this.subCategory = new FormControl('')//, [Validators.required]);
          this.publicActivity = new FormControl('')//, [Validators.required]);
          this.prices = this.fb.array([this.initPrice()]);
          this.dates = this.fb.array([this.initDate()]);
@@ -230,7 +229,7 @@ userProfile = this.userProfile;//user icon from auth0
     )
   }
 
- onSubmit() {      
+ onSubmit() {   
  
     this.activity = this.prepareSaveActivity();
     this.activitiesService.save(this.activity).subscribe(/* error handling */);   

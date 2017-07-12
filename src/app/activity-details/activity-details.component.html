@@ -104,20 +104,80 @@
           <input mdInput type="text"  formControlName="venue" placeholder="venue" >
         </md-input-container>   
       </div>    
-      <!-- <div class="form-group">
-        <md-input-container>
-          <input mdInput  class="form-control" placeholder="Choose a date" formControlName="dates" >
-      <button mdSuffix [mdDatepickerToggle]="picker"></button>
-        </md-input-container>
-      </div> -->
-     <!--  <md-datepicker #picker></md-datepicker>  -->
-<!-- 
-      <div class="form-group">
-        <md-input-container>      
-          <input mdInput type="text" class="form-control" formControlName="time" placeholder="time" >
-        </md-input-container>
-      </div> -->
-    <!--   <div class="form-group"> 
+    
+         Dates
+ 
+    <div class="">
+     
+  <a (click)="addDate()" style="cursor: default">
+    Add Date +
+  </a>
+</div>
+
+
+<div formArrayName="dates">
+  <div *ngFor="let date of activityForm.controls.dates.controls; let i=index"> 
+      <div>
+          <span>Dates {{i + 1}}</span>
+      </div>
+
+      <div [formGroupName]="i">
+          <div>
+              <label>Date</label>
+              <input mdInput type="text" formControlName="date">
+          </div>
+
+          <div formArrayName="times">
+            <div *ngFor="let time of activityForm.controls.dates.controls[i].controls.times.controls; let t=index">
+                <div class="">
+                  <a (click)="addTime(i,t)">
+                    Add Time +
+                  </a>
+                </div>
+
+                <div>
+                    <span>Times{{t + 1}}</span>
+                </div>
+
+                <div [formGroupName]="t">
+                    
+                    <div>
+                        <label>Times</label>
+                        <input mdInput type="text" formControlName="time">
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+   
+            <!--price-->
+     
+        <div formArrayName="prices">
+          <div *ngFor="let price of activityForm.controls.prices.controls; let i=index">
+            
+              <span>Price {{i + 1}}</span>
+              
+            <div [formGroupName]="i">
+              <div class="form-group">
+                <label>qty</label>
+                <input mdInput type="number" class="form-control" formControlName="qty">
+              </div>
+              <div class="form-group">
+                <label>Price per person</label>
+                <input mdInput type="text" class="form-control" formControlName="perPerson">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      
+          <a (click)="addPrice()">
+            Add another price +
+          </a>
+        
+      <!--  <div class="form-group"> 
        <md-input-container>       
           <input mdInput type="text" class="form-control" formControlName="price" placeholder="price" >
         </md-input-container>  
@@ -126,13 +186,13 @@
         <md-input-container>       
           <input mdInput type="number" class="form-control" formControlName="min" placeholder="Min Participants">
         </md-input-container>
-      </div>
+      </div> -->
       <div class="form-group">  
         <md-input-container>       
           <input mdInput type="number" class="form-control" formControlName="max" placeholder="Max Participants">
         </md-input-container>
       </div>
-       -->
+      
         
       <label for="picUpload" class="md-button opacity_54">Choose a picture <i class="material-icons verticalAlignMiddle">attachment</i></label>
 
@@ -171,7 +231,7 @@
       
        </div>
 
-    <button md-button type="submit" [disabled]="activityForm.pristine">save</button>
+    <button md-button type="submit">save</button>
 
     </form> 
                        
