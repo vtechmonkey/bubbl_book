@@ -41,7 +41,7 @@
         <div md-card-avatar class="opacity_54"> <!--avatar svg-->
           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" 
               xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-              viewBox="-287 289 24 24"  xml:space="preserve">
+              viewBox="-287 289 24 24"  xml:space="preserve"  style="fill-opacity:.54;">
               <style type="text/css">
                 .st0{fill:none;}
               </style>
@@ -77,74 +77,101 @@
         </md-list-item>
     </md-list>
   <!-- more details -->
-price of prices 
-<div *ngFor="let price of activity.prices">
- If {{price.qty}} go the cost is {{price.perPerson}} per person
-</div>
- which date and time do you prefer?
-<div *ngFor="let date of activity.dates">
-{{date.date}} {{date.times}}
-</div>
+
 <!-- create booking form -->
-    <form [ngClass]="showActivityForm" (ngSubmit) = "save()"   #activityForm="ngForm">
-      <p>
+    <form [formGroup]="activityForm" [ngClass]="showActivityForm" (ngSubmit) = "onSubmit()" novalidate  >
+      <div *ngIf="auth.userProfile">
           {{auth.userProfile.email}}
          <!--  <span class="mat-input-underline"></span> -->
-      </p>
-
-      <md-input-container>       
-        <input mdInput type="text" name="name" placeholder="name your event" required [(ngModel)]="activity.name" #name="ngModel">
-        <div [hidden]="name.valid || name.pristine" class="error">
-            Name is required 
-        </div>
-      </md-input-container><br/>
+      </div>
+      <div class="form-group">
+        <md-input-container>       
+          <input mdInput type="text" formControlName="name" placeholder="name your event" required >
+          <div [hidden]="name.valid || name.pristine" class="error">
+              Name is required 
+          </div>
+        </md-input-container>
+      </div>
+          <!--description-->
+    <div class="form-group">
       <md-input-container>
-        <input mdInput type="text" name="venue" placeholder="venue" [(ngModel)]="activity.venue">
-      </md-input-container>       
-       <md-input-container>
-        <input mdInput [mdDatepicker]="picker" placeholder="Choose a date" name="date" [(ngModel)]="activity.date">
-        <button mdSuffix [mdDatepickerToggle]="picker"></button>
+      
+        <input mdInput type="text" class="form-control" formControlName="description" placeholder="Describe your event">
       </md-input-container>
-      <md-datepicker #picker></md-datepicker> 
-       <md-input-container>      
-        <input mdInput type="text" name="time" placeholder="time" [(ngModel)]="activity.time">
-      </md-input-container> 
+    </div>
+      <div class="form-group">
+        <md-input-container>
+          <input mdInput type="text"  formControlName="venue" placeholder="venue" >
+        </md-input-container>   
+      </div>    
+      <!-- <div class="form-group">
+        <md-input-container>
+          <input mdInput  class="form-control" placeholder="Choose a date" formControlName="dates" >
+      <button mdSuffix [mdDatepickerToggle]="picker"></button>
+        </md-input-container>
+      </div> -->
+     <!--  <md-datepicker #picker></md-datepicker>  -->
+<!-- 
+      <div class="form-group">
+        <md-input-container>      
+          <input mdInput type="text" class="form-control" formControlName="time" placeholder="time" >
+        </md-input-container>
+      </div> -->
+    <!--   <div class="form-group"> 
        <md-input-container>       
-        <input mdInput type="text" name="price" placeholder="price" [(ngModel)]="activity.price">
-      </md-input-container>       
-      <md-input-container>       
-        <input mdInput type="number" name="min" placeholder="Min Participants">
-      </md-input-container>
-      <md-input-container>       
-        <input mdInput type="number" name="max" placeholder="Max Participants">
-      </md-input-container><br/>
-   
-       Add a picture of your event..    
-            <input md-input #picUpload type="file" (change)="pics.fileEvent($event)" accept="image/*">     
+          <input mdInput type="text" class="form-control" formControlName="price" placeholder="price" >
+        </md-input-container>  
+      </div>
+      <div class="form-group">    
+        <md-input-container>       
+          <input mdInput type="number" class="form-control" formControlName="min" placeholder="Min Participants">
+        </md-input-container>
+      </div>
+      <div class="form-group">  
+        <md-input-container>       
+          <input mdInput type="number" class="form-control" formControlName="max" placeholder="Max Participants">
+        </md-input-container>
+      </div>
+       -->
         
+      <label for="picUpload" class="md-button opacity_54">Choose a picture <i class="material-icons verticalAlignMiddle">attachment</i></label>
+
+            <input  id="picUpload" class="displayNone" type="file" (change)="pics.fileEvent($event)" accept="image/*">    
      
       <br>
       <br>
-      <md-select 
-        placeholder="Choose a category" 
-        [(ngModel)]="activity.category" 
-        name="category"       
-       (change)="onSelect($event.value)"
-      >
-      <md-option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</md-option> 
-      </md-select>
+          <!--category-->
+      <div class="form-group">
+        <md-select 
+          placeholder="Choose a category"       
+          formControlName="category"       
+         (change)="onSelect($event.value)">
+          <md-option *ngFor="let oneCategory of allCategories" [value]="oneCategory.category">{{oneCategory.category}}
+          </md-option> 
+        </md-select>
+      </div>
 
 
-      <md-select 
-      placeholder="Choose a subcategory"
-        [(ngModel)]="activity.subcategory" 
-        name="subcategory"   
-      >
-      <md-option *ngFor="let subcategory of subcategories" value="{{subcategory.name}}">{{subcategory.name}} </md-option> 
-      </md-select>
+      <!--subCategory-->
+      <div class="form-group">
+        <md-select 
+        placeholder="Choose a subcategory"
+        formControlName="subCategory">
+          <md-option *ngFor="let oneSubCategory of subCategoryByCategory" [value]="oneSubCategory.subCategory">{{oneSubCategory.subCategory}} 
+          </md-option> 
+        </md-select>
+      </div>
 
+   <!--public-->
+       <div class="form-group">
+       
+          <label>public:</label>
+          <md-checkbox formControlName="publicActivity" [checked]="true"></md-checkbox>
+                <input mdInput type="text" class="form-control" formControlName="publicActivity">
+      
+       </div>
 
-    <button md-button type="submit" [disabled]="!activityForm.form.valid">save</button>
+    <button md-button type="submit" [disabled]="activityForm.pristine">save</button>
 
     </form> 
                        
@@ -172,14 +199,6 @@ price of prices
   <a>http://ec2-52-209-95-130.eu-west-1.compute.amazonaws.com:4200{{url}}</a>
 </md-card-actions>
  
-<!-- </md-card>
- Add a picture of your event..    
-            <input md-input #picUpload type="file" (change)="pics.fileEvent($event)" accept="image/*">  
 
-      <br/>
-      pics.imageURL = {{pics.imageURL}}
-      <button (click)="saveImgURL(pics.imageURL)">change image</button>
-
-<app-simple-form *ngFor="let message of pics.messages"[message]="message"></app-simple-form> -->
 
 

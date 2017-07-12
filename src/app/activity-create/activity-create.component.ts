@@ -10,8 +10,8 @@ import {Observable} from 'rxjs/Observable';
 import * as _ from 'lodash';
 
 import { Activity,Price,Date,Time } from '../activity';
-import { Category } from '../category';
-import { Subcategory } from '../subcategory';
+// import { Category } from '../category';
+// import { Subcategory } from '../subcategory';
 import { ActivitiesService } from '../activities.service';
 
 
@@ -33,21 +33,9 @@ import { ISubCategory } from '../subCategory/subCategory';
 
 export class ActivityCreateComponent implements OnInit {
 
-  // testInput = "damn n blast";
-  // onSubmit(formValue){
-  //   console.log(formValue);
-  // }
-
-
-
   title:string = "Create your own Event";
-  // categories : Category[];
-  // subcategories : Subcategory[];
   location:Location;
   url: any;
-
-
-
  
 allCategories: ICategory[];
 subCategoryByCategory: ISubCategory[];
@@ -96,18 +84,14 @@ userProfile = this.userProfile;
       this.location = location;
       this.url = this.location.path();         
       this.pics.imageURL = pics.imageURL; // default string or image url of image uploaded with pics service
-     // this.categories = this.activitiesService.getCategories();
-      
-      //this.subcategories = this.activitiesService.getSubcategories().filter((item)=>item.category == this.activityData.category);
-
+    
 } //constructor function 
 
       createForm(){
 
          this.name = new FormControl('', [Validators.required]);
          this.description = new FormControl('', [Validators.required]);
-         this.venue = new FormControl('', [Validators.required]);
-         //this.imageURL = new FormControl('', [Validators.required]); 
+         this.venue = new FormControl('', [Validators.required]);       
          this.min = new FormControl('', [Validators.required]);
          this.max = new FormControl('', [Validators.required]);
          this.category = new FormControl('', [Validators.required]);
@@ -182,7 +166,7 @@ userProfile = this.userProfile;
 
   
    onSubmit() {      
- 
+    
     this.activity = this.prepareSaveActivity();
     this.activitiesService.save(this.activity).subscribe(/* error handling */);   
   }

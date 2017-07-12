@@ -44,7 +44,7 @@ getSubcategories(){
   return this.subcategory;
 }
 // Get a single activity
-getActivityById(_id): Observable<Activity[]> {
+getActivityById(_id): Observable<Activity> {
 
   let headers = new Headers({
    'Content-Type': 'application/json'
