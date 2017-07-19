@@ -51,7 +51,7 @@ export class AuthService {
       });
     });
   //console.log(this.userProfile);
-   console.log(this.userProfile.user_id);
+   console.log(this.userProfile);
  
   }
 

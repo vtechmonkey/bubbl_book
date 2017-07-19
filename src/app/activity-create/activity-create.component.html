@@ -242,9 +242,16 @@
      </div>
     
         
-       <button md-button (click)="previewEvent()">Preview Event</button>
-       <br>
-       <button md-button type="submit" [disabled]="activityForm.pristine">Save</button> &nbsp;
+      <button md-button (click)="previewEvent()">Preview Event</button>
+      <br>
+
+       
+      <div *ngIf="!auth.authenticated(); else submit">
+    <button md-button md-button-ripple class="loginBtn" (click)="auth.login()"> Login to save your event</button>
+      </div>
+      <ng-template #submit>
+        <button  md-button type="submit" [disabled]="activityForm.pristine">Save</button>
+      </ng-template>
        
     </form>
  </md-card-content>

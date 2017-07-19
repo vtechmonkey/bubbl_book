@@ -148,7 +148,9 @@ userProfile:any
 
          console.log(this.auth.userProfile);
         //  console.log(this.auth.userProfile.email);
+        if (this.auth.userProfile.email){
         console.log(this.auth.userProfile.user_id);
+      }
      }
 
   onSelect(categoryName) {
