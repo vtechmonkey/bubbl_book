@@ -7,7 +7,7 @@ var Activity = require('../models/activity');
 
 mongoose.connect('mongodb://newOrder:haloRemix@ds019986.mlab.com:19986/tuttifrutti')
 //mongoose.connect('mongodb://bubbles:bubbles!12@ds123331.mlab.com:23331/bubblbook')
-.then(() =>console.log('connected succesful'))
+.then(() =>console.log('connected to database'))
 .catch((err)=> console.error(err));
 
 router.get('/', function(req, res) {

@@ -52,7 +52,7 @@
     <div *ngFor="let activity of activities">
       <md-grid-tile  *ngIf="activity.category == 'Sport'"  (click)="gotoDetail(activity)">
         <img md-grid-tile-image src="{{activity.imageURL}}" alt="{{activity.name}}"> 
-        <md-grid-tile-footer mat-grid-list-text>{{activity.name}}</md-grid-tile-footer>
+        <md-grid-tile-footer mat-grid-list-text>{{activity.name | capitalize }}</md-grid-tile-footer>
       </md-grid-tile>
     </div>
   </md-grid-list> 

@@ -9,7 +9,7 @@ import { ICategory } from './category';
 @Injectable()
 export class CategoryService{
   private _urlCategory = '../src/api/category.json';
-  sorted:ICategory[];
+  //sorted:ICategory[];
 
   constructor(private _http: Http) { }
 

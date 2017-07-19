@@ -7,6 +7,7 @@ import { Location, LocationStrategy, PathLocationStrategy} from '@angular/common
 
 import { MdButtonToggleModule,MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import {Observable} from 'rxjs/Observable';
+import "rxjs/add/operator/filter";
 import * as _ from 'lodash';
 
 import { Activity,Price,Date,Time } from '../activity';
@@ -130,16 +131,13 @@ userProfile = this.userProfile;
               this.initTime(),
             ])
         });
-    }
-
-     
+    }     
 
     initTime(){
       return this.fb.group({
         time:['']
       })
     }
-
  
   ngOnInit() {
     this.categoryService.getCategory()

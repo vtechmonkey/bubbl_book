@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Activity } from '../activity';
 import{ActivitiesService} from '../activities.service';
 import { DummyCategory } from './dummy-category.interface';
+import { CapitalizePipe } from '../capitalize.pipe';
 
 @Component({
   selector: 'app-activities',

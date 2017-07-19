@@ -55,7 +55,7 @@
       </ng-template>
  
 
-    <md-card-title class="opacity_87">{{activity.name.charAt(0) | uppercase}}{{ activity.name | slice :1}}</md-card-title>
+    <md-card-title class="opacity_87">{{activity.name | capitalize}}</md-card-title>
     <md-card-subtitle class="opacity_54">{{activity.venue}}</md-card-subtitle>
     
   </md-card-header>
@@ -79,7 +79,7 @@
   <!-- more details -->
 
 <!-- create booking form -->
-    <form [formGroup]="activityForm" [ngClass]="showActivityForm" (ngSubmit) = "onSubmit()" novalidate  >
+    <form [formGroup]="activityForm" [ngClass]="showActivityForm" (ngSubmit) = "onSubmit()" novalidate  #monkey >
       <div *ngIf="auth.userProfile">
           {{auth.userProfile.email}}
          <!--  <span class="mat-input-underline"></span> -->

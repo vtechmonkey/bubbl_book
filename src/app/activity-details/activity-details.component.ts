@@ -1,10 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output, Inject, ChangeDetectionStrategy, ViewChild, TemplateRef} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, Inject, ChangeDetectionStrategy, ViewChild, TemplateRef, AfterViewInit} from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import {AbstractControl, FormGroup, FormArray, FormBuilder,FormControl, Validators } from '@angular/forms';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { MdButtonToggleModule,MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import {Observable} from 'rxjs/Observable';
+import "rxjs/add/observable/combineLatest";
+import "rxjs/add/operator/filter";
 import * as _ from 'lodash';
 
 import { Activity,Price,Date,Time } from '../activity';    
@@ -16,19 +18,22 @@ import { ActivitiesService } from '../activities.service';
 import { PicsService } from '../pics.service';
 import { AuthService } from '../auth.service';
 import { MoreDetailsComponent } from '../more-details/more-details.component';
-
+import { CapitalizePipe } from '../capitalize.pipe';
 
 @Component({
   selector: 'app-activity-details',
   providers: [Location, {provide: LocationStrategy, useClass:  PathLocationStrategy}],
   templateUrl: './activity-details.component.html',
   styleUrls: ['./activity-details.component.css'],
+  
 
 
 })
 
 export class ActivityDetailsComponent implements OnInit {
   title = "Event Details";
+
+  @ViewChild('monkey') form;
 
   activities: Activity[];
   error:any;
@@ -38,7 +43,8 @@ export class ActivityDetailsComponent implements OnInit {
   url: any;
   visible:boolean;//show/hide form 
   showActivityForm: string;//show/hide form 
-
+  categoryName: any;
+  getSub:any;
 
 allCategories: ICategory[];    
 subCategoryByCategory: ISubCategory[];    
@@ -91,8 +97,9 @@ userProfile = this.userProfile;//user icon from auth0
                 this.url = this.location.path();
                 this.showActivityForm = 'hideForm';//show/hide form 
                 this.visible = true;    //show/hide form 
-                this.pics.imageURL = pics.imageURL;
-                 
+                this.pics.imageURL = pics.imageURL;   
+                       
+               
    }
 
     ngOnInit() {
@@ -108,7 +115,8 @@ userProfile = this.userProfile;//user icon from auth0
             .getActivityById(_id)
             .subscribe((response) =>{
               this.activity = response; 
-              this.activityForm  // using patchValue to populate the form as it doesn't expect exactly matching data
+              // using patchValue to populate the form as it doesn't expect exactly matching data
+              this.activityForm  
                .patchValue({name:this.activity.name})
               this.activityForm
                .patchValue({venue:this.activity.venue})
@@ -129,21 +137,53 @@ userProfile = this.userProfile;//user icon from auth0
               this.activityForm  
                .patchValue({dates:this.activity.dates})
                this.activityForm  
-               .patchValue({imageURL:this.activity.imageURL})
-              });           
+               .patchValue({imageURL:this.activity.imageURL})                 
 
-        } else {
+
+           //    this.subCategoryService.getSubCategory()
+
+           // .filter((response:Response)=> response.json().data
+           //   //item.category == this.activity.category)
+                                     
+        });
+
+         
+       
+ //           this.activityForm.get(this.activityForm.category)
+ //           .valueChanges
+ //           //.subscribe(value => console.log(value)) 
+ //           .subscribe(subCategoryData => 
+ //             this.subCategoryByCategory = 
+ //             _.filter(subCategoryData, function(o) { return o.category == this.activityForm.category},'subCategory')
+ // );
+}
+
+
+           ///
+         //  .subscribe(value => console.log(value))
+          
+         else {
           this.navigated = false;
           this.activity = new Activity();      
         }
      }) 
 
-      this.categoryService.getCategory()
+    
+}
+
+ngAfterViewInit(){
+
+    this.categoryService.getCategory()
       .subscribe(
       categoryData => this.allCategories = _.uniqBy(categoryData, 'category')
-      );
+    
+     );
 
-}
+}     
+    
+
+//     this.subCategoryService.getSubCategory(this.activity.category)
+
 
       createForm() {
         
@@ -200,6 +240,7 @@ userProfile = this.userProfile;//user icon from auth0
   
 
     onSelect(categoryName) {
+
     console.log ('User selected ' + categoryName);
     this.subCategoryService.getSubCategory(categoryName)
       .subscribe(

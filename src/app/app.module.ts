@@ -8,6 +8,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
 
+
 import { LoginComponent } from './login/login.component';
 
 import { AppComponent } from './app.component';
@@ -31,7 +32,7 @@ import { SearchComponent } from './search/search.component';
 import { ActivityDetailsComponent } from './activity-details/activity-details.component';
 import { ActivityCreateComponent } from './activity-create/activity-create.component';
 import { NavbarComponent } from './navbar/navbar.component';
-
+import { CapitalizePipe } from './capitalize.pipe';
 
 export function authHttpServiceFactory(http:Http, options: RequestOptions) {
   return new AuthHttp (new AuthConfig({}), http, options);
@@ -55,7 +56,8 @@ export class MyHammerConfig extends HammerGestureConfig  {
     ActivityDetailsComponent,
     ActivityCreateComponent,
     MoreDetailsComponent,
-    NavbarComponent
+    NavbarComponent,
+    CapitalizePipe
 
   ],
   imports: [
