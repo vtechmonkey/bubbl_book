@@ -11,18 +11,13 @@ export class SubCategoryService{
   private _urlSubCategory = '../src/api/subCategory.json';
   //sorted: ISubCategory
   constructor(
-    private _http: Http,
-   
-
-
-
+    private _http: Http
     ) { }
 
   getSubCategory(CategoryName:String): Observable<ISubCategory[]> {
     return this._http.get(this._urlSubCategory)
-      .map((response: Response) => <ISubCategory[]>response.json()      
-      .catch(this.handleError)
-      );
+      .map((response: Response) => <ISubCategory[]>response.json())     
+      .catch(this.handleError);
   }
 
   private handleError(error: Response) {
@@ -30,6 +25,5 @@ export class SubCategoryService{
     console.error(error);
     return Observable.throw(error.json().error || 'Server error ...');
   }
-
 
 }

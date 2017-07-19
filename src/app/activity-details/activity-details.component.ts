@@ -7,6 +7,7 @@ import { MdButtonToggleModule,MdDialog, MdDialogConfig, MdDialogRef, MD_DIALOG_D
 import {Observable} from 'rxjs/Observable';
 import "rxjs/add/observable/combineLatest";
 import "rxjs/add/operator/filter";
+import "rxjs/add/operator/map";
 import * as _ from 'lodash';
 
 import { Activity,Price,Date,Time } from '../activity';    
@@ -137,38 +138,31 @@ userProfile = this.userProfile;//user icon from auth0
               this.activityForm  
                .patchValue({dates:this.activity.dates})
                this.activityForm  
-               .patchValue({imageURL:this.activity.imageURL})                 
+               .patchValue({imageURL:this.activity.imageURL})     
 
 
-           //    this.subCategoryService.getSubCategory()
+              if(this.activity.category){
+                console.log(this.activity.category);
+                const cat = this.activity.category;
+                this.subCategoryService.getSubCategory(cat)
+                .subscribe(
+                subCategoryData => this.subCategoryByCategory = _.filter(subCategoryData, function(o) { return o.category == cat},'subCategory')
+                );
+              }          
+                  
+//onselect function 
+  // this.subCategoryService.getSubCategory(categoryName)
+  //     .subscribe(
+  //     subCategoryData => this.subCategoryByCategory = _.filter(subCategoryData, function(o) { return o.category == categoryName},'subCategory')
+  //     );
 
-           // .filter((response:Response)=> response.json().data
-           //   //item.category == this.activity.category)
-                                     
-        });
-
-         
-       
- //           this.activityForm.get(this.activityForm.category)
- //           .valueChanges
- //           //.subscribe(value => console.log(value)) 
- //           .subscribe(subCategoryData => 
- //             this.subCategoryByCategory = 
- //             _.filter(subCategoryData, function(o) { return o.category == this.activityForm.category},'subCategory')
- // );
-}
-
-
-           ///
-         //  .subscribe(value => console.log(value))
-          
+        });  
+       }         
          else {
           this.navigated = false;
           this.activity = new Activity();      
         }
-     }) 
-
-    
+     })     
 }
 
 ngAfterViewInit(){
@@ -178,6 +172,7 @@ ngAfterViewInit(){
       categoryData => this.allCategories = _.uniqBy(categoryData, 'category')
     
      );
+   
 
 }     
     
