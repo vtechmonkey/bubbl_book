@@ -57,7 +57,8 @@ dates:FormArray;
 @Input() activity: Activity;
 @Output() close = new EventEmitter();
 
-userProfile = this.userProfile;
+userProfile:any
+
 
   dialogRef: MdDialogRef<MoreDetailsComponent>
    config: MdDialogConfig={
@@ -119,14 +120,14 @@ userProfile = this.userProfile;
          
   initPrice() {
         return this.fb.group({
-            qty: ['', Validators.required],
+            qty: '',//['', Validators.required],
             perPerson: ['']
         });
     }
 
     initDate() {
         return this.fb.group({
-            date: ['', Validators.required],
+            date: '',//['', Validators.required],
             times:this.fb.array([
               this.initTime(),
             ])
@@ -144,6 +145,10 @@ userProfile = this.userProfile;
       .subscribe(
       categoryData => this.allCategories = _.uniqBy(categoryData, 'category')
       );
+
+         console.log(this.auth.userProfile);
+        //  console.log(this.auth.userProfile.email);
+        console.log(this.auth.userProfile.user_id);
      }
 
   onSelect(categoryName) {
@@ -160,6 +165,7 @@ userProfile = this.userProfile;
    this.dialogRef = this.dialog.open(MoreDetailsComponent, {
      data: this.activityForm.value
    });
+
   }
 
   
@@ -182,6 +188,7 @@ userProfile = this.userProfile;
 
     
     const saveActivity: Activity = {
+      authUserId:this.auth.userProfile.user_id as string,
        _id:activityModel._id as string,
       name: activityModel.name as string,
       description: activityModel.description as string,

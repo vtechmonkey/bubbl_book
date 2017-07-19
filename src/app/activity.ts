@@ -1,5 +1,6 @@
 export class Activity {
 
+	authUserId:string;
      _id:string;
 	name: string;
 	description:string;

@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var ActivitySchema = new mongoose.Schema({
-	
+	authUserId: String,
 	name: String,
 	description:String,
 	venue: String,

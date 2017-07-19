@@ -21,6 +21,7 @@
   </button>
   <div *ngIf="auth.userProfile; else login">
   {{auth.userProfile.email}}
+  
   </div>
   <ng-template #login> Login to save your event</ng-template>
     <span class="fillSpace"></span> <!-- fill space between buttons so they are either side of the toolbar -->

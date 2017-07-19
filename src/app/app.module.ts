@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions,JsonpModule  } from '@angular/http';
 import { MaterialModule, MdInputModule,MdNativeDateModule,MdDialog, MdDialogConfig, MdDialogRef } from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -17,10 +17,10 @@ import { ActivitiesComponent } from './activities/activities.component';
 import { HomeComponent } from './home/home.component';
 import { CreateBubblbookingComponent } from './create-bubblbooking/create-bubblbooking.component';
 
-import {ActivitiesService} from './activities.service';
-import {CategoryService} from './category/category.service';
-import {SubCategoryService} from './subCategory/subCategory.service';
-import {AuthService } from './auth.service';
+import { ActivitiesService } from './activities.service';
+import { CategoryService } from './category/category.service';
+import { SubCategoryService } from './subCategory/subCategory.service';
+import { AuthService } from './auth.service';
 import { PicsService } from './pics.service';
 
 import { routing, appRoutingProviders } from './app.routing';

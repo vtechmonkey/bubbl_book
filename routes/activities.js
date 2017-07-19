@@ -48,6 +48,7 @@ router.post('/activities', function(req, res, next){
     var activity = new Activity();
 
   // Set the properties that came from the POST data
+  activity.authUserId = req.body.authUserId;
   activity.name = req.body.name;
   activity.description = req.body.description;
   activity.venue = req.body.venue;

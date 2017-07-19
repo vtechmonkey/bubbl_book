@@ -61,6 +61,7 @@ subCategory:FormControl;
 publicActivity:FormControl;    
 prices:FormArray;    
 dates:FormArray;    
+
 @Input() 
 activity: Activity;    
 @Output() close = new EventEmitter();    
@@ -149,14 +150,7 @@ userProfile = this.userProfile;//user icon from auth0
                 subCategoryData => this.subCategoryByCategory = _.filter(subCategoryData, function(o) { return o.category == cat},'subCategory')
                 );
               }          
-                  
-//onselect function 
-  // this.subCategoryService.getSubCategory(categoryName)
-  //     .subscribe(
-  //     subCategoryData => this.subCategoryByCategory = _.filter(subCategoryData, function(o) { return o.category == categoryName},'subCategory')
-  //     );
-
-        });  
+            });  
        }         
          else {
           this.navigated = false;
@@ -284,7 +278,8 @@ ngAfterViewInit(){
 
     
     const saveActivity: Activity = {
-       _id:activityModel._id as string,
+      authUserId: this.auth.userProfile.user_id as string,
+      _id:activityModel._id as string,
       name: activityModel.name as string,
       description: activityModel.description as string,
       venue: activityModel.venue as string,
