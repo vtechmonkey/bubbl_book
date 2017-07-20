@@ -121,7 +121,7 @@ userProfile:any
   initPrice() {
         return this.fb.group({
             qty: '',//['', Validators.required],
-            perPerson: ['']
+            perPerson: ''
         });
     }
 

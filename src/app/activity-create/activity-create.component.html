@@ -139,11 +139,15 @@
             <div [formGroupName]="i">
               <div class="form-group">
                 <label>qty</label>
-                <input mdInputtype="number" class="form-control" formControlName="qty">
+                <md-input-container>       
+                <input mdInput type="number" class="form-control" formControlName="qty">
+                </md-input-container>
               </div>
               <div class="form-group">
                 <label>Price per person</label>
+                <md-input-container>       
                 <input mdInput type="text" class="form-control" formControlName="perPerson">
+                </md-input-container>
               </div>
             </div>
           </div>
@@ -176,7 +180,9 @@
       <div [formGroupName]="i">
           <div>
               <label>Date</label>
+              <md-input-container>  
               <input mdInput type="text" formControlName="date">
+              </md-input-container>
           </div>
 
           <div formArrayName="times">
@@ -195,7 +201,9 @@
                     
                     <div>
                         <label>Times</label>
+                        <md-input-container>  
                         <input mdInput type="text" formControlName="time">
+                        </md-input-container>
                     </div>
                   </div>
               </div>

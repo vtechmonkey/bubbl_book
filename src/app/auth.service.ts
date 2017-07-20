@@ -30,21 +30,23 @@ export class AuthService {
       localStorage.setItem('id_token', authResult.idToken);
        
 
-       //fetch profile information  //new method
-      this.lock._getUserInfo(authResult.idToken, (error, profile)=>{
-        if(error){
-          //handle error
-          alert(error);
-          return;
-        }
-
-      //fetch profile information  //getProfile to be depreciated
-      // this.lock.getProfile(authResult.idToken, (error, profile)=>{
+      //  //fetch profile information  //new method
+      // this.lock._getUserInfo(authResult.idToken, (error, profile)=>{
       //   if(error){
       //     //handle error
       //     alert(error);
       //     return;
       //   }
+
+      //fetch profile information  //getProfile to be depreciated 
+      //this code give  the following warning - DEPRECATION NOTICE: This method will be soon deprecated, use `getUserInfo` instead.
+      //but the newer code is not working porperly, this is 
+      this.lock.getProfile(authResult.idToken, (error, profile)=>{
+        if(error){
+          //handle error
+          alert(error);
+          return;
+        }
 
         localStorage.setItem('profile', JSON.stringify(profile));
         this.userProfile = profile;       
