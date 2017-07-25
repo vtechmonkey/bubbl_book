@@ -1,5 +1,5 @@
 
-import { Component, EventEmitter, Input, OnInit, Output, Inject, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, TemplateRef} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges,SimpleChanges, Inject, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, TemplateRef} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {AbstractControl, FormGroup, FormArray, FormBuilder,FormControl, Validators } from '@angular/forms';
 import { DOCUMENT } from '@angular/platform-browser';
@@ -32,7 +32,7 @@ import { ISubCategory } from '../subCategory/subCategory';
 })
 
 
-export class ActivityCreateComponent implements OnInit {
+export class ActivityCreateComponent implements OnInit, OnChanges {
 
   title:string = "Create your own Event";
   location:Location;
@@ -58,7 +58,7 @@ dates:FormArray;
 @Output() close = new EventEmitter();
 
 userProfile:any;
-formCookie:any;
+localStorageForm:any;
 
   dialogRef: MdDialogRef<MoreDetailsComponent>
    config: MdDialogConfig={
@@ -86,26 +86,76 @@ formCookie:any;
       this.location = location;
       this.url = this.location.path();         
       this.pics.imageURL = pics.imageURL; // default string or image url of image uploaded with pics service
-    
+      this.localStorageForm = (JSON.parse(localStorage.getItem('activity')));
+      console.log(this.localStorageForm);
+      console.log(this.localStorageForm.description);
+     
+     
 } //constructor function 
  
   ngOnInit() {
     this.categoryService.getCategory()
       .subscribe(
       categoryData => this.allCategories = _.uniqBy(categoryData, 'category')
-      );
+      )
 
-         console.log(this.auth.userProfile);
+        console.log(this.auth.userProfile);
         //  console.log(this.auth.userProfile.email);
-        if (this.auth.userProfile.email){
-        console.log(this.auth.userProfile.user_id);
-      }
+        if (this.auth.userProfile){
+          console.log(this.auth.userProfile.user_id);
+          }
 
-      if(this.pics.imageURL == undefined){
-        this.pics.imageURL == this.activity.imageURL;
-        console.log(this.pics.imageURL);
-      }
+         if(this.localStorageForm){
+              this.activityForm  
+               .patchValue({name:this.localStorageForm.name})
+              this.activityForm
+               .patchValue({venue:this.localStorageForm.venue})
+              this.activityForm
+               .patchValue({description:this.localStorageForm.description})
+              this.activityForm
+               .patchValue({category:this.localStorageForm.category})              
+              this.activityForm  
+               .patchValue({subCategory:this.localStorageForm.subCategory})           
+              this.activityForm  
+               .patchValue({min:this.localStorageForm.min})            
+              this.activityForm  
+               .patchValue({max:this.localStorageForm.max})
+              this.activityForm  
+               .patchValue({publicActivity:this.localStorageForm.publicActivity})            
+              this.activityForm  
+               .patchValue({prices:this.localStorageForm.prices})      
+              this.activityForm  
+               .patchValue({dates:this.localStorageForm.dates})
+              this.activityForm  
+               .patchValue({imageURL:this.localStorageForm.imageURL})   
+          } 
      }
+
+     ngOnChanges(changes: SimpleChanges) {
+       console.log('is this thing on?');
+       console.log(changes.activity);
+       if(changes.activity){
+        localStorage.setItem('activity', JSON.stringify(this.activityForm.value));
+        console.log('from ng onchanges', this.activityForm.value);   
+        }  
+     }
+     ngDoCheck(){
+       if(this.activityForm.value != this.localStorageForm.value){
+          localStorage.setItem('activity', JSON.stringify(this.activityForm.value));
+         console.log('seems to be changes afoot');
+       }
+     }
+     
+     localStore() {
+        localStorage.setItem('activity', JSON.stringify(this.activityForm.value));
+        console.log(this.activityForm.value);
+         
+          console.log(this.localStorageForm.name);
+        }
+      
+               
+       
+     
 
       createForm(){
 

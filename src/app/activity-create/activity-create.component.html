@@ -30,17 +30,7 @@
   </button>     
 </md-toolbar>
 
-<!-- <div>
-<form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
-  <input required type="text" name="testInput" [(ngModel)]="testInput" #testInputRef="ngModel" minlength="3">  
-  {{testInput}}
-  <div *ngIf="testInputRef.errors?.required">This is required</div>
-  <div *ngIf="testInputRef.errors?.minlength">Min length must be 3</div>
-{{formRef.value | json }}
-{{formRef.valid | json }}
-<button type="submit">submit</button>
-</form>
-</div> -->
+
 
 
 <div class="main">
@@ -48,7 +38,7 @@
   <md-card-header>
    <!--   show user avatar if available if not use generic avatar  -->   
     <div md-card-avatar *ngIf="auth.authenticated() && auth.userProfile; else generic">
-      <img src="{{auth.userProfile.picture}}" alt="user profile picture" >
+      <img md-card-avatar src="{{auth.userProfile.picture}}" alt="user profile picture" >
     </div>
     <ng-template #generic>
       <div md-card-avatar class="opacity_54">
@@ -78,12 +68,13 @@
     <img src="https://s3-eu-west-1.amazonaws.com/bubblbookimages/placeholder.png" alt="placeholder image"/> 
     </ng-template>
   <md-card-content>
-
+<button (click)="localStore()">local storage</button>
 <label for="picUpload" class="md-button opacity_54">Choose a picture <i class="material-icons verticalAlignMiddle">attachment</i></label>
 
             <input  id="picUpload" class="displayNone" type="file" (change)="pics.fileEvent($event)" accept="image/*">    
 
     <form [formGroup]="activityForm" (ngSubmit)="onSubmit()" novalidate>
+
         
       <!--name-->
       <div class="form-group">
