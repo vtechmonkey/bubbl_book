@@ -146,12 +146,12 @@ localStorageForm:any;
        }
      }
      
-     localStore() {
-        localStorage.setItem('activity', JSON.stringify(this.activityForm.value));
-        console.log(this.activityForm.value);
+     // localStore() {
+     //    localStorage.setItem('activity', JSON.stringify(this.activityForm.value));
+     //    console.log(this.activityForm.value);
          
-          console.log(this.localStorageForm.name);
-        }
+     //      console.log(this.localStorageForm.name);
+     //    }
       
                
        
