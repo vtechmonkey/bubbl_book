@@ -9,5 +9,18 @@
 		<md-card-subtitle>{{this.data.price}}</md-card-subtitle>
 		<md-card-subtitle>{{this.data.category}}</md-card-subtitle>
 		<md-card-subtitle>{{this.data.subCategory}}</md-card-subtitle>
+			<md-list *ngFor="let date of this.data.dates">
+				<md-list-item>{{date.date | date}}</md-list-item>
+				<md-list *ngFor="let time of date.times">
+				<md-list-item>{{time.time}}</md-list-item>
+				</md-list>
+			</md-list>
+			<md-list *ngFor="let price of this.data.prices">
+				<md-list-item>{{price.perPerson | currency:'EUR'}} is the price each for {{price.qty}} People </md-list-item>
+					
+			</md-list>
+						
+
+
 	</md-card-content>
 </md-card>

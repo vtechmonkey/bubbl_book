@@ -124,7 +124,7 @@
       <div [formGroupName]="i">
           <div>
               <label>Date</label>
-              <input mdInput type="text" formControlName="date">
+              <input mdInput type="text" [mdDatepicker]="picker" formControlName="date">
           </div>
 
           <div formArrayName="times">
