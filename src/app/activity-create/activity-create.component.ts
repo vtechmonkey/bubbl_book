@@ -57,8 +57,8 @@ dates:FormArray;
 @Input() activity: Activity;
 @Output() close = new EventEmitter();
 
-userProfile:any
-
+userProfile:any;
+formCookie:any;
 
   dialogRef: MdDialogRef<MoreDetailsComponent>
    config: MdDialogConfig={
@@ -88,6 +88,24 @@ userProfile:any
       this.pics.imageURL = pics.imageURL; // default string or image url of image uploaded with pics service
     
 } //constructor function 
+ 
+  ngOnInit() {
+    this.categoryService.getCategory()
+      .subscribe(
+      categoryData => this.allCategories = _.uniqBy(categoryData, 'category')
+      );
+
+         console.log(this.auth.userProfile);
+        //  console.log(this.auth.userProfile.email);
+        if (this.auth.userProfile.email){
+        console.log(this.auth.userProfile.user_id);
+      }
+
+      if(this.pics.imageURL == undefined){
+        this.pics.imageURL == this.activity.imageURL;
+        console.log(this.pics.imageURL);
+      }
+     }
 
       createForm(){
 
@@ -139,19 +157,7 @@ userProfile:any
         time:['']
       })
     }
- 
-  ngOnInit() {
-    this.categoryService.getCategory()
-      .subscribe(
-      categoryData => this.allCategories = _.uniqBy(categoryData, 'category')
-      );
 
-         console.log(this.auth.userProfile);
-        //  console.log(this.auth.userProfile.email);
-        if (this.auth.userProfile.email){
-        console.log(this.auth.userProfile.user_id);
-      }
-     }
 
   onSelect(categoryName) {
     console.log ('User selected ' + categoryName);

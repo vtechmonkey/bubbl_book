@@ -27,15 +27,11 @@ import { CapitalizePipe } from '../capitalize.pipe';
   templateUrl: './activity-details.component.html',
   styleUrls: ['./activity-details.component.css'],
   
-
-
 })
 
 export class ActivityDetailsComponent implements OnInit {
   title = "Event Details";
-
-  @ViewChild('monkey') form;
-
+ 
   activities: Activity[];
   error:any;
   navigated = false;
@@ -99,8 +95,8 @@ userProfile = this.userProfile;//user icon from auth0
                 this.url = this.location.path();
                 this.showActivityForm = 'hideForm';//show/hide form 
                 this.visible = true;    //show/hide form 
-                this.pics.imageURL = pics.imageURL;   
-                       
+                this.pics.imageURL = pics.imageURL; 
+
                
    }
 
@@ -149,7 +145,17 @@ userProfile = this.userProfile;//user icon from auth0
                 .subscribe(
                 subCategoryData => this.subCategoryByCategory = _.filter(subCategoryData, function(o) { return o.category == cat},'subCategory')
                 );
-              }          
+              }
+
+              if(!this.pics.imageURL ){
+                console.log('meh!');
+                console.log(this.activity.imageURL);
+                const img = this.activity.imageURL;
+                this.pics.imageURL = img;
+                console.log(this.pics.imageURL);
+              }
+
+
             });  
        }         
          else {
@@ -166,7 +172,7 @@ ngAfterViewInit(){
       categoryData => this.allCategories = _.uniqBy(categoryData, 'category')
     
      );
-   
+
 
 }     
     

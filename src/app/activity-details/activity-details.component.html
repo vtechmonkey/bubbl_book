@@ -78,34 +78,91 @@
     </md-list>
   <!-- more details -->
 
-<!-- create booking form -->
-    <form [formGroup]="activityForm" [ngClass]="showActivityForm" (ngSubmit) = "onSubmit()" novalidate  #monkey >
-      <div *ngIf="auth.userProfile">
-          {{auth.userProfile.email}}
-         <!--  <span class="mat-input-underline"></span> -->
-      </div>
+
+                       
+  <button md-button (click)="deleteActivity(activity)">delete</button>
+
+</md-card-content>
+
+ <form [formGroup]="activityForm" (ngSubmit)="onSubmit()" [ngClass]="showActivityForm" novalidate>
+        
+      <!--name-->
       <div class="form-group">
-        <md-input-container>       
-          <input mdInput type="text" formControlName="name" placeholder="name your event" required >
-          <div [hidden]="name.valid || name.pristine" class="error">
-              Name is required 
-          </div>
-        </md-input-container>
+        <md-input-container>      
+            <input mdInput type="text" class="form-control" formControlName="name" placeholder="Name your event">
+      </md-input-container>
       </div>
-          <!--description-->
+     
+
+      <!--description-->
     <div class="form-group">
       <md-input-container>
       
         <input mdInput type="text" class="form-control" formControlName="description" placeholder="Describe your event">
       </md-input-container>
     </div>
+      
+
+      <!--venue-->
       <div class="form-group">
-        <md-input-container>
-          <input mdInput type="text"  formControlName="venue" placeholder="venue" >
-        </md-input-container>   
-      </div>    
-    
-         Dates
+      <md-input-container>
+       
+        <input mdInput type="text" class="form-control" formControlName="venue" placeholder="venue">
+       </md-input-container>
+      </div>
+     
+
+      <!--min-->
+    <div class="form-group">
+      <md-input-container>
+  
+        <input mdInput type="number" class="form-control" formControlName="min" placeholder="Minimum number of participants">
+      </md-input-container>
+    </div>
+      
+
+      <!--max-->
+      <div class="form-group">
+      <md-input-container>
+       
+        <input mdInput type="number" class="form-control" formControlName="max" placeholder="Maximum number of participants">
+      </md-input-container>
+      </div>
+     
+
+        <!--price-->
+        <md-card>
+        <div formArrayName="prices">
+          <div *ngFor="let price of activityForm.controls.prices.controls; let i=index">
+            
+              <span>Price {{i + 1}}</span>
+              
+            <div [formGroupName]="i">
+              <div class="form-group">
+                <label>qty</label>
+                <md-input-container>       
+                <input mdInput type="number" class="form-control" formControlName="qty">
+                </md-input-container>
+              </div>
+              <div class="form-group">
+                <label>Price per person</label>
+                <md-input-container>       
+                <input mdInput type="text" class="form-control" formControlName="perPerson">
+                </md-input-container>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      
+          <a (click)="addPrice()">
+            Add another price +
+          </a>
+        </md-card>
+          <br/>
+<!--datestimes-->
+<md-card>
+      Dates
  
     <div class="">
      
@@ -124,7 +181,11 @@
       <div [formGroupName]="i">
           <div>
               <label>Date</label>
-              <input mdInput type="text" [mdDatepicker]="picker" formControlName="date">
+              <md-input-container>  
+              <input mdInput  [mdDatepicker]="picker" formControlName="date">   
+               <button mdSuffix [mdDatepickerToggle]="picker"></button>        
+              </md-input-container>
+                 <md-datepicker #picker></md-datepicker>
           </div>
 
           <div formArrayName="times">
@@ -143,7 +204,9 @@
                     
                     <div>
                         <label>Times</label>
+                        <md-input-container>  
                         <input mdInput type="text" formControlName="time">
+                        </md-input-container>
                     </div>
                   </div>
               </div>
@@ -152,94 +215,55 @@
   </div>
 </div>
    
-            <!--price-->
-     
-        <div formArrayName="prices">
-          <div *ngFor="let price of activityForm.controls.prices.controls; let i=index">
-            
-              <span>Price {{i + 1}}</span>
-              
-            <div [formGroupName]="i">
-              <div class="form-group">
-                <label>qty</label>
-                <input mdInput type="number" class="form-control" formControlName="qty">
-              </div>
-              <div class="form-group">
-                <label>Price per person</label>
-                <input mdInput type="text" class="form-control" formControlName="perPerson">
-              </div>
-            </div>
-          </div>
-        </div>
-
-      
-          <a (click)="addPrice()">
-            Add another price +
-          </a>
-        
-      <!--  <div class="form-group"> 
-       <md-input-container>       
-          <input mdInput type="text" class="form-control" formControlName="price" placeholder="price" >
-        </md-input-container>  
-      </div>
-      <div class="form-group">    
-        <md-input-container>       
-          <input mdInput type="number" class="form-control" formControlName="min" placeholder="Min Participants">
-        </md-input-container>
-      </div> -->
-      <div class="form-group">  
-        <md-input-container>       
-          <input mdInput type="number" class="form-control" formControlName="max" placeholder="Max Participants">
-        </md-input-container>
-      </div>
-      
-        
-      <label for="picUpload" class="md-button opacity_54">Choose a picture <i class="material-icons verticalAlignMiddle">attachment</i></label>
-
-            <input  id="picUpload" class="displayNone" type="file" (change)="pics.fileEvent($event)" accept="image/*">    
-     
-      <br>
-      <br>
-          <!--category-->
+</md-card>         
+       
+       <!--category-->
       <div class="form-group">
-        <md-select 
-          placeholder="Choose a category"       
-          formControlName="category"       
-         (change)="onSelect($event.value)">
-          <md-option *ngFor="let oneCategory of allCategories" [value]="oneCategory.category">{{oneCategory.category}}
-          </md-option> 
-        </md-select>
+      
+        <label>category: </label>
+        <md-select  formControlName="category" (change)="onSelect($event.value)">
+                  <md-option *ngFor="let oneCategory of allCategories" [value]="oneCategory.category">
+                    {{oneCategory.category}}
+                  </md-option>
+        </md-select>                  
+            
+      
       </div>
-
 
       <!--subCategory-->
       <div class="form-group">
-        <md-select 
-        placeholder="Choose a subcategory"
-        formControlName="subCategory">
-          <md-option *ngFor="let oneSubCategory of subCategoryByCategory" [value]="oneSubCategory.subCategory">{{oneSubCategory.subCategory}} 
-          </md-option> 
-        </md-select>
-      </div>
-
-   <!--public-->
-       <div class="form-group">
-       
-          <label>public:</label>
-          <md-checkbox formControlName="publicActivity" [checked]="true"></md-checkbox>
-                <input mdInput type="text" class="form-control" formControlName="publicActivity">
       
-       </div>
+        <label >subCategory: </label>
+        <md-select formControlName="subCategory">
+                  <md-option *ngFor="let oneSubCategory of subCategoryByCategory" [value]="oneSubCategory.subCategory">
+                    {{oneSubCategory.subCategory}}
+                  </md-option>
+        </md-select>         
+       
+    </div>
+      
 
-    <button md-button type="submit">save</button>
+     <!--public-->
+     <div class="form-group">
+       <!--<md-input-container>-->
+        <label>public:</label>
+        <md-checkbox formControlName="publicActivity" [checked]="true"></md-checkbox>
+              <input mdInput type="text" class="form-control" formControlName="publicActivity">
+       <!--</md-input-container>-->
+     </div>
+    
+   
+      <br>
 
-    </form> 
-                       
-  <button md-button (click)="deleteActivity(activity)">delete</button>
-
-</md-card-content>
-
-
+       
+      <div *ngIf="!auth.authenticated(); else submit">
+    <button md-button md-button-ripple class="loginBtn" (click)="auth.login()"> Login to save your event</button>
+      </div>
+      <ng-template #submit>
+        <button  md-button type="submit" [disabled]="activityForm.pristine">Save</button>
+      </ng-template>
+       
+    </form>
        
 <!--      
       {{url}} <br/>
