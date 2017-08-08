@@ -33,6 +33,7 @@ import { ActivityDetailsComponent } from './activity-details/activity-details.co
 import { ActivityCreateComponent } from './activity-create/activity-create.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CapitalizePipe } from './capitalize.pipe';
+import { VoteComponent } from './vote/vote.component';
 
 export function authHttpServiceFactory(http:Http, options: RequestOptions) {
   return new AuthHttp (new AuthConfig({}), http, options);
@@ -57,7 +58,8 @@ export class MyHammerConfig extends HammerGestureConfig  {
     ActivityCreateComponent,
     MoreDetailsComponent,
     NavbarComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    VoteComponent
 
   ],
   imports: [
@@ -70,7 +72,8 @@ export class MyHammerConfig extends HammerGestureConfig  {
     MaterialModule,
     MdNativeDateModule,
     MdInputModule,
-    BrowserAnimationsModule  
+    BrowserAnimationsModule
+
 
   ],
   providers: [

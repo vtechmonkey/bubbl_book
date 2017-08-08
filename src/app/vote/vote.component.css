@@ -1,0 +1,12 @@
+      .voter {
+            width: 20px;
+            font-size: 34px;
+            text-align: center;
+            color: #999;
+        }
+        .vote-button {
+            cursor: pointer;
+        }
+        .highlighted {
+            color: gold;
+        }

@@ -21,6 +21,10 @@ import { AuthService } from '../auth.service';
 import { MoreDetailsComponent } from '../more-details/more-details.component';
 import { CapitalizePipe } from '../capitalize.pipe';
 
+import MaterialDateTimePicker from 'material-datetime-picker';
+
+
+
 @Component({
   selector: 'app-activity-details',
   providers: [Location, {provide: LocationStrategy, useClass:  PathLocationStrategy}],
@@ -30,8 +34,12 @@ import { CapitalizePipe } from '../capitalize.pipe';
 })
 
 export class ActivityDetailsComponent implements OnInit {
+
+
+
+
   title = "Event Details";
- 
+
   activities: Activity[];
   error:any;
   navigated = false;
@@ -73,7 +81,6 @@ userProfile = this.userProfile;//user icon from auth0
     
   };
 
- // @ViewChild(TemplateRef) template: TemplateRef<any>;
 
   constructor(  private activitiesService:ActivitiesService,
                 private route: ActivatedRoute,
@@ -81,7 +88,7 @@ userProfile = this.userProfile;//user icon from auth0
                 private subCategoryService: SubCategoryService,
                 private router: Router,
                 private pics: PicsService,
-                private auth: AuthService,
+                private auth: AuthService,             
 
                 location:Location,  
                 public dialog: MdDialog, //more details dialog
@@ -95,12 +102,13 @@ userProfile = this.userProfile;//user icon from auth0
                 this.url = this.location.path();
                 this.showActivityForm = 'hideForm';//show/hide form 
                 this.visible = true;    //show/hide form 
-                this.pics.imageURL = pics.imageURL; 
-
+                this.pics.imageURL = pics.imageURL;   
                
    }
 
+
     ngOnInit() {
+
      this.sub = this.route.params.subscribe(params => {
        if(params['_id'] !== undefined){
           let _id = params['_id'];
@@ -113,7 +121,7 @@ userProfile = this.userProfile;//user icon from auth0
             .getActivityById(_id)
             .subscribe((response) =>{
               this.activity = response; 
-              // using patchValue to populate the form as it doesn't expect exactly matching data
+            // using patchValue to populate the form as it doesn't expect exactly matching data
               this.activityForm  
                .patchValue({name:this.activity.name})
               this.activityForm
@@ -214,7 +222,7 @@ ngAfterViewInit(){
   initPrice() {
         return this.fb.group({
             qty: ['', Validators.required],
-            perPerson: ['']
+            perPerson: ['', Validators.required]
         });
     }
 
@@ -229,7 +237,7 @@ ngAfterViewInit(){
 
     initTime(){
       return this.fb.group({
-        time:['']
+        time:['', Validators.required]
       })
     }
   
@@ -285,7 +293,7 @@ ngAfterViewInit(){
     
     const saveActivity: Activity = {
       authUserId: this.auth.userProfile.user_id as string,
-      _id:activityModel._id as string,
+      _id:this.activity._id as string,  //edit this activity, remove this line to create a new activity
       name: activityModel.name as string,
       description: activityModel.description as string,
       venue: activityModel.venue as string,
@@ -296,7 +304,7 @@ ngAfterViewInit(){
       subCategory: activityModel.subCategory as string,
       publicActivity: activityModel.publicActivity as string,
       prices:priceModelCopy,
-      dates:datesModelCopy     
+      dates:datesModelCopy    
     };
     return saveActivity;
   }

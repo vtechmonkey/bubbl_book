@@ -62,21 +62,29 @@
   <img md-card-image class="smImg" src={{activity.imageURL}} alt={{activity.imageURL}}>
   <md-card-content class="rightText">
     <md-list class="opacity_87">
-        <md-list-item>{{activity.descriptionm}} 
+        <md-list-item>{{activity.description}} 
         </md-list-item> 
         <md-list-item>
-          <span mdTooltip="add  to my favourites" mdTooltipPosition="before">
+          <span mdTooltip="add  to my favourites" mdTooltipPosition="after">
             <i class="material-icons opacity_54">favorite</i>
           </span><!-- add to favourites (not implemented) -->     
-          <button md-button class="smBtn" (click)="toggle()">CREATE BUBBLBOOKING</button><!--  show form  -->
+          <button md-button class="smBtn" (click)="toggle()">Edit this activity</button><!--  show form  -->
           <button md-button class="smBtn" (click)="gotoActivitiesList()">DISMISS</button> <!-- go back -->
-        </md-list-item>
-        <md-list-item>
-          <i md-list-text class="material-icons opacity_54">description</i>
+            <!-- open more details and edit -->
           <button md-button (click)="moreDetails()"> More Details</button>
         </md-list-item>
+      <!--   <md-list-item>
+          <i md-list-text class="material-icons opacity_54">description</i>
+        </md-list-item> -->
+        <md-list *ngFor="let date of this.activity.dates">        
+          <md-list *ngFor="let time of date.times">
+            <md-checkbox>{{date.date | date}} at {{time.time}}</md-checkbox>
+          </md-list>
+      </md-list>
+      <md-list *ngFor="let price of this.activity.prices">
+        <md-list-item>{{price.perPerson}} is the price each for {{price.qty}} People </md-list-item>          
+      </md-list>      
     </md-list>
-  <!-- more details -->
 
 
                        
@@ -176,6 +184,7 @@
   <div *ngFor="let date of activityForm.controls.dates.controls; let i=index"> 
       <div>
           <span>Dates {{i + 1}}</span>
+          <app-vote></app-vote>
       </div>
 
       <div [formGroupName]="i">
@@ -215,7 +224,8 @@
   </div>
 </div>
    
-</md-card>         
+</md-card>   
+
        
        <!--category-->
       <div class="form-group">
@@ -257,7 +267,8 @@
 
        
       <div *ngIf="!auth.authenticated(); else submit">
-    <button md-button md-button-ripple class="loginBtn" (click)="auth.login()"> Login to save your event</button>
+      Login to save your event
+      <app-login></app-login>
       </div>
       <ng-template #submit>
         <button  md-button type="submit" [disabled]="activityForm.pristine">Save</button>
@@ -282,7 +293,5 @@
 
   <a>http://ec2-52-209-95-130.eu-west-1.compute.amazonaws.com:4200{{url}}</a>
 </md-card-actions>
- 
-
 
 

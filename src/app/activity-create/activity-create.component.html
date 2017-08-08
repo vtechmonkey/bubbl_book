@@ -248,10 +248,12 @@
 
        
       <div *ngIf="!auth.authenticated(); else submit">
-    <button md-button md-button-ripple class="loginBtn" (click)="auth.login()"> Login to save your event</button>
+      Login to save your event
+   <!--  <button md-button md-button-ripple class="loginBtn" (click)="auth.login()"> Login to save your event</button> -->
+   <app-login></app-login>
       </div>
       <ng-template #submit>
-        <button  md-button type="submit" [disabled]="activityForm.pristine">Save</button>
+        <button  md-button type="submit" >Save</button>
       </ng-template>
        
     </form>

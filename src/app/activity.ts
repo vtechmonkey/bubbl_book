@@ -13,6 +13,7 @@ export class Activity {
 	publicActivity:string;
 	prices:Price[];
 	dates:Date[];
+	//responses:Response[];
 }
 
 
@@ -31,5 +32,12 @@ export class Time{
 	time:string
 }
 
-	
-	
+// export class Response{
+// 	userId: string;
+// 	dateTimes:dateTime[];
+// }
+
+// export class dateTime{
+// 	date:string;
+// 	time:string;
+// }

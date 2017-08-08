@@ -1,0 +1,12 @@
+
+ <div class="voter">
+    <md-list-item
+        [class.highlighted]="myVote == 1"
+        (click)="upVote()"
+    ><i class="material-icons">thumb_up</i></md-list-item>
+    <span class="vote-count">{{ voteCount + myVote }}</span>
+    <md-list-item
+        [class.highlighted]="myVote == -1"
+        (click)="downVote()"
+    ><i class="material-icons">thumb_down</i></md-list-item>
+</div>

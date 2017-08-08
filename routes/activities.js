@@ -89,10 +89,12 @@ router.put('/activities/:_id', function(req, res,next){
     if (err)
       res.send(err);
     //update activity time 
-    if (req.body.name)
+    if (req.body.name)  //only edits name if name is changed   
       activity.name = req.body.name;
     if(req.body.venue)
       activity.venue = req.body.venue;
+       if(req.body.description)
+      activity.dsescription = req.body.description;
     if (req.body.date)
       activity.date = req.body.date;
      if(req.body.time)
@@ -104,6 +106,10 @@ router.put('/activities/:_id', function(req, res,next){
     if(req.body.imageURL) activity.imageURL = req.body.imageURL;
     if(req.body.isPrivate)
     activity.isPrivate = req.body.isPrivate;
+    if(req.body.prices)
+      activity.prices = req.body.prices;
+    if(req.body.dates)
+      activity.dates = req.body.dates;
     
 
     //save update

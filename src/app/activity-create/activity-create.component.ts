@@ -160,13 +160,13 @@ localStorageForm:any;
       createForm(){
 
          this.name = new FormControl('', [Validators.required]);
-         this.description = new FormControl('', [Validators.required]);
-         this.venue = new FormControl('', [Validators.required]);       
-         this.min = new FormControl('', [Validators.required]);
-         this.max = new FormControl('', [Validators.required]);
-         this.category = new FormControl('', [Validators.required]);
-         this.subCategory = new FormControl('', [Validators.required]);
-         this.publicActivity = new FormControl('', [Validators.required]);
+         this.description = new FormControl('')//, [Validators.required]);
+         this.venue = new FormControl('')//, [Validators.required]);       
+         this.min = new FormControl('')//, [Validators.required]);
+         this.max = new FormControl('')//, [Validators.required]);
+         this.category = new FormControl('')//, [Validators.required]);
+         this.subCategory = new FormControl('')//, [Validators.required]);
+         this.publicActivity = new FormControl('')//, [Validators.required]);
          this.prices = this.fb.array([this.initPrice()]);
          this.dates = this.fb.array([this.initDate()]);
          
