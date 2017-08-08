@@ -2,6 +2,20 @@
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.19-3.
 
+
+Morgan's version of how to get this running:
+
+Install Node and NPM and Angular CLI (globally: sudo npm install -g @angular/cli@latest
+) and Angular CDK (from repo directory: npm install @angular/cdk)
+
+In whatever folder you pulled from Github to:
+Run: ng build
+Run: ng serve
+Run: node server.js
+Go to: http://localhost:4200  (you may need to change the localhost directory to the directory you pulled to)
+ 
+
+The Official (less helpful) speel:
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
