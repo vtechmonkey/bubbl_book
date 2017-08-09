@@ -21,7 +21,6 @@ import { AuthService } from '../auth.service';
 import { MoreDetailsComponent } from '../more-details/more-details.component';
 import { CapitalizePipe } from '../capitalize.pipe';
 
-import MaterialDateTimePicker from 'material-datetime-picker';
 
 
 
