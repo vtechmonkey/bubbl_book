@@ -19,7 +19,7 @@
   <button md-button (click)="gotoActivitiesList()">
       <i class="material-icons" color="accent">arrow_back</i>
   </button>
-  <div *ngIf="auth.userProfile; else login">
+  <div *ngIf="auth.authenticated() && auth.userProfile; else login">
   {{auth.userProfile.email}}
   
   </div>
