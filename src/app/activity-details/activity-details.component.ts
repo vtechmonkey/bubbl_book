@@ -24,7 +24,6 @@ import { CapitalizePipe } from '../capitalize.pipe';
 
 
 
-
 @Component({
   selector: 'app-activity-details',
   providers: [Location, {provide: LocationStrategy, useClass:  PathLocationStrategy}],
