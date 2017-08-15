@@ -22,6 +22,7 @@ import { CategoryService } from './category/category.service';
 import { SubCategoryService } from './subCategory/subCategory.service';
 import { AuthService } from './auth.service';
 import { PicsService } from './pics.service';
+import { SearchService } from './search.service';
 
 import { routing, appRoutingProviders } from './app.routing';
 import 'hammerjs';
@@ -77,7 +78,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
 
   ],
   providers: [
-  ActivitiesService,CategoryService,SubCategoryService,appRoutingProviders,AuthService,PicsService,
+  ActivitiesService,CategoryService,SubCategoryService,appRoutingProviders, SearchService, AuthService,PicsService,
     {
     provide:AuthHttp,
     useFactory:authHttpServiceFactory,
