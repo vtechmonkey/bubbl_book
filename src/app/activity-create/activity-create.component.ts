@@ -86,9 +86,9 @@ localStorageForm:any;
       this.location = location;
       this.url = this.location.path();         
       this.pics.imageURL = pics.imageURL; // default string or image url of image uploaded with pics service
-      this.localStorageForm = (JSON.parse(localStorage.getItem('activity')));
-      console.log(this.localStorageForm);
-      console.log(this.localStorageForm.description);
+      // this.localStorageForm = (JSON.parse(localStorage.getItem('activity')));
+      // console.log(this.localStorageForm);
+      // console.log(this.localStorageForm.description);
      
      
 } //constructor function 
@@ -105,46 +105,46 @@ localStorageForm:any;
           console.log(this.auth.userProfile.user_id);
           }
 
-         if(this.localStorageForm){
-              this.activityForm  
-               .patchValue({name:this.localStorageForm.name})
-              this.activityForm
-               .patchValue({venue:this.localStorageForm.venue})
-              this.activityForm
-               .patchValue({description:this.localStorageForm.description})
-              this.activityForm
-               .patchValue({category:this.localStorageForm.category})              
-              this.activityForm  
-               .patchValue({subCategory:this.localStorageForm.subCategory})           
-              this.activityForm  
-               .patchValue({min:this.localStorageForm.min})            
-              this.activityForm  
-               .patchValue({max:this.localStorageForm.max})
-              this.activityForm  
-               .patchValue({publicActivity:this.localStorageForm.publicActivity})            
-              this.activityForm  
-               .patchValue({prices:this.localStorageForm.prices})      
-              this.activityForm  
-               .patchValue({dates:this.localStorageForm.dates})
-              this.activityForm  
-               .patchValue({imageURL:this.localStorageForm.imageURL})   
-          } 
+     //     if(this.localStorageForm){
+     //          this.activityForm  
+     //           .patchValue({name:this.localStorageForm.name})
+     //          this.activityForm
+     //           .patchValue({venue:this.localStorageForm.venue})
+     //          this.activityForm
+     //           .patchValue({description:this.localStorageForm.description})
+     //          this.activityForm
+     //           .patchValue({category:this.localStorageForm.category})              
+     //          this.activityForm  
+     //           .patchValue({subCategory:this.localStorageForm.subCategory})           
+     //          this.activityForm  
+     //           .patchValue({min:this.localStorageForm.min})            
+     //          this.activityForm  
+     //           .patchValue({max:this.localStorageForm.max})
+     //          this.activityForm  
+     //           .patchValue({publicActivity:this.localStorageForm.publicActivity})            
+     //          this.activityForm  
+     //           .patchValue({prices:this.localStorageForm.prices})      
+     //          this.activityForm  
+     //           .patchValue({dates:this.localStorageForm.dates})
+     //          this.activityForm  
+     //           .patchValue({imageURL:this.localStorageForm.imageURL})   
+     //      } 
      }
 
-     ngOnChanges(changes: SimpleChanges) {
-       console.log('is this thing on?');
-       console.log(changes.activity);
-       if(changes.activity){
-        localStorage.setItem('activity', JSON.stringify(this.activityForm.value));
-        console.log('from ng onchanges', this.activityForm.value);   
-        }  
+      ngOnChanges(changes: SimpleChanges) {
+     //   console.log('is this thing on?');
+     //   console.log(changes.activity);
+     //   if(changes.activity){
+     //    localStorage.setItem('activity', JSON.stringify(this.activityForm.value));
+     //    console.log('from ng onchanges', this.activityForm.value);   
+     //    }  
      }
-     ngDoCheck(){
-       if(this.activityForm.value != this.localStorageForm.value){
-          localStorage.setItem('activity', JSON.stringify(this.activityForm.value));
-         console.log('seems to be changes afoot');
-       }
-     }
+     // ngDoCheck(){
+     //   if(this.activityForm.value != this.localStorageForm.value){
+     //      localStorage.setItem('activity', JSON.stringify(this.activityForm.value));
+     //     console.log('seems to be changes afoot');
+     //   }
+     // }
      
      // localStore() {
      //    localStorage.setItem('activity', JSON.stringify(this.activityForm.value));
