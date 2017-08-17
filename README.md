@@ -9,10 +9,15 @@ Install Node and NPM and Angular CLI (globally: sudo npm install -g @angular/cli
 ) if not already on your machine.
 
 In whatever folder you pulled from Github to:
+
 to install the app dependencies: npm install 
+
 to create a dist folder: ng build
+
 to serve frontend on localhost 4200 : ng serve
+
 to serve the backend and connect to mlab: node server.js or nodemon server.js
+
 Go to: http://localhost:4200  
  
 
