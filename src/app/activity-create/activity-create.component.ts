@@ -25,6 +25,8 @@ import { SubCategoryService } from '../subCategory/subCategory.service';
 import { ICategory } from '../category/category';
 import { ISubCategory } from '../subCategory/subCategory';
 
+import {$,jQuery} from 'jquery';
+
 @Component({
   selector: 'app-activity-create',  
   templateUrl: './activity-create.component.html',
@@ -60,12 +62,12 @@ dates:FormArray;
 userProfile:any;
 localStorageForm:any;
 
-  dialogRef: MdDialogRef<MoreDetailsComponent>
-   config: MdDialogConfig={
+  // dialogRef: MdDialogRef<MoreDetailsComponent>
+  //  config: MdDialogConfig={
 
-   data :
-      this.activityForm 
-  };
+  //  data :
+  //     this.activityForm 
+  // };
 
 
   constructor(
@@ -94,6 +96,20 @@ localStorageForm:any;
 } //constructor function 
  
   ngOnInit() {
+
+    $('.time').pickatime({
+    default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+    fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+    twelvehour: false, // Use AM/PM or 24-hour format
+    donetext: 'OK', // text for done-button
+    cleartext: 'Clear', // text for clear-button
+    canceltext: 'Cancel', // Text for cancel-button
+    autoclose: false, // automatic close timepicker
+    ampmclickable: true, // make AM PM clickable
+    aftershow: function(){} //Function for after opening timepicker
+  });
+
+
     this.categoryService.getCategory()
       .subscribe(
       categoryData => this.allCategories = _.uniqBy(categoryData, 'category')
@@ -228,12 +244,12 @@ localStorageForm:any;
 
   }
 
-  previewEvent() {
-   this.dialogRef = this.dialog.open(MoreDetailsComponent, {
-     data: this.activityForm.value
-   });
+  // previewEvent() {
+  //  this.dialogRef = this.dialog.open(MoreDetailsComponent, {
+  //    data: this.activityForm.value
+  //  });
 
-  }
+  // }
 
   
    onSubmit() {      

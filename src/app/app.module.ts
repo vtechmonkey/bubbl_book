@@ -36,6 +36,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CapitalizePipe } from './capitalize.pipe';
 import { VoteComponent } from './vote/vote.component';
 
+
+import { MaterializeModule } from 'angular2-materialize';
+
+
 export function authHttpServiceFactory(http:Http, options: RequestOptions) {
   return new AuthHttp (new AuthConfig({}), http, options);
 }
@@ -73,8 +77,8 @@ export class MyHammerConfig extends HammerGestureConfig  {
     MaterialModule,
     MdNativeDateModule,
     MdInputModule,
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
+    MaterializeModule
 
   ],
   providers: [
