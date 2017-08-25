@@ -25,6 +25,8 @@ import { SubCategoryService } from '../subCategory/subCategory.service';
 import { ICategory } from '../category/category';
 import { ISubCategory } from '../subCategory/subCategory';
 
+import {$,jQuery} from 'jquery';
+
 @Component({
   selector: 'app-activity-create',  
   templateUrl: './activity-create.component.html',
@@ -32,7 +34,7 @@ import { ISubCategory } from '../subCategory/subCategory';
 })
 
 
-export class ActivityCreateComponent implements OnInit, OnChanges {
+export class ActivityCreateComponent implements OnInit {
 
   title:string = "Create your own Event";
   location:Location;
@@ -61,12 +63,12 @@ dates:FormArray;
 userProfile:any;
 localStorageForm:any;
 
-  dialogRef: MdDialogRef<MoreDetailsComponent>
-   config: MdDialogConfig={
+  // dialogRef: MdDialogRef<MoreDetailsComponent>
+  //  config: MdDialogConfig={
 
-   data :
-      this.activityForm 
-  };
+  //  data :
+  //     this.activityForm 
+  // };
 
 
   constructor(
@@ -87,72 +89,95 @@ localStorageForm:any;
       this.location = location;
       this.url = this.location.path();         
       this.pics.imageURL = pics.imageURL; // default string or image url of image uploaded with pics service
-      // this.localStorageForm = (JSON.parse(localStorage.getItem('activity')));
-      // console.log(this.localStorageForm);
-      // console.log(this.localStorageForm.description);
-     
+      this.localStorageForm = (JSON.parse(localStorage.getItem('activity')));
+      console.log(this.localStorageForm);
+     // console.log(this.localStorageForm.description);
+  
      
 } //constructor function 
  
   ngOnInit() {
+
+    $('.time').pickatime({
+    default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+    fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+    twelvehour: false, // Use AM/PM or 24-hour format
+    donetext: 'OK', // text for done-button
+    cleartext: 'Clear', // text for clear-button
+    canceltext: 'Cancel', // Text for cancel-button
+    autoclose: false, // automatic close timepicker
+    ampmclickable: true, // make AM PM clickable
+    aftershow: function(){} //Function for after opening timepicker
+  });
+
+
     this.categoryService.getCategory()
       .subscribe(
       categoryData => this.allCategories = _.uniqBy(categoryData, 'category')
       )
 
         console.log(this.auth.userProfile);
-        //  console.log(this.auth.userProfile.email);
+        console.log(this.auth.userProfile.email);
         if (this.auth.userProfile){
           console.log(this.auth.userProfile.user_id);
           }
 
-     //     if(this.localStorageForm){
-     //          this.activityForm  
-     //           .patchValue({name:this.localStorageForm.name})
-     //          this.activityForm
-     //           .patchValue({venue:this.localStorageForm.venue})
-     //          this.activityForm
-     //           .patchValue({description:this.localStorageForm.description})
-     //          this.activityForm
-     //           .patchValue({category:this.localStorageForm.category})              
-     //          this.activityForm  
-     //           .patchValue({subCategory:this.localStorageForm.subCategory})           
-     //          this.activityForm  
-     //           .patchValue({min:this.localStorageForm.min})            
-     //          this.activityForm  
-     //           .patchValue({max:this.localStorageForm.max})
-     //          this.activityForm  
-     //           .patchValue({publicActivity:this.localStorageForm.publicActivity})            
-     //          this.activityForm  
-     //           .patchValue({prices:this.localStorageForm.prices})      
-     //          this.activityForm  
-     //           .patchValue({dates:this.localStorageForm.dates})
-     //          this.activityForm  
-     //           .patchValue({imageURL:this.localStorageForm.imageURL})   
-     //      } 
+        if (!this.auth.userProfile){
+          console.log("ain't nobody home girlfriend");
+          localStorage.removeItem('activity');
+          this.localStorageForm = undefined;
+
+        }
+
+         if(this.localStorageForm){
+              this.activityForm  
+               .patchValue({name:this.localStorageForm.name})
+              this.activityForm
+               .patchValue({venue:this.localStorageForm.venue})
+              this.activityForm
+               .patchValue({description:this.localStorageForm.description})
+              this.activityForm
+               .patchValue({category:this.localStorageForm.category})              
+              this.activityForm  
+               .patchValue({subCategory:this.localStorageForm.subCategory})           
+              this.activityForm  
+               .patchValue({min:this.localStorageForm.min})            
+              this.activityForm  
+               .patchValue({max:this.localStorageForm.max})
+              this.activityForm  
+               .patchValue({publicActivity:this.localStorageForm.publicActivity})            
+              this.activityForm  
+               .patchValue({prices:this.localStorageForm.prices})      
+              this.activityForm  
+               .patchValue({dates:this.localStorageForm.dates})
+              this.activityForm  
+               .patchValue({imageURL:this.localStorageForm.imageURL})   
+          } 
      }
 
-      ngOnChanges(changes: SimpleChanges) {
+     // onchanges won't detect a change to activity.value, just activity
+     //  ngOnChanges(changes: SimpleChanges) {
      //   console.log('is this thing on?');
      //   console.log(changes.activity);
      //   if(changes.activity){
      //    localStorage.setItem('activity', JSON.stringify(this.activityForm.value));
      //    console.log('from ng onchanges', this.activityForm.value);   
      //    }  
-     }
-     // ngDoCheck(){
-     //   if(this.activityForm.value != this.localStorageForm.value){
-     //      localStorage.setItem('activity', JSON.stringify(this.activityForm.value));
-     //     console.log('seems to be changes afoot');
-     //   }
      // }
+     ngDoCheck(){
+
+       if(this.activityForm.value){
+          localStorage.setItem('activity', JSON.stringify(this.activityForm.value));
+         console.log('seems to be changes afoot');
+       }
+     }
      
-     // localStore() {
-     //    localStorage.setItem('activity', JSON.stringify(this.activityForm.value));
-     //    console.log(this.activityForm.value);
+     localStore() {
+        localStorage.setItem('activity', JSON.stringify(this.activityForm.value));
+        console.log(this.activityForm.value);
          
-     //      console.log(this.localStorageForm.name);
-     //    }
+          console.log(this.localStorageForm.name);
+        }
       
                
        
@@ -220,12 +245,12 @@ localStorageForm:any;
 
   }
 
-  previewEvent() {
-   this.dialogRef = this.dialog.open(MoreDetailsComponent, {
-     data: this.activityForm.value
-   });
+  // previewEvent() {
+  //  this.dialogRef = this.dialog.open(MoreDetailsComponent, {
+  //    data: this.activityForm.value
+  //  });
 
-  }
+  // }
 
   
    onSubmit() {      
