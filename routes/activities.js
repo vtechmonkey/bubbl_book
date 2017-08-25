@@ -110,7 +110,10 @@ router.put('/activities/:_id', function(req, res,next){
       activity.prices = req.body.prices;
     if(req.body.dates)
       activity.dates = req.body.dates;
-    
+    if (req.body.voteCount)
+      activity.voteCount = req.body.voteCount;
+     if (req.body.votes)
+      activity.votes = req.body.votes;
 
     //save update
     activity.save(function(err){

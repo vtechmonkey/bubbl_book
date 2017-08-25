@@ -10,7 +10,7 @@ import "rxjs/add/operator/filter";
 import "rxjs/add/operator/map";
 import * as _ from 'lodash';
 
-import { Activity,Price,Date,Time } from '../activity';    
+import { Activity,Price,Date,Time, Vote } from '../activity';    
 import { CategoryService } from '../category/category.service';    
 import { SubCategoryService } from '../subCategory/subCategory.service';    
 import { ICategory } from '../category/category';    
@@ -38,6 +38,7 @@ export class ActivityDetailsComponent implements OnInit {
   title = "Event Details";
 
   activities: Activity[];
+  votes: Vote[];
   error:any;
   navigated = false;
   sub: any;
@@ -100,6 +101,10 @@ userProfile = this.userProfile;//user icon from auth0
                 this.showActivityForm = 'hideForm';//show/hide form 
                 this.visible = true;    //show/hide form 
                 this.pics.imageURL = pics.imageURL;   
+                this.auth.userProfile = auth.userProfile;
+                //this.auth.userProfile.user_id
+                //this.userProfile = JSON.parse(localStorage.getItem('profile'));
+                console.log(this.auth.userProfile.user_id + 'details comp');
                
    }
 
@@ -301,7 +306,9 @@ ngAfterViewInit(){
       subCategory: activityModel.subCategory as string,
       publicActivity: activityModel.publicActivity as string,
       prices:priceModelCopy,
-      dates:datesModelCopy    
+      dates:datesModelCopy,
+      votes:[],
+      voteCount:this.activity.voteCount as number  
     };
     return saveActivity;
   }

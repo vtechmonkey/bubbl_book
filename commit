@@ -1,0 +1,3 @@
+add create own to menu
+resize placeholder in Name your event 
+validator min is 2, form is invalid when less than 2, but counter does still go down to negative numbers
