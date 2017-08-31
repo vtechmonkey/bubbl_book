@@ -35,9 +35,10 @@ import { ActivityCreateComponent } from './activity-create/activity-create.compo
 import { NavbarComponent } from './navbar/navbar.component';
 import { CapitalizePipe } from './capitalize.pipe';
 import { VoteComponent } from './vote/vote.component';
-
-
+import { TimesComponent } from './times/times.component';
+import * as $ from 'jquery';
 import { MaterializeModule } from 'angular2-materialize';
+
 
 
 export function authHttpServiceFactory(http:Http, options: RequestOptions) {
@@ -64,7 +65,9 @@ export class MyHammerConfig extends HammerGestureConfig  {
     MoreDetailsComponent,
     NavbarComponent,
     CapitalizePipe,
-    VoteComponent
+    VoteComponent,
+    TimesComponent
+    
 
   ],
   imports: [
@@ -79,6 +82,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
     MdInputModule,
     BrowserAnimationsModule,
     MaterializeModule
+  
 
   ],
   providers: [

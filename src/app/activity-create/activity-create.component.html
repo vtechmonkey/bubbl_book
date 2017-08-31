@@ -99,36 +99,36 @@
       
 
       <!--venue-->
-      <!--<div class="form-group">
+      <div class="form-group">
       <md-input-container>
        
         <input mdInput type="text" class="form-control" formControlName="venue" placeholder="venue">
        </md-input-container>
-      </div>-->
-       <input placeholder="Placeholder" id="venue" type="text"  formControlName="venue" class="validate">
+      </div>
+       <!--<input placeholder="Placeholder" id="venue" type="text"  formControlName="venue" class="validate">
           <label for="venue">Venue</label>
-     
+     -->
 
       <!--min-->
-    <!--<div class="form-group">
+    <div class="form-group">
       <md-input-container>
   
         <input mdInput type="number" class="form-control" formControlName="min" placeholder="Minimum number of participants">
       </md-input-container>
-    </div>-->
-     <input placeholder="Placeholder" id="min" type="number"  formControlName="min" class="validate">
-          <label for="min">Min</label>
+    </div>
+     <!--<input placeholder="Placeholder" id="min" type="number"  formControlName="min" class="validate">
+          <label for="min">Min</label>-->
       
 
       <!--max-->
-      <!--<div class="form-group">
+      <div class="form-group">
       <md-input-container>
        
         <input mdInput type="number" class="form-control" formControlName="max" placeholder="Maximum number of participants">
       </md-input-container>
-      </div>-->
-       <input placeholder="Placeholder" id="max" type="number"  formControlName="max" class="validate">
-          <label for="max">Max</label>
+      </div>
+       <!--<input placeholder="Placeholder" id="max" type="number"  formControlName="max" class="validate">
+          <label for="max">Max</label>-->
      
 
         <!--price-->
@@ -139,22 +139,22 @@
               <span>Price {{i + 1}}</span>
               
             <div [formGroupName]="i">
-              <!--<div class="form-group">
+              <div class="form-group">
                 <label>qty</label>
                 <md-input-container>       
                 <input mdInput type="number" class="form-control" formControlName="qty">
                 </md-input-container>
-              </div>-->
-               <input placeholder="Placeholder" id="qty" type="number"  formControlName="qty" class="validate">
+              </div>
+               <!--<input placeholder="Placeholder" id="qty" type="number"  formControlName="qty" class="validate">
           <label for="qty">Qty</label>
            <input placeholder="Placeholder" id="perPerson" type="text"  formControlName="perPerson" class="validate">
-          <label for="perPerson">perPerson</label>
-              <!--<div class="form-group">
+          <label for="perPerson">perPerson</label>-->
+              <div class="form-group">
                 <label>Price per person</label>
                 <md-input-container>       
                 <input mdInput type="text" class="form-control" formControlName="perPerson">
                 </md-input-container>
-              </div>-->
+              </div>
             </div>
           </div>
         </div>
@@ -184,16 +184,16 @@
       </div>
 
       <div [formGroupName]="i">
-         <input placeholder="Placeholder" id="date" type="text"  formControlName="date" class="validate">
-          <label for="date">Date</label>
-          <!--<div>
+         <!--<input placeholder="Placeholder" id="date" type="text"  formControlName="date" class="validate">
+          <label for="date">Date</label>-->
+          <div>
               <label>Date</label>
               <md-input-container>  
               <input mdInput  [mdDatepicker]="picker" formControlName="date">   
                <button mdSuffix [mdDatepickerToggle]="picker"></button>        
               </md-input-container>
                  <md-datepicker #picker></md-datepicker>
-          </div>-->
+          </div>
 
           <div formArrayName="times">
             <div *ngFor="let time of activityForm.controls.dates.controls[i].controls.times.controls; let t=index">
@@ -208,15 +208,16 @@
                 </div>
 
                 <div [formGroupName]="t">
+                  <app-times [time]="activityForm.controls.dates.controls[i].controls.times.controls[t]"></app-times>
                     
-                    <div>
-                        <label>Times</label>
-                        <input id="time" materialize="pickatime" [materializeParams]="timePickerParams" name="time" formControlName="time" placeholder="00:00" type="text">
-                        
-                        <!--<md-input-container>  
+                    <!--<div>
+                        <label>Times</label>-->
+                        <!--<input id="time" materialize="pickatime" [materializeParams]="timePickerParams" name="time" formControlName="time" placeholder="00:00" type="text">-->
+<!--                        
+                        <md-input-container>  
                         <input mdInput type="text" formControlName="time">
-                        </md-input-container>-->
-                    </div>
+                        </md-input-container>
+                    </div>-->
                   </div>
               </div>
           </div>
