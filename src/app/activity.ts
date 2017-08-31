@@ -13,10 +13,10 @@ export class Activity {
 	publicActivity:string;
 	prices:Price[];
 	dates:Date[];
+	votes:Vote[];
+	voteCount: number;
 	//responses:Response[];
 }
-
-
 
 export class Price{
 	qty: number;
@@ -32,6 +32,14 @@ export class Time{
 	time:string
 }
 
+export class Vote {
+	userId: string;
+	dateTimes: dateTime[];
+}
+
+export class dateTime {
+	dateTime:string;
+}
 // export class Response{
 // 	userId: string;
 // 	dateTimes:dateTime[];

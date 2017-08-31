@@ -76,18 +76,9 @@
       <!--   <md-list-item>
           <i md-list-text class="material-icons opacity_54">description</i>
         </md-list-item> -->
-        <md-list *ngFor="let date of this.activity.dates">        
-          <md-list *ngFor="let time of date.times">
-            <md-checkbox>{{date.date | date}} at {{time.time}}</md-checkbox>
-          </md-list>
-      </md-list>
-      <md-list *ngFor="let price of this.activity.prices">
-        <md-list-item>{{price.perPerson}} is the price each for {{price.qty}} People </md-list-item>          
-      </md-list>      
-    </md-list>
+  </md-list>
+ <app-vote [activity]="activity"></app-vote>
 
-
-                       
   <button md-button (click)="deleteActivity(activity)">delete</button>
 
 </md-card-content>
@@ -184,7 +175,7 @@
   <div *ngFor="let date of activityForm.controls.dates.controls; let i=index"> 
       <div>
           <span>Dates {{i + 1}}</span>
-          <app-vote></app-vote>
+         
       </div>
 
       <div [formGroupName]="i">

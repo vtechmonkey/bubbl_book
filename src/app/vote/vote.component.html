@@ -1,12 +1,98 @@
 
- <div class="voter">
-    <md-list-item
-        [class.highlighted]="myVote == 1"
-        (click)="upVote()"
-    ><i class="material-icons">thumb_up</i></md-list-item>
-    <span class="vote-count">{{ voteCount + myVote }}</span>
-    <md-list-item
-        [class.highlighted]="myVote == -1"
-        (click)="downVote()"
-    ><i class="material-icons">thumb_down</i></md-list-item>
-</div>
+<!-- <div class="">
+	
+	<md-list *ngFor="let date of this.activity.dates">     
+
+		<md-list *ngFor="let time of date.times">
+
+			<md-list-item>
+			{{date.date | date}} at {{time.time }}
+				<md-list-item
+				[class.highlighted]="myVote == 1"
+				(click)="upVote()"
+				><i class="material-icons">thumb_up</i>
+				</md-list-item>
+				<span class="vote-count">{{ voteCount + myVote }}</span>
+				<md-list-item
+				[class.highlighted]="myVote == -1"
+				(click)="downVote()"
+				><i class="material-icons">thumb_down</i>
+				</md-list-item>
+			</md-list-item> -->
+<!-- 		</md-list> --><!-- *ngFor="let time of date.times" -->
+<!-- 
+	</md-list> --><!-- *ngFor="let date of this.activity.dates" -->
+<!-- 	
+</div> -->
+
+<!-- <md-list *ngFor="let price of this.activity.prices">
+	<md-list-item>{{price.perPerson}} is the price each for {{price.qty}} People </md-list-item>          
+</md-list>       -->
+
+
+<form #f=ngForm novalidate>Tick your preferred dates:
+
+	<md-list *ngFor="let date of this.activity.dates">     
+
+		<md-list *ngFor="let time of date.times">
+			<!-- <md-checkbox>{{date.date | date}} at {{time.time}}</md-checkbox> -->
+			<md-list-item>
+			{{date.date | date}} at {{time.time }}
+	
+			
+				<md-list-item
+				[class.highlighted]="myVote == 1"
+				(click)="upVote()"
+				><i class="material-icons">thumb_up</i>
+				</md-list-item>
+				
+					voteCount is {{this.activity.voteCount}} my vote is {{myVote}}
+
+				<md-list-item
+				[class.highlighted]="myVote == -1"
+				(click)="downVote()"
+				><i class="material-icons">thumb_down</i>
+				</md-list-item>
+				</md-list-item>
+		</md-list>
+	</md-list>
+	<input type="text" value="this.activity.name" name="name" [(ngModel)]="activity.name">
+	<button type="submit" (click)="saveVote()">Save my vote</button>
+</form>
+<!-- 
+{{f.value | json}}
+<div style="width: 300px; margin-bottom: 20px;">
+  <h3>Select multiple cities</h3>
+  <select  [multiple]="true"
+              [items]="activity.dates"
+              [disabled]="disabled"
+              (data)="refreshValue($event)"
+              (selected)="selected($event)"
+              (removed)="removed($event)"
+              placeholder="No city selected"></select>
+  <pre>{{itemsToString(value)}}</pre>
+  <div>
+    <button type="button" class="btn btn-primary"
+            [(ngModel)]="disabledV" btnCheckbox
+            btnCheckboxTrue="1" btnCheckboxFalse="0">
+      {{disabled === '1' ? 'Enable' : 'Disable'}}
+    </button>
+  </div>
+</div> -->
+
+<!-- 
+<form #m=ngForm>
+	<md-list *ngFor="let date of this.activity.dates">  
+
+		<md-list *ngFor="let time of date.times">
+		<select multiple="" [(ngModel)]="date.date" name="dateTime">
+		
+			<option  *ngFor="let time of date.times" >{{date.date | date}} at {{time.time }}</option>
+		
+		</select>
+		</md-list>
+			</md-list>
+	
+</form>
+
+{{m.value | json }} -->

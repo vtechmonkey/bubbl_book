@@ -59,6 +59,7 @@ publicActivity:FormControl;
 prices:FormArray;
 dates:FormArray;
 
+
 @Input() activity: Activity;
 @Output() close = new EventEmitter();
 
@@ -286,7 +287,9 @@ localStorageForm:any;
       subCategory: activityModel.subCategory as string,
       publicActivity: activityModel.publicActivity as string,
       prices:priceModelCopy,
-      dates:datesModelCopy
+      dates:datesModelCopy,
+      votes:[],
+      voteCount:this.activity.voteCount as number  
 
      
     };

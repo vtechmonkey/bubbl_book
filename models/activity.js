@@ -13,7 +13,9 @@ var ActivitySchema = new mongoose.Schema({
 	publicActivity:String,
     prices:[],
 	dates:[],
-	responses:[]
+	responses:[],
+	votes:[],
+	voteCount: Number
 
 	// dates:[{*/}
 	// 	dates:String,
