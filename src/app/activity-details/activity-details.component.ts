@@ -230,7 +230,7 @@ ngAfterViewInit(){
 
     initDate() {
         return this.fb.group({
-            date: ['', Validators.required],
+            date: [null, Validators.required],
             times:this.fb.array([
               this.initTime(),
             ])

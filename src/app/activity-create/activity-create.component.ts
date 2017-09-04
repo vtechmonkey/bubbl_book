@@ -119,16 +119,14 @@ localStorageForm:any;
       categoryData => this.allCategories = _.uniqBy(categoryData, 'category')
       )
 
-        console.log(this.auth.userProfile);
-        console.log(this.auth.userProfile.email);
         if (this.auth.userProfile){
           console.log(this.auth.userProfile.user_id);
           }
 
         if (!this.auth.userProfile){
-          console.log("ain't nobody home girlfriend");
+          console.log("nobody logged in");
           localStorage.removeItem('activity');
-          this.localStorageForm = undefined;
+          this.localStorageForm = null;
 
         }
 
@@ -224,7 +222,7 @@ localStorageForm:any;
 
     initDate() {
         return this.fb.group({
-            date: '',//['', Validators.required],
+            date: null,//['', Validators.required],
             times:this.fb.array([
               this.initTime(),
             ])

@@ -183,7 +183,7 @@
               <label>Date</label>
               <md-input-container>  
               <input mdInput  [mdDatepicker]="picker" formControlName="date">   
-               <button mdSuffix [mdDatepickerToggle]="picker"></button>        
+               <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>        
               </md-input-container>
                  <md-datepicker #picker></md-datepicker>
           </div>

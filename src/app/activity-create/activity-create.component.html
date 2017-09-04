@@ -1,4 +1,6 @@
-<md-toolbar color="primary">
+<app-navbar [title]="title"></app-navbar>
+
+<!-- <md-toolbar color="primary">
   <button class="app-icon-button" [mdMenuTriggerFor]="menu">
       <i class="material-icons app-toolbar-menu" color="accent">menu</i>
     </button>
@@ -24,11 +26,11 @@
   
   </div>
   <ng-template #login> Login to save your event</ng-template>
-    <span class="fillSpace"></span> <!-- fill space between buttons so they are either side of the toolbar -->
+    <span class="fillSpace"></span> 
   <button md-button disabled> 
-     <i class="material-icons">done</i>    <!-- should this save?? -->
+     <i class="material-icons">done</i>    
   </button>     
-</md-toolbar>
+</md-toolbar> -->
 
 
 
@@ -184,13 +186,13 @@
       </div>
 
       <div [formGroupName]="i">
-         <!--<input placeholder="Placeholder" id="date" type="text"  formControlName="date" class="validate">
-          <label for="date">Date</label>-->
+         <input placeholder="Placeholder" id="date" type="text"  formControlName="date" class="validate">
+          <label for="date">Date</label>
           <div>
               <label>Date</label>
               <md-input-container>  
               <input mdInput  [mdDatepicker]="picker" formControlName="date">   
-               <button mdSuffix [mdDatepickerToggle]="picker"></button>        
+               <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>     
               </md-input-container>
                  <md-datepicker #picker></md-datepicker>
           </div>

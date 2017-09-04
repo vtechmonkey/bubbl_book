@@ -33,20 +33,7 @@ html { font-family: 'Roboto', sans-serif; }
   text-decoration: none;
 }
 
-#menu-login {
-  outline:0;
-  width:100%;
-  border:none;
-  background:transparent;
-  text-align:left;
-  padding:0;
 
-}
-#menu-login .loginBtn {
-  font-size:16px;
-  text-align: left;
-  width:100%;
-}
 
 .opacity_87 {
   color: rgba(0,0,0, 0.87);
@@ -101,6 +88,21 @@ html { font-family: 'Roboto', sans-serif; }
      width: calc(40% + 48px)!important;
     float: right;
   }
+}
+#menu-login {
+  outline:0;
+  width:100%;
+  border:none;
+  background:transparent;
+  text-align:left;
+  padding:0;
+
+}
+#menu-login .loginBtn {
+  font-size:16px !important;
+  text-align: left;
+  width:100%;
+  color:#fff;
 }
 
 @media all and (max-width:1024px) {
