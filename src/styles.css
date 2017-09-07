@@ -85,6 +85,11 @@ html { font-family: 'Roboto', sans-serif; }
   width:100%;
 }
 
+.alert{
+    color:  #ff0000;
+    font-size: 12px;
+}
+
 @media all and (min-width:1024px) {
   .main {
     padding:3em 0;
@@ -114,13 +119,16 @@ html { font-family: 'Roboto', sans-serif; }
     text-align: left;
     line-height: 1.2;
     color: #000000;
-    position: absolute;
+    position: relative;
+    /*position: absolute;*/
     z-index: 10000;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    outline: none
+    outline: none;
+    overflow:visible;
+    margin-top: -450px;
 }
 .picker__input {
     cursor: default
@@ -133,28 +141,27 @@ html { font-family: 'Roboto', sans-serif; }
     overflow-y: auto;
     -webkit-overflow-scrolling: touch
 }
-/*!
- * Default mobile-first, responsive styling for pickadate.js
- * Demo: http://amsul.github.io/pickadate.js
- */
+
 
 .picker__holder,
 .picker__frame {
     bottom: 0;
     left: 0;
     right: 0;
-    /*top: 100%*/
+    top: -50px;
 }
 .picker__holder {
-    /*position: fixed;*/
+    /*position: relative;*/
+     overflow: visible !important;
     -webkit-transition: background 0.15s ease-out, top 0s 0.15s;
     transition: background 0.15s ease-out, top 0s 0.15s;
-    -webkit-backface-visibility: hidden
+    -webkit-backface-visibility: hidden;
 }
+
 .picker__frame {
-    position: absolute;
+    /*position: absolute;*/
     margin: 0 auto;
-    min-width: 656px;
+    min-width: 256px;
     width: 300px;
     max-height: 350px;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -169,8 +176,7 @@ html { font-family: 'Roboto', sans-serif; }
         overflow: visible;
         top: auto;
         bottom: -100%;
-        max-height: 10%;
-        min-width: 256px;
+        max-height: 80%
     }
 }
 @media (min-height: 40.125em) {
@@ -205,16 +211,16 @@ html { font-family: 'Roboto', sans-serif; }
     }
 }
 .picker--opened .picker__holder {
-    top: 0;
+    top: 10%;
     background: transparent;
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#1E000000,endColorstr=#1E000000)";
     zoom: 1;
-    background: rgba(0, 0, 0, 0.32);
+    /*background: rgba(0, 0, 0, 0.32);*/
     -webkit-transition: background 0.15s ease-out;
     transition: background 0.15s ease-out
 }
 .picker--opened .picker__frame {
-    top: 0;
+    top: 10%;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     filter: alpha(opacity=100);
     -moz-opacity: 1;
@@ -235,7 +241,7 @@ html { font-family: 'Roboto', sans-serif; }
 }
 @media (min-height: 38.875em) {
     .picker--opened .picker__frame {
-        top: 50%;
+        top: 10%;
         bottom: auto
     }
 }
