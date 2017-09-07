@@ -53,14 +53,17 @@ allCategories: ICategory[];
 subCategoryByCategory: ISubCategory[];    
 activityForm: FormGroup;    
 name: FormControl;    
-description: FormControl;    
-venue:FormControl;    
+description: FormControl;
+fullDescription: FormControl;    
+activityLocation:FormControl;
+duration:FormControl
+providerUrl:FormControl;    
 imageURL:any;    
 min:FormControl;    
 max:FormControl;    
 category:FormControl;    
 subCategory:FormControl;    
-publicActivity:FormControl;    
+comments:FormControl;    
 prices:FormArray;    
 dates:FormArray;    
 
@@ -124,12 +127,19 @@ userProfile = this.userProfile;//user icon from auth0
             .subscribe((response) =>{
               this.activity = response; 
             // using patchValue to populate the form as it doesn't expect exactly matching data
+                    
               this.activityForm  
                .patchValue({name:this.activity.name})
               this.activityForm
-               .patchValue({venue:this.activity.venue})
+               .patchValue({activityLocation:this.activity.activityLocation})
               this.activityForm
                .patchValue({description:this.activity.description})
+               this.activityForm
+               .patchValue({fullDescription:this.activity.fullDescription})
+               this.activityForm
+               .patchValue({duration:this.activity.duration})
+               this.activityForm
+               .patchValue({providerUrl:this.activity.providerUrl})
               this.activityForm
                .patchValue({category:this.activity.category})              
               this.activityForm  
@@ -139,7 +149,7 @@ userProfile = this.userProfile;//user icon from auth0
               this.activityForm  
                .patchValue({max:this.activity.max})
               this.activityForm  
-               .patchValue({publicActivity:this.activity.publicActivity})            
+               .patchValue({comments:this.activity.comments})            
               this.activityForm  
                .patchValue({prices:this.activity.prices})      
               this.activityForm  
@@ -185,39 +195,39 @@ ngAfterViewInit(){
 
 
 }     
-    
-
-//     this.subCategoryService.getSubCategory(this.activity.category)
-
-
+  
       createForm() {
         
-         this.name = new FormControl('')//, [Validators.required]);
-         this.description = new FormControl('')//, [Validators.required]);
-         this.venue = new FormControl('')//, [Validators.required]);
-         //this.imageURL = new FormControl('', [Validators.required]); 
-         this.min = new FormControl('')//, [Validators.required]);
-         this.max = new FormControl('')//, [Validators.required]);
-         this.category = new FormControl('')//, [Validators.required]);
-         this.subCategory = new FormControl('')//, [Validators.required]);
-         this.publicActivity = new FormControl('')//, [Validators.required]);
-         this.prices = this.fb.array([this.initPrice()]);
-         this.dates = this.fb.array([this.initDate()]);
+    this.name = new FormControl('', [Validators.required]);
+    this.description = new FormControl('')//, [Validators.required]);
+    this.fullDescription = new FormControl('')//, [Validators.required]);
+    this.activityLocation = new FormControl('')//, [Validators.required]);
+    this.duration = new FormControl('')//, [Validators.required]); 
+    this.providerUrl = new FormControl('')//, [Validators.required]);      
+    this.min = new FormControl('')//, [Validators.required]);
+    this.max = new FormControl('')//, [Validators.required]);
+    this.category = new FormControl('')//, [Validators.required]);
+    this.subCategory = new FormControl('')//, [Validators.required]);
+    this.comments = new FormControl('')//, [Validators.required]);
+    this.prices = this.fb.array([this.initPrice()]);
+    this.dates = this.fb.array([this.initDate()]);
          
-          this.activityForm = this.fb.group({
-            name: this.name,
-            description: this.description,
-            venue:this.venue,        
-            min:this.min,
-            max:this.max,
-            category:this.category,
-            subCategory:this.subCategory,
-            publicActivity:this.publicActivity,
-            prices:this.prices,
-            dates:this.dates,
-            imageURL: this.pics.imageURL
-       
-          });
+      this.activityForm = this.fb.group({
+      name: this.name,
+      description: this.description,
+      fullDescription: this.fullDescription,
+      activityLocation: this.activityLocation,
+      duration: this.duration,
+      providerUrl: this.providerUrl,
+      min: this.min,
+      max: this.max,
+      category: this.category,
+      subCategory: this.subCategory,
+      comments: this.comments,
+      prices: this.prices,
+      dates: this.dates,
+      imageURL: this.pics.imageURL
+    });
   }
 
          
@@ -294,19 +304,22 @@ ngAfterViewInit(){
 
     
     const saveActivity: Activity = {
-      authUserId: this.auth.userProfile.user_id as string,
-      _id:this.activity._id as string,  //edit this activity, remove this line to create a new activity
+     authUserId: this.auth.userProfile.user_id as string,
+      _id: activityModel._id as string,
       name: activityModel.name as string,
       description: activityModel.description as string,
-      venue: activityModel.venue as string,
+      fullDescription: activityModel.fullDescription as string,
+      activityLocation: activityModel.activityLocation as string,
+      duration: activityModel.duration as string,
+      providerUrl: activityModel.providerUrl as string,
       imageURL: this.pics.imageURL as string,
       min: activityModel.min as number,
       max: activityModel.max as number,
       category: activityModel.category as string,
       subCategory: activityModel.subCategory as string,
-      publicActivity: activityModel.publicActivity as string,
-      prices:priceModelCopy,
-      dates:datesModelCopy,
+      comments: activityModel.comments as string,
+      prices: priceModelCopy,
+      dates: datesModelCopy,
       votes:[],
       voteCount:this.activity.voteCount as number  
     };

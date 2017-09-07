@@ -1,20 +1,23 @@
 export class Activity {
 
-	authUserId:string;
-     _id:string;
+	authUserId: string;
+	_id:string;
 	name: string;
 	description:string;
-	venue: string;
-	imageURL: string;
-	min: number;
-	max: number;
-	category: string;
-	subCategory: string;
-	publicActivity:string;
-	prices:Price[];
+	fullDescription:string;
+	duration:string;
+	activityLocation:string;
+	imageURL:string;
+	min:number;
+	max:number;
+	providerUrl:string;
+	category:string;
+	subCategory:string;
+	comments:string;
+    prices:Price[];
 	dates:Date[];
 	votes:Vote[];
-	voteCount: number;
+	voteCount:number
 	//responses:Response[];
 }
 
