@@ -16,6 +16,11 @@ html { font-family: 'Roboto', sans-serif; }
   padding: 0 14px 0 14px;
   }
 
+  .mat-sidenav-content {
+    overflow: hidden !important;
+}
+
+
 .app-icon-button {
   box-shadow: none;
   user-select: none;
@@ -89,6 +94,12 @@ html { font-family: 'Roboto', sans-serif; }
     color:  #ff0000;
     font-size: 12px;
 }
+.text-inside-grid {
+    display: inline-flex;
+    align-items: left;
+    justify-content: left;
+    vertical-align: left;
+}q
 
 @media all and (min-width:1024px) {
   .main {
@@ -828,4 +839,13 @@ button.picker__close:focus {
     stroke: #26a69a;
     stroke-width: 4;
     stroke-linecap: round
+}
+
+.align-text{
+    margin: auto !important;
+    left:50% !important;
+    /*display: inline-block !important;
+    text-align: center !important;*/
+    
+
 }

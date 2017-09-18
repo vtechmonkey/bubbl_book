@@ -206,7 +206,7 @@
                 </div>
                 <div class="form-group">
                   <md-input-container>
-                    <input mdInput type="text" class="form-control" formControlName="perPerson" placeholder="Price per peron">
+                    <input mdInput type="text" class="form-control" formControlName="perPerson" placeholder="Price per peron" myCurrencyFormatter (ngModelChange)="changeModel($event)">
                   </md-input-container>
                 </div>
               </div>

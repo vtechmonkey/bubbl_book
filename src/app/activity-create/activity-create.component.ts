@@ -25,6 +25,7 @@ import { ISubCategory } from '../subCategory/subCategory';
 
 import { TimesComponent } from '../times/times.component';
 
+import {MyCurrencyPipe} from '../my-currency.pipe';
 
 
 @Component({
@@ -60,8 +61,7 @@ export class ActivityCreateComponent implements OnInit {
   prices: FormArray;
   dates: FormArray;
   comments: FormControl;
-
-
+  perPerson
   @Input() activity: Activity;
   @Output() close = new EventEmitter();
 
@@ -78,6 +78,7 @@ export class ActivityCreateComponent implements OnInit {
     private router: Router,
     private pics: PicsService,
     private auth: AuthService,
+    private mycurpipe: MyCurrencyPipe,
     location: Location,
     public dialog: MdDialog, //more details dialog    
     @Inject(DOCUMENT) doc: any,
@@ -90,6 +91,9 @@ export class ActivityCreateComponent implements OnInit {
     this.pics.imageURL = pics.imageURL; // default string or image url of image uploaded with pics service
     this.localStorageForm = (JSON.parse(localStorage.getItem('activity')));
     console.log(this.localStorageForm);
+  }
+  private changeModel(ev) {
+    this.perPerson = ev;
   }
 
   ngOnInit() {

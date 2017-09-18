@@ -38,8 +38,8 @@ import { VoteComponent } from './vote/vote.component';
 import { TimesComponent } from './times/times.component';
 import * as $ from 'jquery';
 import { MaterializeModule } from 'angular2-materialize';
-
-
+import { MyCurrencyPipe } from './my-currency.pipe';
+import { MyCurrencyFormatterDirective } from './my-currency-formatter.directive';
 
 export function authHttpServiceFactory(http:Http, options: RequestOptions) {
   return new AuthHttp (new AuthConfig({}), http, options);
@@ -66,9 +66,10 @@ export class MyHammerConfig extends HammerGestureConfig  {
     NavbarComponent,
     CapitalizePipe,
     VoteComponent,
-    TimesComponent
+    TimesComponent,
+    MyCurrencyPipe,
+    MyCurrencyFormatterDirective
     
-
   ],
   imports: [
     BrowserModule,
@@ -81,12 +82,14 @@ export class MyHammerConfig extends HammerGestureConfig  {
     MdNativeDateModule,
     MdInputModule,
     BrowserAnimationsModule,
-    MaterializeModule
+    MaterializeModule,
+    
   
 
   ],
   providers: [
-  ActivitiesService,CategoryService,SubCategoryService,appRoutingProviders, SearchService, AuthService,PicsService,
+  ActivitiesService,CategoryService,SubCategoryService,appRoutingProviders, SearchService,MyCurrencyPipe,
+    MyCurrencyFormatterDirective, AuthService,PicsService,
     {
     provide:AuthHttp,
     useFactory:authHttpServiceFactory,
