@@ -1,4 +1,3 @@
-
 <md-toolbar color="primary">
   <button class="app-icon-button" [mdMenuTriggerFor]="menu">
       <i class="material-icons app-toolbar-menu" color="accent">menu</i>
@@ -15,159 +14,183 @@
     </button>
     <button id="menu-login">
       <app-login></app-login>  
-    </button>  
+    </button>
   </md-menu>
   <button md-button (click)="gotoActivitiesList()">
       <i class="material-icons" color="accent">arrow_back</i>
-  </button>
-
-   {{title}} <!--  page title  -->
-    <span class="fillSpace"></span> <!-- fill space between buttons so they are either side of the toolbar -->
-    <button md-button disabled>
+  </button> {{title}}
+  <!--  page title  -->
+  <span class="fillSpace"></span>
+  <!-- fill space between buttons so they are either side of the toolbar -->
+  <button md-button disabled>
      <i class="material-icons">search</i>    
   </button>
 
 </md-toolbar>
 <!--get selected activity -->
-<section *ngIf="activity">  <section>
-<div>
-  <md-card>
-  <md-card-header>
-  <!--   show user avatar if available if not use generic avatar  -->   
-     <div md-card-avatar *ngIf="auth.authenticated() && auth.userProfile; else generic">
-       <img md-card-avatar src="{{auth.userProfile.picture}}" alt="user profile picture" >
-    </div>
-     <ng-template #generic>
-        <div md-card-avatar class="opacity_54"> <!--avatar svg-->
-          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" 
-              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-              viewBox="-287 289 24 24"  xml:space="preserve"  style="fill-opacity:.54;">
-              <style type="text/css">
-                .st0{fill:none;}
-              </style>
-              <path d="M-278,300.8c-0.7,0-1.3,0.6-1.3,1.3s0.6,1.3,1.3,1.3s1.3-0.6,1.3-1.3S-277.3,300.8-278,300.8z M-272,300.8
+<section *ngIf="activity">
+  <section>
+    <div>
+      <md-card>
+        <md-card-header>
+          <!--   show user avatar if available if not use generic avatar  -->
+          <div md-card-avatar *ngIf="auth.authenticated() && auth.userProfile; else generic">
+            <img md-card-avatar src="{{auth.userProfile.picture}}" alt="user profile picture">
+          </div>
+          <ng-template #generic>
+            <div md-card-avatar class="opacity_54">
+              <!--avatar svg-->
+              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="-287 289 24 24" xml:space="preserve" style="fill-opacity:.54;">
+                <style type="text/css">
+                  .st0 {
+                    fill: none;
+                  }
+                </style>
+                <path d="M-278,300.8c-0.7,0-1.3,0.6-1.3,1.3s0.6,1.3,1.3,1.3s1.3-0.6,1.3-1.3S-277.3,300.8-278,300.8z M-272,300.8
                 c-0.7,0-1.3,0.6-1.3,1.3s0.6,1.3,1.3,1.3s1.3-0.6,1.3-1.3S-271.3,300.8-272,300.8z M-275,291c-5.5,0-10,4.5-10,10s4.5,10,10,10
                 s10-4.5,10-10S-269.5,291-275,291z M-275,309c-4.4,0-8-3.6-8-8c0-0.3,0-0.6,0-0.9c2.4-1.1,4.2-3,5.2-5.4c1.8,2.6,4.8,4.2,8.2,4.2
-                c0.8,0,1.5-0.1,2.3-0.3c0.2,0.7,0.3,1.5,0.3,2.3C-267,305.4-270.6,309-275,309z"/>
-              <path class="st0" d="M-287,289h24v24h-24V289z"/>
-          </svg>
-        </div> 
-      </ng-template>
- 
+                c0.8,0,1.5-0.1,2.3-0.3c0.2,0.7,0.3,1.5,0.3,2.3C-267,305.4-270.6,309-275,309z" />
+                <path class="st0" d="M-287,289h24v24h-24V289z" />
+              </svg>
+            </div>
+          </ng-template>
 
-    <md-card-title class="opacity_87">{{activity.name | capitalize}}</md-card-title>
-    <md-card-subtitle class="opacity_54">{{activity.venue | capitalize}}</md-card-subtitle>
-    
-  </md-card-header>
-  <img md-card-image class="smImg" src={{activity.imageURL}} alt={{activity.imageURL}}>
-  <md-card-content class="rightText">
-    <md-list class="opacity_87">
-        <md-list-item>{{activity.description}} 
-        </md-list-item> 
-        <md-list-item>
-          <span mdTooltip="add  to my favourites" mdTooltipPosition="after">
+
+          <md-card-title class="opacity_87">{{activity.name | capitalize}}</md-card-title>
+          <md-card-subtitle class="opacity_54">{{activity.venue | capitalize}}</md-card-subtitle>
+
+        </md-card-header>
+        <img md-card-image class="smImg" src={{activity.imageURL}} alt={{activity.imageURL}}>
+        <md-card-content class="rightText">
+          <md-list class="opacity_87">
+            <md-list-item>{{activity.description}}
+            </md-list-item>
+            <md-list-item>
+              <span mdTooltip="add  to my favourites" mdTooltipPosition="after">
             <i class="material-icons opacity_54">favorite</i>
-          </span><!-- add to favourites (not implemented) -->     
-          <button md-button class="smBtn" (click)="toggle()">Edit this activity</button><!--  show form  -->
-          <button md-button class="smBtn" (click)="gotoActivitiesList()">DISMISS</button> <!-- go back -->
-            <!-- open more details and edit -->
-          <button md-button (click)="moreDetails()"> More Details</button>
-        </md-list-item>
-      <!--   <md-list-item>
+          </span>
+              <!-- add to favourites (not implemented) -->
+              <button md-button class="smBtn" (click)="toggle()">Edit this activity</button>
+              <!--  show form  -->
+              <button md-button class="smBtn" (click)="gotoActivitiesList()">DISMISS</button>
+              <!-- go back -->
+              <!-- open more details and edit -->
+              <button md-button (click)="moreDetails()"> More Details</button>
+            </md-list-item>
+            <!--   <md-list-item>
           <i md-list-text class="material-icons opacity_54">description</i>
         </md-list-item> -->
-  </md-list>
- <app-vote [activity]="activity"></app-vote>
+          </md-list>
+          <app-vote [activity]="activity"></app-vote>
 
-  <button md-button (click)="deleteActivity(activity)">delete</button>
+          <button md-button (click)="deleteActivity(activity)">delete</button>
 
-</md-card-content>
+        </md-card-content>
 
- <form [formGroup]="activityForm" (ngSubmit)="onSubmit()" [ngClass]="showActivityForm" novalidate>
-        
-      <!--name-->
-      <div class="form-group">
-        <md-input-container>      
-            <input mdInput type="text" class="form-control" formControlName="name" placeholder="Name your event">
-      </md-input-container>
-      </div>
-     
+        <form [formGroup]="activityForm" (ngSubmit)="onSubmit()" [ngClass]="showActivityForm" novalidate>
 
-      <!--description-->
-    <div class="form-group">
-      <md-input-container>
-      
-        <input mdInput type="text" class="form-control" formControlName="description" placeholder="Describe your event">
-      </md-input-container>
-    </div>
-      
-
-      <!--venue-->
-      <div class="form-group">
-      <md-input-container>
-       
-        <input mdInput type="text" class="form-control" formControlName="venue" placeholder="venue">
-       </md-input-container>
-      </div>
-     
-
-      <!--min-->
-    <div class="form-group">
-      <md-input-container>
-  
-        <input mdInput type="number" class="form-control" formControlName="min" placeholder="Minimum number of participants">
-      </md-input-container>
-    </div>
-      
-
-      <!--max-->
-      <div class="form-group">
-      <md-input-container>
-       
-        <input mdInput type="number" class="form-control" formControlName="max" placeholder="Maximum number of participants">
-      </md-input-container>
-      </div>
-     
-
-        <!--price-->
-        <md-card>
-        <div formArrayName="prices">
-          <div *ngFor="let price of activityForm.controls.prices.controls; let i=index">
-            
-              <span>Price {{i + 1}}</span>
-              
-            <div [formGroupName]="i">
-              <div class="form-group">
-                <label>qty</label>
-                <md-input-container>       
-                <input mdInput type="number" class="form-control" formControlName="qty">
-                </md-input-container>
-              </div>
-              <div class="form-group">
-                <label>Price per person</label>
-                <md-input-container>       
-                <input mdInput type="text" class="form-control" formControlName="perPerson">
-                </md-input-container>
-              </div>
-            </div>
+          <!--name-->
+          <div class="form-group">
+            <md-input-container>
+              <input mdInput type="text" class="form-control" formControlName="name" placeholder="Name your event">
+            </md-input-container>
           </div>
+
+          <!--short description-->
+          <div class="form-group">
+            <md-input-container>
+              <input mdInput type="text" class="form-control" formControlName="description" placeholder="Short description of your event">
+            </md-input-container>
+          </div>
+
+           <!--Full description-->
+          <div class="form-group">
+            <md-input-container>
+              <input mdInput type="text" class="form-control" formControlName="fullDescription" placeholder="Full description of your event">
+            </md-input-container>
+          </div>
+
+           <!--Location-->
+        <div class="form-group">
+          <md-input-container>
+            <input mdInput type="text" class="form-control" formControlName="activityLocation" placeholder="Location">
+          </md-input-container>
         </div>
 
-      
-          <a (click)="addPrice()">
+          <!--Duration-->
+          <div class="form-group">
+            <md-input-container>
+              <input mdInput type="text" class="form-control" formControlName="duration" placeholder="Duration">
+            </md-input-container>
+          </div>
+
+         <!--Provider Url-->
+        <div class="form-group">
+          <md-input-container>
+            <input mdInput type="text" class="form-control" formControlName="providerUrl" placeholder="Providers website">
+          </md-input-container>
+        </div>
+
+
+          <!--min-->
+          <div class="form-group">
+            <md-input-container>
+
+              <input mdInput type="number" class="form-control" formControlName="min" placeholder="Minimum number of participants">
+            </md-input-container>
+          </div>
+
+
+          <!--max-->
+          <div class="form-group">
+            <md-input-container>
+
+              <input mdInput type="number" class="form-control" formControlName="max" placeholder="Maximum number of participants">
+            </md-input-container>
+          </div>
+
+
+          <!--price-->
+          <md-card>
+            <div formArrayName="prices">
+              <div *ngFor="let price of activityForm.controls.prices.controls; let i=index">
+
+                <span>Price {{i + 1}}</span>
+
+                <div [formGroupName]="i">
+                  <div class="form-group">
+                    <label>qty</label>
+                    <md-input-container>
+                      <input mdInput type="number" class="form-control" formControlName="qty">
+                    </md-input-container>
+                  </div>
+                  <div class="form-group">
+                    <label>Price per person</label>
+                    <md-input-container>
+                      <input mdInput type="text" class="form-control" formControlName="perPerson">
+                    </md-input-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <a (click)="addPrice()">
             Add another price +
           </a>
-        </md-card>
+          </md-card>
           <br/>
-<!--datestimes-->
-<md-card>
-      Dates
- 
-    <div class="">
-     
-  <a (click)="addDate()" style="cursor: default">
+          <!--datestimes-->
+          <md-card>
+            Dates
+
+            <div class="">
+
+              <a (click)="addDate()" style="cursor: default">
     Add Date +
   </a>
+
 </div>
 
 
@@ -188,101 +211,113 @@
                  <md-datepicker #picker></md-datepicker>
           </div>
 
-          <div formArrayName="times">
-            <div *ngFor="let time of activityForm.controls.dates.controls[i].controls.times.controls; let t=index">
-                <div class="">
-                  <a (click)="addTime(i,t)">
+
+                <div [formGroupName]="i">
+                  <div>
+                    <label>Date</label>
+                    <md-input-container>
+                      <input mdInput [mdDatepicker]="picker" formControlName="date">
+                      <button mdSuffix [mdDatepickerToggle]="picker"></button>
+                    </md-input-container>
+                    <md-datepicker #picker></md-datepicker>
+                  </div>
+
+                  <div formArrayName="times">
+                    <div *ngFor="let time of activityForm.controls.dates.controls[i].controls.times.controls; let t=index">
+                      <div class="">
+                        <a (click)="addTime(i,t)">
                     Add Time +
                   </a>
-                </div>
+                      </div>
 
-                <div>
-                    <span>Times{{t + 1}}</span>
-                </div>
+                      <div>
+                        <span>Times{{t + 1}}</span>
+                      </div>
 
-                <div [formGroupName]="t">
-                    
-                    <div>
-                        <label>Times</label>
-                        <md-input-container>  
-                        <input mdInput type="text" formControlName="time">
-                        </md-input-container>
+                      <div [formGroupName]="t">
+
+                        <div>
+                          <label>Times</label>
+                          <md-input-container>
+                            <input mdInput type="text" formControlName="time">
+                          </md-input-container>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                </div>
               </div>
+            </div>
+
+          </md-card>
+
+
+          <!--category-->
+          <div class="form-group">
+
+            <label>category: </label>
+            <md-select formControlName="category" (change)="onSelect($event.value)">
+              <md-option *ngFor="let oneCategory of allCategories" [value]="oneCategory.category">
+                {{oneCategory.category}}
+              </md-option>
+            </md-select>
+
+
           </div>
-      </div>
-  </div>
-</div>
-   
-</md-card>   
 
-       
-       <!--category-->
-      <div class="form-group">
-      
-        <label>category: </label>
-        <md-select  formControlName="category" (change)="onSelect($event.value)">
-                  <md-option *ngFor="let oneCategory of allCategories" [value]="oneCategory.category">
-                    {{oneCategory.category}}
-                  </md-option>
-        </md-select>                  
-            
-      
-      </div>
+          <!--subCategory-->
+          <div class="form-group">
 
-      <!--subCategory-->
-      <div class="form-group">
-      
-        <label >subCategory: </label>
-        <md-select formControlName="subCategory">
-                  <md-option *ngFor="let oneSubCategory of subCategoryByCategory" [value]="oneSubCategory.subCategory">
-                    {{oneSubCategory.subCategory}}
-                  </md-option>
-        </md-select>         
-       
-    </div>
-      
+            <label>subCategory: </label>
+            <md-select formControlName="subCategory">
+              <md-option *ngFor="let oneSubCategory of subCategoryByCategory" [value]="oneSubCategory.subCategory">
+                {{oneSubCategory.subCategory}}
+              </md-option>
+            </md-select>
 
-     <!--public-->
-     <div class="form-group">
-       <!--<md-input-container>-->
-        <label>public:</label>
-        <md-checkbox formControlName="publicActivity" [checked]="true"></md-checkbox>
-              <input mdInput type="text" class="form-control" formControlName="publicActivity">
-       <!--</md-input-container>-->
-     </div>
-    
-   
-      <br>
+          </div>
 
-       
-      <div *ngIf="!auth.authenticated(); else submit">
-      Login to save your event
-      <app-login></app-login>
-      </div>
-      <ng-template #submit>
-        <button  md-button type="submit" [disabled]="activityForm.pristine">Save</button>
-      </ng-template>
-       
-    </form>
-       
-<!--      
+
+          <!--comments-->
+        <div class="form-group">
+          <md-input-container>
+            <input mdInput type="text" class="form-control" formControlName="comments" placeholder="Additional info">
+          </md-input-container>
+        </div>
+
+
+          <br>
+
+
+          <div *ngIf="!auth.authenticated(); else submit">
+            Login to save your event
+            <app-login></app-login>
+          </div>
+          <ng-template #submit>
+            <button md-button type="submit" [disabled]="activityForm.pristine">Save</button>
+          </ng-template>
+
+        </form>
+
+        <!--      
       {{url}} <br/>
 {{location.path()}}<br/> -->
 
 
 
-    <!--   send link to this page via whatsapp,svg is the wahtsapp logo -->
-<md-card-actions>
+        <!--   send link to this page via whatsapp,svg is the wahtsapp logo -->
+        <md-card-actions>
 
- Cut and paste the link below and click here 
- <a href="whatsapp://send?text=paste your link here">
- <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M16.75,13.96C17,14.09 17.16,14.16 17.21,14.26C17.27,14.37 17.25,14.87 17,15.44C16.8,16 15.76,16.54 15.3,16.56C14.84,16.58 14.83,16.92 12.34,15.83C9.85,14.74 8.35,12.08 8.23,11.91C8.11,11.74 7.27,10.53 7.31,9.3C7.36,8.08 8,7.5 8.26,7.26C8.5,7 8.77,6.97 8.94,7H9.41C9.56,7 9.77,6.94 9.96,7.45L10.65,9.32C10.71,9.45 10.75,9.6 10.66,9.76L10.39,10.17L10,10.59C9.88,10.71 9.74,10.84 9.88,11.09C10,11.35 10.5,12.18 11.2,12.87C12.11,13.75 12.91,14.04 13.15,14.17C13.39,14.31 13.54,14.29 13.69,14.13L14.5,13.19C14.69,12.94 14.85,13 15.08,13.08L16.75,13.96M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C10.03,22 8.2,21.43 6.65,20.45L2,22L3.55,17.35C2.57,15.8 2,13.97 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12C4,13.72 4.54,15.31 5.46,16.61L4.5,19.5L7.39,18.54C8.69,19.46 10.28,20 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z" /></svg>
- </a>
- to send this activity to your contacts  <br/>
+          Cut and paste the link below and click here
+          <a href="whatsapp://send?text=paste your link here">
+            <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24"
+              viewBox="0 0 24 24">
+              <path d="M16.75,13.96C17,14.09 17.16,14.16 17.21,14.26C17.27,14.37 17.25,14.87 17,15.44C16.8,16 15.76,16.54 15.3,16.56C14.84,16.58 14.83,16.92 12.34,15.83C9.85,14.74 8.35,12.08 8.23,11.91C8.11,11.74 7.27,10.53 7.31,9.3C7.36,8.08 8,7.5 8.26,7.26C8.5,7 8.77,6.97 8.94,7H9.41C9.56,7 9.77,6.94 9.96,7.45L10.65,9.32C10.71,9.45 10.75,9.6 10.66,9.76L10.39,10.17L10,10.59C9.88,10.71 9.74,10.84 9.88,11.09C10,11.35 10.5,12.18 11.2,12.87C12.11,13.75 12.91,14.04 13.15,14.17C13.39,14.31 13.54,14.29 13.69,14.13L14.5,13.19C14.69,12.94 14.85,13 15.08,13.08L16.75,13.96M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C10.03,22 8.2,21.43 6.65,20.45L2,22L3.55,17.35C2.57,15.8 2,13.97 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12C4,13.72 4.54,15.31 5.46,16.61L4.5,19.5L7.39,18.54C8.69,19.46 10.28,20 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z"
+              />
+            </svg>
+          </a>
+          to send this activity to your contacts <br/>
 
-  <a>http://ec2-52-209-95-130.eu-west-1.compute.amazonaws.com:4200{{url}}</a>
-</md-card-actions>
-
-
+          <a>http://ec2-52-209-95-130.eu-west-1.compute.amazonaws.com:4200{{url}}</a>
+        </md-card-actions>

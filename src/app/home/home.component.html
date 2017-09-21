@@ -1,49 +1,71 @@
 <app-navbar [title]="title"></app-navbar>
  
 <div class="centre">
+
 	<md-card>
 
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 209.2 201.7" style="enable-background:new 0 0 209.2 201.7;" xml:space="preserve" id="nelly">
-<style type="text/css">
-	.st0{fill:none;stroke:#000000;stroke-miterlimit:10;}
-	.st1{opacity:0.36;}
-	.st2{opacity:0.54;}
-</style>
-<path id="XMLID_5_" class="st0" d="M77,200.1"/>
-<path id="XMLID_11_" class="st0" d="M182.7,117.5"/>
-<path id="XMLID_10_" class="st0" d="M129.8,84"/>
-<path id="XMLID_7_" class="st1" d="M103.8,84c0.1-0.8-4.2,21.9,13.6,34.1c14.8,10.1,28.6,6.1,38.3,0.3c7.4-4.5-0.8-0.8-0.8-0.8
-	s-20.8,9.8-36.1-1.3C118.8,116.3,106.4,108.4,103.8,84z"/>
-<path id="XMLID_77_" class="st2" d="M208.8,32.8c-2-15.4-8.8-35.7-28.8-32.4c0,0,0,7.7,0,7.7c0,0.7,4.6,3.9,5.2,4.5
+		<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+		 viewBox="0 0 209.2 201.7" style="enable-background:new 0 0 209.2 201.7;" xml:space="preserve" id="nelly">
+			<style type="text/css">
+				.st0 {
+					fill: none;
+					stroke: #000000;
+					stroke-miterlimit: 10;
+				}
+
+				.st1 {
+					opacity: 0.36;
+				}
+
+				.st2 {
+					opacity: 0.54;
+				}
+			</style>
+			<path id="XMLID_5_" class="st0" d="M77,200.1" />
+			<path id="XMLID_11_" class="st0" d="M182.7,117.5" />
+			<path id="XMLID_10_" class="st0" d="M129.8,84" />
+			<path id="XMLID_7_" class="st1" d="M103.8,84c0.1-0.8-4.2,21.9,13.6,34.1c14.8,10.1,28.6,6.1,38.3,0.3c7.4-4.5-0.8-0.8-0.8-0.8
+	s-20.8,9.8-36.1-1.3C118.8,116.3,106.4,108.4,103.8,84z" />
+			<path id="XMLID_77_" class="st2" d="M208.8,32.8c-2-15.4-8.8-35.7-28.8-32.4c0,0,0,7.7,0,7.7c0,0.7,4.6,3.9,5.2,4.5
 	c3.2,3.3,6.4,7.2,8,11.6c3.4,9.3-2,18-8.9,23.9c-2.9,2.5-7.1,6.1-11.1,6.5c-4.6,0.5-5.9-3.3-8.6-6.2c-3.5-3.7-8.1-5.6-13.2-6
 	c-25-1.8-46.2,16.5-48.4,41l-0.3,1C59,108,5.4,112.4,0.3,201.2L0,201.4l50-0.2l-0.3-0.1c0-0.3,0-0.5,0-0.8
 	c0-18.9,15.3-34.1,34.2-34.1s34.2,15.4,34.2,34.2c0,0.3,0,0.6,0,0.9l-0.1,0.4h47l-0.5-0.5c-0.7-12.8,3.2-25.6,6.7-37.6
 	c3.6-12.7,7.4-25.3,11.8-37.7c5.6-15.7,11.6-31.3,17.1-47C205.2,63.9,210.9,48.6,208.8,32.8z M160.3,74.7c-1.2,0-2.3-1-2.3-2.3
-	c0-1.2,1-2.3,2.3-2.3s2.3,1,2.3,2.3C162.5,73.7,161.5,74.7,160.3,74.7z"/>
-</svg>
+	c0-1.2,1-2.3,2.3-2.3s2.3,1,2.3,2.3C162.5,73.7,161.5,74.7,160.3,74.7z" />
+		</svg>
 
-		<md-card-actions>
-			<app-login></app-login>
-		</md-card-actions>
+
 	</md-card>
-
-	<md-grid-list cols="2" rowHeight="100px">
-		<md-grid-tile>
-			<div *ngIf="!authService.authenticated()">
-				<button md-riple md-button (click)="openHIW()">
-				  HOW IT WORKS
-				<div ></div>
-				</button>
-			</div>
-		</md-grid-tile>
-		 
-		<md-grid-tile>
-			<button md-button a routerLink="/createbubblbooking" routerLinkActive="active" color="warn"> 
-			GET STARTED
-			</button>
-		</md-grid-tile>
-	</md-grid-list>
 </div>
+
+
+<md-grid-list cols="1">
+<md-list>
+  
+  
+	  <md-list-item>
+	  <button md-button routerLink="/create"><md-icon>create</md-icon>CREATE</button>
+	  </md-list-item>
+  
+  
+	  <md-list-item>
+	  <button md-button routerLink="/activities"><md-icon>list</md-icon>SUGGESTIONS</button>
+	  </md-list-item>
+
+	  <md-list-item>
+		<button md-button (click)="openHIW()"><md-icon>info</md-icon>HOW IT WORKS</button>
+		</md-list-item>
+ 
+	<md-list-item>
+	  <app-login></app-login>
+	  </md-list-item>
+ 
+  </md-list>
+  </md-grid-list>
+
+
+
+	
+
 <router-outlet></router-outlet>
