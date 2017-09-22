@@ -1,11 +1,6 @@
 #nelly {
   max-width:40%;
 }
-
-.app-toolbar-menu {
-  padding: 0 14px 0 14px;
-  }
-
 .app-icon-button {
   box-shadow: none;
   user-select: none;
@@ -23,3 +18,27 @@
   text-decoration: none;
 }
 
+.fff {
+  color:#fff;
+}
+.orange-background {
+  background-color:#ff9800;
+}
+.home-menu-text {
+  padding-left: 40%;
+  font-weight: 700;
+ 
+}
+
+@media all and (max-width:1024px){
+  .paddingPatch {
+  padding-left: 30%;
+}
+}
+
+@media all and (min-width:1024px){
+
+.paddingPatch{
+  padding-left: 44%;
+  }
+}

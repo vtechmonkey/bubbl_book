@@ -1,6 +1,6 @@
 <div>
-  <button md-button (click)="auth.login()" *ngIf="!auth.authenticated()"><md-icon>input</md-icon>LOGIN</button>
-  <button md-button (click)="auth.logout()" *ngIf="auth.authenticated()"><md-icon>exit_to_app</md-icon>LOG OUT</button>
+  <button md-icon-button (click)="auth.login()" *ngIf="!auth.authenticated()"><md-icon>input</md-icon>LOGIN</button>
+  <button md-icon-button (click)="auth.logout()" *ngIf="auth.authenticated()"><md-icon>exit_to_app</md-icon>LOG OUT</button>
 </div>
 
 

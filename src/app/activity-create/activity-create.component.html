@@ -292,7 +292,7 @@
           </md-select>
           <div *ngIf="subCategory.invalid && (subCategory.dirty || subCategory.touched)" class="alert alert-danger">
               <div *ngIf="subCategory.errors.required">
-               Please select a suucategory.
+               Please select a subcategory.
               </div>
             </div>
      </div>
@@ -305,14 +305,22 @@
           </md-input-container>
         </div>
 
-
+<!-- 
         <div *ngIf="!auth.authenticated(); else submit">
           Login to save your event
           <app-login></app-login>
         </div>
         <ng-template #submit>
-          <button md-button type="submit">Save</button>
+         
+        </ng-template> -->
+        <div *ngIf="auth.authenticated(); else login">
+           <button md-button type="submit">Save</button>
+        </div>
+        <ng-template #login>
+          <app-login></app-login>          
         </ng-template>
+
+
 
       </form>
     </md-card-content>

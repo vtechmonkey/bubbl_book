@@ -203,16 +203,6 @@ export class ActivityCreateComponent implements OnInit {
             qty: '',//['', Validators.required],
             perPerson: ''
         });
-  
-     if (this.auth.userProfile){
-          console.log(this.auth.userProfile.user_id);
-          }
-
-        if (!this.auth.userProfile){
-          console.log("nobody logged in");
-          localStorage.removeItem('activity');
-          this.localStorageForm = null;
-        }
   }
 
   initDate() {

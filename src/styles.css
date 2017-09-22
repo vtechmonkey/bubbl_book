@@ -12,15 +12,10 @@ html { font-family: 'Roboto', sans-serif; }
 .titleMargin {
   margin-top:8px;
 }
-.app-toolbar-menu {
-  padding: 0 14px 0 14px;
-  }
 
-  .mat-sidenav-content {
-    overflow: hidden !important;
+.mat-sidenav-content {
+  overflow: hidden !important;
 }
-
-
 .app-icon-button {
   box-shadow: none;
   user-select: none;
@@ -37,29 +32,21 @@ html { font-family: 'Roboto', sans-serif; }
   text-align: left;
   text-decoration: none;
 }
-
-
-
 .opacity_87 {
   color: rgba(0,0,0, 0.87);
 }
-
 .opacity_68 {
   color: rgba(0,0,0, 0.67);
 }
-
 .opacity_54 {
   color: rgba(0,0,0, 0.54);
 }
-
 .sixteenPx {
   font-size:16px;
 }
-
 .mat-grid-tile-footer {
   font-size: 12px !important;
 }
-
 .mat-dialog-container {
   text-align:center;
 }
