@@ -16,9 +16,7 @@ export class Activity {
 	comments:string;
     prices:Price[];
 	dates:Date[];
-	votes:Vote[];
-	voteCount:number
-	//responses:Response[];
+	dateOptions:DateTime[];	
 }
 
 export class Price{
@@ -32,23 +30,19 @@ export class Date{
 }
 
 export class Time{
-	time:string
+	time:string;
 }
 
-export class Vote {
-	userId: string;
-	dateTimes: dateTime[];
+export class DateTime {
+	theDate: string;
+	theTime: string;
+	isChecked:boolean;
+	voterIds:VoterId[]
 }
 
-export class dateTime {
-	dateTime:string;
+export class VoterId {
+	voterId:string;
+	voterName:string;
 }
-// export class Response{
-// 	userId: string;
-// 	dateTimes:dateTime[];
-// }
 
-// export class dateTime{
-// 	date:string;
-// 	time:string;
-// }
+

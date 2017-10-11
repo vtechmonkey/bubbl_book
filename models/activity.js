@@ -16,17 +16,10 @@ var ActivitySchema = new mongoose.Schema({
 	comments:String,
     prices:[],
 	dates:[],
-	responses:[],
-	votes:[],
-	voteCount: Number
-
-	// dates:[{*/}
-	// 	dates:String,
-	// 	times:
-	// 		[{
-	// 		times:String
-	// 		}]
-	// }]
+	dateOptions:[],
+	
+	
+	
 
 	
 });

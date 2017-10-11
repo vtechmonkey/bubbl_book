@@ -117,13 +117,11 @@
         activity.prices = req.body.prices;
       if(req.body.dates)
         activity.dates = req.body.dates;
-      if (req.body.voteCount)
-        activity.voteCount = req.body.voteCount;
-      if (req.body.votes)
-        activity.votes = req.body.votes;
-
+      if (req.body.dateOptions)
+        activity.dateOptions = req.body.dateOptions;
+      
       //save update
-      activity.save(function(err){
+      activity.save(function(err){ 
         if(err)
           res.send(err);
         res.json(activity);

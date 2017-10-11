@@ -1,7 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import { Activity,Price,Date,Time,Vote,dateTime } from '../activity';   
+ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Activity,Price,Date,Time,DateTime } from '../activity';   
 import { ActivitiesService } from '../activities.service';
 import { AuthService } from '../auth.service';
+import { VoteService } from '../vote.service';
+
 
 ///https://gist.github.com/linxlad/8db835431cbf2e862c35f17aa1e90aa9
 @Component({
@@ -11,73 +13,64 @@ import { AuthService } from '../auth.service';
 })
 export class VoteComponent implements OnInit {
 
-//public vote: Vote;
-
-//activities: Activity[];
-//votes: Vote[];
-//Vote:{userId:''};
-//Vote:{userId:string}[] = [];
-
-userId:any;
-v:any;
+//userId:any;
+//dateOptions:any;
+//voterIds:any;
+//checked:any;
+//v:any;
 @Input() activity: Activity; 
-@Input() 
-@Input() myVote = 0;
+//@Input() myVote = 0;
 @Input() userProfile; 
-@Output('vote') change = new EventEmitter();
-
-  
+//@Output('vote') change = new EventEmitter();
 
 constructor(
-	private activitiesService:ActivitiesService,
-    private auth: AuthService,   
-
+	private activitiesService:ActivitiesService, 
+    private auth: AuthService,
 	) { 
-	//this.vote = Vote;
-	this.userId = this.auth.userProfile.user_id;
-	console.log(this.auth.userProfile.user_id);
-	//console.log(this.userId);
+	this.userProfile = auth.userProfile;
 
-	}
-		
+	
+}
 
 ngOnInit() {
-	if (this.activity.voteCount == undefined) {
-		this.activity.voteCount = 0;
-	 }
-	//this.activity.votes = [];
-	console.log(this.activity.dates)
-	;
+	console.log('this activity '+JSON.stringify(this.activity.dateOptions,null,'\t'));
+	this.getActivityDates();
+	//console.log(this.activity.dates);
+	console.log(this.activity.dateOptions);
 }
 
-upVote() {
-	if(this.myVote == 1){
-		return;
-	}
-	this.activity.voteCount++;
-	// this.v = {userId: this.userId};
-	// console.log(this.v);	
-	this.activity.votes.push(this.userId);
-	console.log(this.activity.votes);
-	this.activitiesService.save(this.activity).subscribe(/* error handling */);   
-	this.emitEvent();
-	console.log(this.activity);
+getActivityDates() {	
+	let dateTime ={};	
+	this.activity.dateOptions = this.activity.dates.reduce((acc, curr)=>  {
+		let result = curr.times.map(time =>
+			 dateTime ={
+				theDate: curr.date,
+				theTime: time.time,
+				isChecked:false,
+				voterIds:[]
+			}
+	);
+		return acc.concat(result);
+	},[]);
+	console.log(this.activity.dateOptions );
+	return this.activity.dateOptions;
 }
-
-downVote() {
-	if(this.myVote == -1){
-		return;
-	}
-	this.myVote--;
-	this.emitEvent();
-}
-
-emitEvent() {
-	this.change.emit({myVote: this.myVote})
-}
+ 
 
 saveVote() {
-	this.activitiesService.save(this.activity).subscribe(/* error handling */);   
-}
+
+	let voterId =this.userProfile.user_id;
+	let voterName = this.userProfile.name;
+	
+	this.activity.dateOptions.forEach(x =>{
+		if(x.isChecked){
+			x.voterIds.push(voterId);
+			x.voterIds.push(voterName);
+		}
+		console.log('forEach' +this.activity.dateOptions);
+	})
+	console.log(this.activity.dateOptions);
+	  this.activitiesService.save(this.activity).subscribe(/* error handling */);  
+}//saveVote 
 
 }

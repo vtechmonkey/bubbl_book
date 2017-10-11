@@ -137,7 +137,7 @@ export class ActivityCreateComponent implements OnInit {
         .patchValue({ duration: this.localStorageForm.duration })
        this.activityForm
         .patchValue({ comments: this.localStorageForm.comments })
-
+        
     }
    } //ngOnInit
 
@@ -263,8 +263,7 @@ export class ActivityCreateComponent implements OnInit {
       comments: activityModel.comments as string,
       prices: priceModelCopy,
       dates: datesModelCopy,
-      votes: [],
-      voteCount: this.activity.voteCount as number
+      dateOptions:null
     };
     return saveActivity;
   }

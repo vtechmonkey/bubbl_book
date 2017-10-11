@@ -4,3 +4,10 @@
 .showForm {
 	visibility: visible;
 }
+.smImg {
+	width: auto;
+    height: auto;
+    max-width: 500px;
+    max-height: 500px;
+
+}

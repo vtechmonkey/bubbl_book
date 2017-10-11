@@ -10,7 +10,7 @@ import "rxjs/add/operator/filter";
 import "rxjs/add/operator/map";
 import * as _ from 'lodash';
 
-import { Activity,Price,Date,Time, Vote } from '../activity';    
+import { Activity,Price,Date,Time,DateTime } from '../activity';    
 import { CategoryService } from '../category/category.service';    
 import { SubCategoryService } from '../subCategory/subCategory.service';    
 import { ICategory } from '../category/category';    
@@ -35,7 +35,6 @@ export class ActivityDetailsComponent implements OnInit {
   title = "Event Details";
 
   activities: Activity[];
-  votes: Vote[];
   error:any;
   navigated = false;
   sub: any;
@@ -68,44 +67,42 @@ dates:FormArray;
 activity: Activity;    
 @Output() close = new EventEmitter();    
 
-userProfile = this.userProfile;//user icon from auth0
+userProfile = this.userProfile;//user profile from auth0
 
   //more details dialog
   dialogRef: MdDialogRef<MoreDetailsComponent>
   config: MdDialogConfig={
 
-   data :
-      this.activity
-    
+   data : //mdDialog
+      this.activity     
   };
 
+  constructor( 
+    private activitiesService:ActivitiesService,
+    private route: ActivatedRoute,
+    private categoryService: CategoryService,
+    private subCategoryService: SubCategoryService,
+    private router: Router,
+    private pics: PicsService,
+    private auth: AuthService,
 
-  constructor(  private activitiesService:ActivitiesService,
-                private route: ActivatedRoute,
-                private categoryService: CategoryService,    
-                private subCategoryService: SubCategoryService,
-                private router: Router,
-                private pics: PicsService,
-                private auth: AuthService,             
-
-                location:Location,  
-                public dialog: MdDialog, //more details dialog
-                @Inject (DOCUMENT) doc:any,
-                private fb: FormBuilder
-               
-                )
-              { 
-                this.createForm();
-                this.location = location;
-                this.url = this.location.path();
-                this.showActivityForm = 'hideForm';//show/hide form 
-                this.visible = true;    //show/hide form 
-                this.pics.imageURL = pics.imageURL;   
-                this.auth.userProfile = auth.userProfile;
-                //this.auth.userProfile.user_id
-                //this.userProfile = JSON.parse(localStorage.getItem('profile'));
-                console.log(this.auth.userProfile.user_id + 'details comp');
-               
+    location:Location,
+    public dialog: MdDialog, //more details dialog
+    @Inject (DOCUMENT) doc:any,//for mdDialog
+    private fb: FormBuilder
+   
+    )
+  { 
+    this.createForm();
+    this.location = location;
+    this.url = this.location.path();
+    this.showActivityForm = 'hideForm';//show/hide form 
+    this.visible = true;    //show/hide form 
+    this.pics.imageURL = pics.imageURL;
+    this.auth.userProfile = auth.userProfile;
+    //this.auth.userProfile.user_id
+    //this.userProfile = JSON.parse(localStorage.getItem('profile'));             
+   
    }
 
 
@@ -162,7 +159,7 @@ userProfile = this.userProfile;//user icon from auth0
                 .subscribe(
                 subCategoryData => this.subCategoryByCategory = _.filter(subCategoryData, function(o) { return o.category == cat},'subCategory')
                 );
-              }
+              } //set activity subcategory
 
               if(!this.pics.imageURL ){
                 console.log('meh!');
@@ -170,7 +167,7 @@ userProfile = this.userProfile;//user icon from auth0
                 const img = this.activity.imageURL;
                 this.pics.imageURL = img;
                 console.log(this.pics.imageURL);
-              }
+              } //image 
 
 
             });  
@@ -193,7 +190,7 @@ ngAfterViewInit(){
 
 }     
   
-      createForm() {
+  createForm() {
         
     this.name = new FormControl('', [Validators.required]);
     this.description = new FormControl('')//, [Validators.required]);
@@ -226,9 +223,8 @@ ngAfterViewInit(){
       imageURL: this.pics.imageURL
     });
   }
-
          
-  initPrice() {
+    initPrice() {
         return this.fb.group({
             qty: ['', Validators.required],
             perPerson: ['', Validators.required]
@@ -250,7 +246,6 @@ ngAfterViewInit(){
       })
     }
   
-
     onSelect(categoryName) {
 
     console.log ('User selected ' + categoryName);
@@ -302,7 +297,7 @@ ngAfterViewInit(){
     
     const saveActivity: Activity = {
      authUserId: this.auth.userProfile.user_id as string,
-      _id: activityModel._id as string,
+      _id:this.activity._id as string,  //edit this activity, remove this line to create a new activity
       name: activityModel.name as string,
       description: activityModel.description as string,
       fullDescription: activityModel.fullDescription as string,
@@ -317,8 +312,7 @@ ngAfterViewInit(){
       comments: activityModel.comments as string,
       prices: priceModelCopy,
       dates: datesModelCopy,
-      votes:[],
-      voteCount:this.activity.voteCount as number  
+      dateOptions:null
     };
     return saveActivity;
   }
