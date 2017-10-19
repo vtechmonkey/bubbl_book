@@ -3,6 +3,7 @@ import { Activity,Price,Date,Time,DateTime } from '../activity';
 import { ActivitiesService } from '../activities.service';
 import { AuthService } from '../auth.service';
 import { VoteService } from '../vote.service';
+import * as _ from 'lodash';
 
 
 ///https://gist.github.com/linxlad/8db835431cbf2e862c35f17aa1e90aa9
@@ -18,6 +19,7 @@ export class VoteComponent implements OnInit {
 //voterIds:any;
 //checked:any;
 //v:any;
+dateArray:any;
 @Input() activity: Activity; 
 //@Input() myVote = 0;
 @Input() userProfile; 
@@ -36,26 +38,51 @@ ngOnInit() {
 	console.log('this activity '+JSON.stringify(this.activity.dateOptions,null,'\t'));
 	this.getActivityDates();
 	//console.log(this.activity.dates);
-	console.log(this.activity.dateOptions);
+	console.log('dateArray is '+JSON.stringify(this.dateArray, null, '\t'));
+	this.createNewDateOptions(); 
+	
+
+
 }
 
-getActivityDates() {	
-	let dateTime ={};	
-	this.activity.dateOptions = this.activity.dates.reduce((acc, curr)=>  {
+getActivityDates() { //uses reduce and map function to go through the 
+	//date array and create a new object with the date repeated for each time 
+	//adds an empty array to the object for voterids and isChecked for the checkbox
+	let dateTime ={}; // new dateTime object 
+	this.dateArray = this.activity.dates.reduce((acc, curr)=>  {
 		let result = curr.times.map(time =>
 			 dateTime ={
-				theDate: curr.date,
-				theTime: time.time,
-				isChecked:false,
-				voterIds:[]
+			 	voterIds:[],
+			 	isChecked:false,
+			 	theTime: time.time,
+			 	theDate: curr.date
 			}
 	);
 		return acc.concat(result);
 	},[]);
-	console.log(this.activity.dateOptions );
-	return this.activity.dateOptions;
+	console.log(this.dateArray );
+	return this.dateArray;
 }
- 
+
+createNewDateOptions() { //joins any previously saved dateOptions to the new date options
+	this.activity.dateOptions = this.dateArray.reduce(function(acc, item){
+		acc.push(item);
+		return acc;
+	}, this.activity.dateOptions);
+
+	// let piggy = _.uniqBy(this.activity.dateOptions, 'theDate', 'theTime');
+	
+	let removeDups = (entry, index, arr)=>
+		arr.findIndex(item =>
+			item.theDate === entry.theDate
+			&& item.theTime === entry.theTime
+			&& item.voterIds.length === 0)
+		!== index;
+	this.activity.dateOptions = this.activity.dateOptions.filter(removeDups);
+//	console.log('piggy is' +JSON.stringify(piggy, null, '\t'));
+console.log('findIndex and filter ' +JSON.stringify(this.activity.dateOptions, null, '\t'));
+
+}//createNewDateOptions()
 
 saveVote() {
 
